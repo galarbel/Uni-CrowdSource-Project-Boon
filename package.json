@@ -1,7 +1,7 @@
 {
-  "name": "HR-React-TimeOff",
+  "name": "boon",
   "version": "1.0.0",
-  "description": "TimeOff app",
+  "description": "boon app",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
@@ -104,6 +104,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://stash.checkpoint.com/projects/MISINT/repos/hr---react---time-off"
+    "url": "https://bitbucket.org/gal_arbel/boon"
   }
 }

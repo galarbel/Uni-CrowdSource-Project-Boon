@@ -1,8 +1,7 @@
 import React, {PropTypes} from "react";
 import CircularProgress from "material-ui/CircularProgress";
-import {colors} from "../../constants/brand";
 
-const LoadingProgress = ({size = 150, thickness = 5, color = colors.main, fullPage = true, style}) => {
+const LoadingProgress = ({size = 150, thickness = 5, color = "#E65785", fullPage = true, style}) => {
     let wrapperClassName = "loadingProgress";
     wrapperClassName += fullPage ? " full_page_loader_position" : "";
     return (

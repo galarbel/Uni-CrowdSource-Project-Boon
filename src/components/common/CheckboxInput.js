@@ -1,10 +1,9 @@
 import React, {PropTypes} from "react";
 import Checkbox from 'material-ui/Checkbox';
-import {colors} from "../../constants/brand";
 
 const styles = {
     iconRules:{
-        fill: colors.main
+        fill: "#E65785"
     }
 };
 
@@ -25,7 +24,6 @@ const CheckboxInput = ({name, label, checked, disabled , error, onCheck, id}) =>
                 labelStyle={styles.labelRules}
                 iconStyle = {styles.iconRules}
                 id = {id}
-                inputStyle={styles.inputRules}
             />
             {error && <div className="alert alert-danger">{error}</div>}
         </div>

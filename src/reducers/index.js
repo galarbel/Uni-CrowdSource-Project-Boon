@@ -1,16 +1,12 @@
 import {combineReducers} from "redux";
 import ajaxCallsInProgress from "./ajaxStatusReducer";
-import deviceProfile from "./deviceProfileReducer";
-import employeeInfo from "./employeeInfoReducer";
-import managerInfo from "./managerInfoReducer";
+import template from "./templateReducer";
 import ajaxError from "./ajaxErrorReducer";
 
 const rootReducer = combineReducers({
     ajaxCallsInProgress,
     ajaxError,
-    deviceProfile,
-    employeeInfo,
-    managerInfo,
+    template
 });
 
 export default rootReducer;

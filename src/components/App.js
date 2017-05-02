@@ -1,73 +1,95 @@
 import React, {PropTypes} from "react";
-import {StickyContainer, Sticky} from 'react-sticky';
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import MuiTheme from "./common/MuiTheme";
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Navigation from "./common/Navigation";
-import Footer from "./common/Footer";
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import {Link} from 'react-router';
 import {connect} from "react-redux";
-import ErrorPage from './common/ErrorPage';
 import {bindActionCreators} from "redux";
-import * as ajaxStatusActions from "../actions/ajaxStatusActions";
+import * as absenceActions from "../actions/ActionsTemplate";
+import Divider from 'material-ui/Divider';
+import FontAwesome from "react-fontawesome";
+import {StickyContainer, Sticky} from 'react-sticky';
 
-// Needed for onTouchTap for material-ui
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-
-// Needed for fetch-jsonp polyfill
-require('es6-promise').polyfill();
+const appHeadlines = ["TimeOff Request", "My Requests","Absence Summary","Absence Info","Approve Requests"];
 
 class App extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+        //this.state = {open: false, title:'TimeOff Request'};
+        this.titleHandler(this.props.location.pathname);
+
+
+        this.handleToggle = this.handleToggle.bind(this);
+        this.titleHandler = this.titleHandler.bind(this);
     }
 
-    shouldComponentUpdate() {
-        if (this.props.ajaxError) {
-            this.props.actions.clearError();
+    componentWillMount() {
+        //this.props.actions.getAbsenceTypes();
+    }
+
+    handleToggle(event){
+        let Title= this.state.title;
+        if (typeof event.target.name != 'undefined' && event.target.name != '' ){
+            Title = appHeadlines[event.target.name];
         }
-        return true;
+        this.setState({open: !this.state.open,title: Title});
+
     }
 
+    titleHandler(path){
+        let newTitle = appHeadlines[0];
+        switch (path){
+            case "/create":
+                newTitle = appHeadlines[0];
+                break;
+            case "/requests":
+                newTitle = appHeadlines[1];
+                break;
+            case "/summary":
+                newTitle = appHeadlines[2];
+                break;
+            case "/info":
+                newTitle = appHeadlines[3];
+                break;
+            case "/approve":
+                newTitle = appHeadlines[4];
+                break;
+        }
+
+        this.state = {open: false, title:newTitle};
+    }
 
     render() {
         return (
-            <div className="Site">
-                <div className="Site-content">
-                    <StickyContainer>
-                        <Sticky style={{zIndex: "10"}}>
-                            <Navigation />
-                        </Sticky>
-                        <MuiThemeProvider muiTheme={getMuiTheme(MuiTheme)}>
-                            {this.props.ajaxError ?
-                                <ErrorPage msg={this.props.ajaxError}/>
-                                :
-                                this.props.children}
-                        </MuiThemeProvider>
-                    </StickyContainer>
-                </div>
-                <Footer />
+            <div>
+                <StickyContainer>
+                    <Sticky>
+                        <div>Test</div>
+                    </Sticky>
+                    {this.props.children}
+                </StickyContainer>
             </div>
         );
     }
 }
 
+
 App.propTypes = {
-    actions: PropTypes.object.isRequired,
-    children: PropTypes.object.isRequired,
-    ajaxError: PropTypes.string
+    actions: PropTypes.object,
+    location: PropTypes.object,
+    children: PropTypes.element
 };
 
-function mapStateToProps(state/*, ownProps*/) {
+function mapStateToProps(state) {
     return {
-        ajaxError: state.ajaxError
+        loading: state.ajaxCallsInProgress > 0
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(ajaxStatusActions, dispatch)
+        actions: bindActionCreators(absenceActions, dispatch)
     };
 }
 
