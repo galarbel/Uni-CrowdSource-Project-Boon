@@ -1,0 +1,93 @@
+
+.ReactTable  {
+    font-size: 14px;
+}
+
+.rt-thead {
+    background-color: #EEEEEE;
+}
+
+.rt-td {
+    padding: 8px 5px 2px 5px !important;
+    border-right: 0 solid rgba(0,0,0,0.02) !important;
+    min-height: 36px;
+}
+
+.rt-th {
+    border-right: 0 solid rgba(0,0,0,0.02) !important;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-desc, .ReactTable .rt-thead .rt-td.-sort-desc {
+    box-shadow: inset 0 0 0 0 #e65785 !important;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-asc, .ReactTable .rt-thead .rt-td.-sort-asc {
+    box-shadow: inset 0 0 0 0 #e65785 !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+.ReactTable .rt-thead .rt-th {
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+div.-sort-asc::after {
+    content: "\25B2";
+    float: right;
+    color: #e65785;
+    font-size: 11px;
+    padding-top: 4px;
+}
+
+div.-sort-desc::after {
+    content: "\25BC";
+    float: right;
+    color: #e65785;
+    font-size: 11px;
+    padding-top: 4px;
+}
+
+.ReactTable .-pagination{
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1) !important;
+    border-top: 1px solid rgba(0,0,0,0.1) !important;
+    background: rgba(0,0,0,0.02) !important;
+}
+
+.ReactTable .rt-thead.-header {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15) !important;
+}
+
+.ReactTable .-pagination .-center {
+    -webkit-box-flex: 1 !important;
+    -ms-flex: 1 !important;
+    flex: 1 !important;
+    -ms-flex-pack: start !important;
+    justify-content: flex-start !important;
+}
+
+.ReactTable .-pagination .-previous, .ReactTable .-pagination .-next {
+    flex: 0 1 75px !important;
+}
+
+.ReactTable .-pagination .-previous {
+    -webkit-order: 1 !important;
+    -ms-flex-order: 1 !important;
+    order: 1 !important;
+}
+
+.ReactTable .-pagination .-next {
+    -webkit-order: 2 !important;
+    -ms-flex-order: 2 !important;
+    order: 2 !important;
+}
+
+.ReactTable .-pagination .-btn {
+    padding: 0px !important;
+    background: rgba(0,0,0,0) !important;
+    color: #cc0066 !important;
+}
+
+.ReactTable .select-wrap select {
+    padding: 2px 15px 2px 7px !important;
+}
