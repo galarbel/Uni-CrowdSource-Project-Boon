@@ -65,7 +65,7 @@ class App extends React.Component {
             <div>
                 <StickyContainer>
                     <Sticky>
-                        <div>Test</div>
+                        <div />
                     </Sticky>
                     {this.props.children}
                 </StickyContainer>
