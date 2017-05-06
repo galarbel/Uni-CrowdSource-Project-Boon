@@ -17,7 +17,7 @@ class LoginPage extends React.Component {
                 <div style={{textAlign: "center", paddingTop: "40px"}}>
                     <img src={boonLogo}/>
                     <br/><br/>
-                    <img src={giftPic} style={{width: "55%"}} />
+                    <img src={giftPic} style={{width: "49%"}} />
                 </div>
                 <div>
                     <TextInput label="" name="username" onChange={() => {}} placeholder="Email" />
@@ -25,7 +25,10 @@ class LoginPage extends React.Component {
                     <TextInput label="" name="repeat" onChange={() => {}} placeholder="Repeat Password" type="password" />
                 </div>
                 <div>
-                    <Button onClick={() => {}} label="Login" style={{width: "100%", padding: "6px 12px"}} />
+                    <Button onClick={() => {}} label="Register" style={{width: "100%", padding: "6px 12px"}} />
+                </div>
+                <div style={{textAlign: "center", paddingTop: "30px"}}>
+                    <Link name="1" to="/login">Already Have An Account? Login Here</Link>
                 </div>
             </div>
         );
