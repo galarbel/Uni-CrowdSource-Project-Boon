@@ -56,7 +56,7 @@ class MobileContainer extends React.Component {
                         width={250}
                         open={this.state.open}
                         className={"drawer"}
-                        containerStyle={{backgroundColor:'#999',color:'white'}}
+                        containerStyle={{backgroundColor:'#efefef',color:'black'}}
                         onRequestChange={(open) =>  this.setState({open})}>
                     <div style={{textAlign:'center',color:'#e65785',margin:'20px 0'}}>
                         <FontAwesome name={"gift"} size="2x"/>
