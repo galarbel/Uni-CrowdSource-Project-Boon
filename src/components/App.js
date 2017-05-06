@@ -9,6 +9,13 @@ import * as absenceActions from "../actions/ActionsTemplate";
 import Divider from 'material-ui/Divider';
 import FontAwesome from "react-fontawesome";
 import {StickyContainer, Sticky} from 'react-sticky';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import MuiTheme from "./common/MuiTheme";
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+/** DO NOT REMOVE THIS - start**/
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+/** DO NOT REMOVE THIS - end**/
 
 const appHeadlines = ["TimeOff Request", "My Requests","Absence Summary","Absence Info","Approve Requests"];
 
@@ -63,12 +70,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <StickyContainer>
-                    <Sticky>
-                        <div>Test</div>
-                    </Sticky>
-                    {this.props.children}
-                </StickyContainer>
+                     <MuiThemeProvider muiTheme={getMuiTheme(MuiTheme)}>
+                        {this.props.children}
+                    </MuiThemeProvider>
             </div>
         );
     }
