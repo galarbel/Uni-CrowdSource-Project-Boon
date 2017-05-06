@@ -30,13 +30,13 @@ class MobileContainer extends React.Component {
     handleToggle(event){
         let Title= this.state.title;
         if (typeof event.target.name != 'undefined' && event.target.name != '' ){
-           Title = appHeadlines[event.target.name];
+           //Title = appHeadlines[event.target.name];
         }
         this.setState({open: !this.state.open,title: Title});
     }
 
     titleHandler(path){
-        let newTitle = "Boon!";
+        let newTitle = "main page";
         this.state = {open: false, title:newTitle};
     }
 
@@ -60,16 +60,18 @@ class MobileContainer extends React.Component {
                         onRequestChange={(open) =>  this.setState({open})}>
                     <div style={{textAlign:'center',color:'#e65785',margin:'20px 0'}}>
                         <FontAwesome name={"gift"} size="2x"/>
-                        <h1 style={{display:'inline-block',marginLeft:'3px'}}>Boon</h1>
+                        <h1 style={{display:'inline-block',marginLeft:'3px'}}>boon!</h1>
                     </div>
                     <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name="0" to="/">Home</Link></div></MenuItem>
+                    <MenuItem ><div onClick={this.handleToggle}><Link name="0" to="/main">Home</Link></div></MenuItem>
                     <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name="1" to="/account">My account</Link></div></MenuItem>
+                    <MenuItem ><div onClick={this.handleToggle}><Link name= "1" to="/catalog">Boons catalog</Link></div></MenuItem>
                     <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name= "2" to="/submit">Add boon</Link></div></MenuItem>
+                    <MenuItem ><div onClick={this.handleToggle}><Link name= "2" to="/submit">Submit an item</Link></div></MenuItem>
                     <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name= "3" to="/catalog">Catalog</Link></div></MenuItem>
+                    <MenuItem ><div onClick={this.handleToggle}><Link name="3" to="/account">My account</Link></div></MenuItem>
+                    <Divider/>
+                    <MenuItem ><div onClick={this.handleToggle}><Link name="" to="/account">Logout</Link></div></MenuItem>
                     <Divider/>
                 </Drawer>
 

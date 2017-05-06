@@ -8,7 +8,7 @@ export const activeEnv = "dummy";
 
 const env = {
     "dummy": "",
-    "local": "http://localhost:8080/timeoff-api",
+    "local": "http://localhost:8080/boon-api",
     "prd": "http://cs.tau.ac.il/~galarbel/boonWS/",
 };
 

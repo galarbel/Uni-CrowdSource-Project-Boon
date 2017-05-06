@@ -1,9 +1,9 @@
 import React, {PropTypes} from "react";
-import TextInput from '../../common/TextInput';
-import Button from '../../common/Button';
+import TextInput from '../common/TextInput';
+import Button from '../common/Button';
 import {Link} from 'react-router';
-import boonLogo from '../../../../resources/img/boon-logo-word.png';
-import giftPic from '../../../../resources/img/gift-register.png';
+import boonLogo from '../../../resources/img/boon-logo-word.png';
+import giftPic from '../../../resources/img/gift-register.png';
 
 class LoginPage extends React.Component {
 
