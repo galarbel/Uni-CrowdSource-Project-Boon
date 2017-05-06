@@ -1,13 +1,13 @@
 import React from "react";
 import {Route, IndexRoute, IndexRedirect} from "react-router";
 import App from "./components/App";
-import LoginPage from "./components/LoginPage";
-import MainContainer from "./components/MainContainer";
+import LoginPage from "./components/common/login/LoginPage";
+import Register from "./components/common/login/Register";
 
 export const routes = (
     <Route path="/" component={App}>
-        <IndexRedirect to="/main" />
+        <IndexRedirect to="/login" />
         <Route path="/login" component={LoginPage}/>
-        <Route path="/main" component={MainContainer}/>
+        <Route path="/register" component={Register}/>
     </Route>
 );

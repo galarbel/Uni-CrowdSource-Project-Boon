@@ -1,15 +1,12 @@
 /* Styles SASS file*/
 
-$color-cp-pink-main: #E85685;
-$color-cp-pink-links: #CC0066;
-
 * {
     margin: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: "DIN";
+    font-family: Verdana, Arial;
     color: #333;
     overflow-y: scroll;
     display: flex;
@@ -17,175 +14,15 @@ body {
     flex-direction: column;
 }
 
-a {
-    text-decoration: none !important;
-    color: $color-cp-pink-links;
-}
-
-.Site {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.Site-content {
-    flex: 1;
-}
-
-.loadingProgress {
-    display: inline-block;
-}
-
-.full_page_loader_position {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.header {
-    background-color: #EFEFEF;
-    padding: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer {
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 10px;
-}
-
-@media (max-device-width: 1224px) {
-    .top {
-        display: none;
-    }
-    .footer {
-        display: none;
-    }
-    #app {
-        margin-top: 0 !important;
-    }
-}
-
-.title {
-    font-size: 24px;
-    color: $color-cp-pink-links;
-    font-weight: normal;
-}
-
-nav {
-    display: flex;
-    align-items: stretch;
-    font-size: 0.9em;
-    background: linear-gradient(#7D7D7D, #999999);
-    box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
-
-    a {
-        padding: 0.5em 1em;
-        color: white;
-
-        &:hover {
-            text-decoration: underline !important;
-        }
-    }
-}
-
-
-.nav-link-active {
-    background-color: $color-cp-pink-links;
-}
-
-.cp_color {
-    color: $color-cp-pink-main;
-}
-
-/** Fixes for cp_mainstyle.css **/
-.cp_link, a.cp_link {
-    font-size: inherit !important;
-}
-
-/** end of fixes **/
-
-.pagePadding {
-    padding: 20px;
-}
-
-.toggleInput div {
-    box-sizing: content-box;
-}
-
-form {
-    fieldset {
-        padding: 0;
-        border: 0;
-    }
-    input[type="text"], textarea, select {
-        padding: 2px 5px;
-        font-family: "DIN";
-    }
-}
-
-.createRequestPage {
-    max-width: 1230px;
-}
-
-.createRequestForm {
-    max-width: 520px;
-    /*min-width: 330px;*/
-
-    select {
-        min-width: 44%
-    }
-    .full-width {
-        width: 100%;
-    }
-}
-
-.form-control {
-    box-sizing: border-box;
-}
-
-.form-group + .form-group {
-    margin-top: 8px;
-}
-
-.absenceRelatedInfo {
-    width: 100%;
-
-    .inner-wrapper {
-        background-color: #F7F7F7;
-        display: flex;
-    }
-    .two-columns {
-        display: flex;
-        justify-content: space-between;
-    }
-    .left-pad {
-        padding-left: 20px;
-    }
-    img {
-        max-height: 200px;
-    }
-}
-
-.top-sections {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.cp-btn {
-    background-color: $color-cp-pink-main;
+.btn {
+    background-color: #393276;
     border: none;
     font-size: 1rem;
     padding: 3px 10px;
-    font-family: "DIN";
+    font-family: Verdana, Arial;
     color: #FFF;
 
-    &.cp-btn-secondary {
+    &.btn-secondary {
         background-color: #CCC;
     }
 
@@ -205,244 +42,30 @@ form {
     }
 }
 
-.cp-btn + .cp-btn {
+.btn + .btn {
     margin-left: 1em;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
+a {
+    color: #393255;
 }
 
-.absencesSummary {
-    margin-bottom: 1em;
-    min-width: 530px;
-    max-width: 700px;
+.login-page {
+    width: 80%;
+    margin: auto;
 
-    table {
+    > div:first-child {
+        text-align: center;
+        margin-bottom: 20px;
+
+        img {
+            width: 100%
+        }
+    }
+
+    input {
         width: 100%;
-        text-align: left;
-        margin-top: 20px;
-
-        tr {
-            border: 1px solid #D1D1D1;
-        }
-
-        th, td {
-            border: none;
-        }
-
-        td {
-            padding: 5px 10px;
-            font-size: 0.9em;
-        }
-
-        th {
-            padding: 10px 10px;
-            background-color: #EFEFEF;
-        }
+        padding: 5px;
+        margin-bottom: 10px;
     }
-}
-
-.successInfo {
-    td + td {
-        padding-left: 20px;
-    }
-}
-
-/*TODO fix the css, it is old school :)*/
-#myRequestsMainDiv {
-    > div:nth-child(2) {
-        width: 13%;
-        font-size: 14px;
-        background-color: #F7F7F7;
-        vertical-align: top;
-    }
-    > div:nth-child(3) {
-        width:71%;
-        //vertical-align: top;
-        margin-left:20px;
-
-    }
-    .myAbsencesBrothers {
-        .form-group + .form-group {
-            margin-top: 0px;
-        }
-        .form-group {
-            padding-left: 10px;
-            > div:last-child {
-                margin-bottom: 5px;
-            }
-            > div:first-child {
-                line-height: 35px !important;
-            }
-        }
-    }
-}
-.requestsTables{
-    button.cp-btn{
-        //background-color: white;
-        //color: #e65785;
-    }
-    button.cp-btn:hover {
-        //background-color: rgba(153, 153, 153, 0.2);
-    }
-    .actions {
-        svg > * {
-        fill:#e65785 !important;
-        }
-    }
-}
-.AbsenceTypes-appear {
-    opacity    : 0;
-    transition : opacity .7s ease-in;
-}
-
-.AbsenceTypes-appear.AbsenceTypes-appear-active {
-    opacity : 1;
-}
-
-.AbsenceTypes-enter {
-    max-height : 0;
-    transition : all .2s ease-in;
-}
-
-.AbsenceTypes-enter.AbsenceTypes-enter-active {
-    max-height : 1000px;
-}
-
-.AbsenceTypes-leave {
-    max-height : 1000px;
-    transition : all .2s ease-out;
-}
-
-.AbsenceTypes-leave.AbsenceTypes-leave-active {
-    max-height : 0;
-}
-
-.inlineBlock{
-    display:inline-block;
-}
-
-.verticalAlignBottom{
-    vertical-align: bottom;
-}
-#userRequestTable {
-    line-height: 30px;
-    tr > td:first-child {
-        width: 25%;
-    }
-    .inlineBlock:not(:first-child){
-          margin-left: 15px;
-    }
-}
-
-#filterForm .form-group{
-    padding-left:5px;
-}
-
-.errorDiv, #errorTD {
-    color: red;
-}
-
-.pinkColor, .cp-color{
-    color:#e65785;
-}
-
-#mobileSuccessInfo tr td:first-child{
-    color:#e65785;
-}
-
-#absenceSummaryDiv div{
-    font-size: 16px;
-}
-
-.drawer a{
-    color:black;
-}
-
-.mobile-approve-request-row {
-    position: relative;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    border-bottom: 1px solid #ccc;
-
-    > div {
-        display: inline-block;
-    }
-
-    span.fa-chevron-right {
-        position: absolute;
-        top:0;
-        bottom:0;
-        right: 20px;
-        margin: auto;
-        height:18px;
-    }
-}
-
-.mobile-request-details {
-    > * {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-    }
-
-    table {
-
-        th {
-            white-space: nowrap;
-            color: #e65785;
-            font-weight: normal;
-            text-align: left;
-            padding-right: 20px;
-            vertical-align: top;
-        }
-    }
-}
-
-.mobile-request-details-header {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-
-.mobile-vacation-related-info, .mobile-approval-cycle {
-    padding: 0;
-
-    div {
-        padding: 5px 20px;
-        background-color: #efefef;
-        border-bottom: 1px solid #ccc;
-    }
-}
-
-.mobile-vacation-related-info table {
-    margin: 10px 20px;
-
-    th {
-        width: 99%;
-        white-space: nowrap;
-    }
-
-    td {
-        white-space: nowrap;
-        text-align: right;
-    }
-}
-
-.mobile-approval-cycle table {
-    margin: 10px 20px;
-    width: 100%;
-
-    td {
-        width: 33%;
-    }
-}
-
-.sticky {
-    z-index: 1200;
 }

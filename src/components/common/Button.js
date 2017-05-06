@@ -3,9 +3,9 @@ import FontAwesome from "react-fontawesome";
 
 
 const Button = ({onClick, icon, label, name, secondary = false, disabled = false, style}) => {
-    let buttonClassName = "cp-btn";
+    let buttonClassName = "btn";
     if (secondary) {
-        buttonClassName += " cp-btn-secondary";
+        buttonClassName += " btn-secondary";
     }
     return (
         <button className={buttonClassName} name={name} onClick={onClick} disabled={disabled} style={style}>
