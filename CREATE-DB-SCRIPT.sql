@@ -1,5 +1,5 @@
 
-## TODO: tags tables and complete wish-list table
+## TODO: tags tables
 
 CREATE DATABASE yuvalreches
     DEFAULT CHARACTER SET 'utf8';
@@ -34,7 +34,7 @@ CREATE TABLE `category` (
 CREATE TABLE `items` (
     `id`          INT          NOT NULL AUTO_INCREMENT,
     `user_id`     INT          NOT NULL,
-    `date`        TIMESTAMP    NOT NULL,
+    `date`        TIMESTAMP    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `title`       VARCHAR(150) NOT NULL,
     `description` VARCHAR(250),
     `city_id`     INT          NOT NULL,
@@ -70,10 +70,10 @@ CREATE TABLE `item_request` (
     `id`            INT       NOT NULL AUTO_INCREMENT,
     `item_id`       INT       NOT NULL,
     `requester_id`  INT       NOT NULL,
-    `request_date`  TIMESTAMP NOT NULL,
+    `request_date`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `is_approved`   TINYINT(1)         DEFAULT NULL,
     `is_denied`     TINYINT(1)         DEFAULT NULL,
-    `response_date` TIMESTAMP          DEFAULT NULL,
+    `response_date` TIMESTAMP          DEFAULT 0,
     PRIMARY KEY (id),
     KEY `item_request_item_idx` (`item_id`) USING BTREE,
     KEY `item_request_requester_idx` (`requester_id`) USING BTREE,
@@ -81,32 +81,30 @@ CREATE TABLE `item_request` (
     CONSTRAINT `fk_requests_user_id` FOREIGN KEY (requester_id) REFERENCES users (id)
 );
 
-CREATE TABLE `wish_list` (-- TODO: complete this crap
+CREATE TABLE `wish_list` (
     `id`            INT       NOT NULL AUTO_INCREMENT,
     `user_id`       INT       NOT NULL,
-    `item_id`       INT       NOT NULL,
-    `request_date`  TIMESTAMP NOT NULL,
-    `is_approved`   TINYINT(1)         DEFAULT NULL,
-    `is_denied`     TINYINT(1)         DEFAULT NULL,
-    `response_date` TIMESTAMP          DEFAULT NULL,
+    `tag_id`      INT       NOT NULL,
+    `request_date`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    `is_notified`   TINYINT(1)         DEFAULT NULL,
     PRIMARY KEY (id),
-    KEY `item_request_item_idx` (`item_id`) USING BTREE,
-    KEY `item_request_requester_idx` (`user_id`) USING BTREE,
-    CONSTRAINT `fk_requests_item_id` FOREIGN KEY (item_id) REFERENCES items (id),
-    CONSTRAINT `fk_requests_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
+    KEY `wish_list_tag_idx` (tag_id) USING BTREE,
+    KEY `wish_list_requester_idx` (`user_id`) USING BTREE,
+    CONSTRAINT `fk_wish_list_tag_id` FOREIGN KEY (tag_id) REFERENCES tags (id),
+    CONSTRAINT `fk_wish_list_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE `item_report` (
     `id`      INT       NOT NULL AUTO_INCREMENT,
     `user_id` INT       NOT NULL,
     `item_id` INT       NOT NULL,
-    `date`    TIMESTAMP NOT NULL,
+    `date`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `handled` TINYINT(1)         DEFAULT NULL,
     PRIMARY KEY (id),
-    KEY `item_request_item_idx` (`item_id`) USING BTREE,
-    KEY `item_request_requester_idx` (`user_id`) USING BTREE,
-    CONSTRAINT `fk_requests_item_id` FOREIGN KEY (item_id) REFERENCES items (id),
-    CONSTRAINT `fk_requests_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
+    KEY `item_report_item_idx` (`item_id`) USING BTREE,
+    KEY `item_report_requester_idx` (`user_id`) USING BTREE,
+    CONSTRAINT `fk_report_item_id` FOREIGN KEY (item_id) REFERENCES items (id),
+    CONSTRAINT `fk_report_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 
@@ -115,8 +113,8 @@ CREATE TABLE `images` (
     `item_id` INT  NOT NULL,
     `image`   BLOB NOT NULL,
     PRIMARY KEY (id),
-    KEY `item_request_item_idx` (`item_id`) USING BTREE,
-    CONSTRAINT `fk_requests_item_id` FOREIGN KEY (item_id) REFERENCES items (id)
+    KEY `images_item_idx` (`item_id`) USING BTREE,
+    CONSTRAINT `fk_images_item_id` FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
 
@@ -125,8 +123,8 @@ CREATE TABLE `push_notifications` (
     `user_id`         INT    NOT NULL,
     `device_token_id` BIGINT NOT NULL,
     PRIMARY KEY (id),
-    KEY `item_request_requester_idx` (`user_id`) USING BTREE,
-    CONSTRAINT `fk_requests_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
+    KEY `push_notification_requester_idx` (`user_id`) USING BTREE,
+    CONSTRAINT `fk_push_notification_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 
