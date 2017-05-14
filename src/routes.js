@@ -12,7 +12,7 @@ export const routes = (
         <Route path="/login" component={LoginPage}/>
         <Route path="/register" component={Register}/>
         <Route path="/main" component={MainContainer} >
-			<Route path="/catalog" component={CatalogPage}/>
+            <Route path="/catalog" component={CatalogPage}/>
         </Route>
     </Route>
 );

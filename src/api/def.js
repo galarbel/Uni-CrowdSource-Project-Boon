@@ -18,3 +18,8 @@ export function getSomeData() {
 }
 
 
+export function login() {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.dummyLoginOK : env[activeEnv] + basePath;
+}
+

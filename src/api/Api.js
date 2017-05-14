@@ -1,15 +1,18 @@
 import "whatwg-fetch";
 import * as def from "./def";
-import {getData} from "./ApiHelper";
+import {doAjaxCall} from "./ApiHelper";
 
 class Api {
     //Employee Related Info
-    static getSomeData() { return getData(def.getSomeData); }
+    static getSomeData() { return doAjaxCall(def.getSomeData); }
 
     static getSomeDataWithParams(params) {
-        return getData(def.getSomeData,params);
+        return doAjaxCall(def.getSomeData,params);
     }
 
+    static doLogin(params) {
+        return doAjaxCall(def.login,params);
+    }
 }
 
 export default Api;

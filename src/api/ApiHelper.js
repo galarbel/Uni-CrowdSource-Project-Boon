@@ -27,7 +27,7 @@ export function parseJson(response) {
     }
 }
 
-export function getData(fetchUrl,data) {
+export function doAjaxCall(fetchUrl,data) {
     const cancelablePromise = makeCancelable(new Promise((resolve, reject) => {
         setTimeout(() => {
             activeEnv === 'dummy' ?

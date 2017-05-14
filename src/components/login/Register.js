@@ -11,6 +11,14 @@ class LoginPage extends React.Component {
         super(props, context);
     }
 
+    handleInputChange() {
+
+    }
+
+    doRegister() {
+
+    }
+
     render() {
         return (
             <div className="login-page" style={{width: "80%", margin: "auto"}}>
@@ -20,12 +28,12 @@ class LoginPage extends React.Component {
                     <img src={giftPic} style={{width: "49%"}} />
                 </div>
                 <div>
-                    <TextInput label="" name="username" onChange={() => {}} placeholder="Email" />
-                    <TextInput label="" name="password" onChange={() => {}} placeholder="Password" type="password" />
-                    <TextInput label="" name="repeat" onChange={() => {}} placeholder="Repeat Password" type="password" />
+                    <TextInput label="" name="username" onChange={this.handleInputChange} placeholder="Email" />
+                    <TextInput label="" name="password" onChange={this.handleInputChange} placeholder="Password" type="password" />
+                    <TextInput label="" name="repeat" onChange={this.handleInputChange} placeholder="Repeat Password" type="password" />
                 </div>
                 <div>
-                    <Button onClick={() => {}} label="Register" style={{width: "100%", padding: "6px 12px"}} />
+                    <Button onClick={this.doRegister} label="Register" style={{width: "100%", padding: "6px 12px"}} />
                 </div>
                 <div style={{textAlign: "center", paddingTop: "30px"}}>
                     <Link name="1" to="/login">Already Have An Account? Login Here</Link>

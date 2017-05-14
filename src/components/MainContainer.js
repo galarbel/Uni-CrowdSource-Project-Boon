@@ -40,6 +40,10 @@ class MobileContainer extends React.Component {
         this.state = {open: false, title:newTitle};
     }
 
+    handleMenuOpen() {
+        return (open) =>  this.setState({open});
+    }
+
     render() {
         return (
             <div>
@@ -57,7 +61,7 @@ class MobileContainer extends React.Component {
                         open={this.state.open}
                         className={"drawer"}
                         containerStyle={{backgroundColor:'#efefef',color:'black'}}
-                        onRequestChange={(open) =>  this.setState({open})}>
+                        onRequestChange={this.handleMenuOpen()}>
                     <div style={{textAlign:'center',color:'#e65785',margin:'20px 0'}}>
                         <FontAwesome name={"gift"} size="2x"/>
                         <h1 style={{display:'inline-block',marginLeft:'3px'}}>boon!</h1>

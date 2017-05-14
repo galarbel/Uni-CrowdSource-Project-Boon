@@ -5,8 +5,8 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const UPDATE_DEVICE_PROFILE = "UPDATE_DEVICE_PROFILE";
 
-//Employee Related Actions
-export const SOME_TYPE = "SOME_TYPE_SUCCESS";
+//Login Related Actions
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 
 

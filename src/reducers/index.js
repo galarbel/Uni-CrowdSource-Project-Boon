@@ -1,12 +1,12 @@
 import {combineReducers} from "redux";
 import ajaxCallsInProgress from "./ajaxStatusReducer";
-import template from "./templateReducer";
+import loggedIn from "./loginReducer";
 import ajaxError from "./ajaxErrorReducer";
 
 const rootReducer = combineReducers({
     ajaxCallsInProgress,
     ajaxError,
-    template
+    loggedIn
 });
 
 export default rootReducer;
