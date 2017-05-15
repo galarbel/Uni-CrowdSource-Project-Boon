@@ -1,6 +1,5 @@
 import {cyan500, grey100, grey200, grey400, grey500, grey900, white, darkBlack, fullBlack} from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
-
 export default {
     spacing: {
         iconSize: 24,
@@ -15,12 +14,12 @@ export default {
         desktopSubheaderHeight: 48,
         desktopToolbarHeight: 56
     },
-    fontFamily: '"DIN", "Helvetica Neue" ,Helvetica, Arial , sans-serif',
+    fontFamily: '"Alef Hebrew","Helvetica Neue", Helvetica , Arial , sans-serif',
     palette: {
-        primary1Color: '#e65785',
-        primary2Color: '#E65684',
+        primary1Color: '#095115',
+        primary2Color: '#095115',
         primary3Color: grey400,
-        accent1Color: '#E65684',
+        accent1Color: '#095115',
         accent2Color: grey200,
         accent3Color: grey500,
         accent4Color: grey900,

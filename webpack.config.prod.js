@@ -24,6 +24,7 @@ export default {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.DefinePlugin(GLOBALS),
         new ExtractTextPlugin('styles.css'),
+        new ExtractTextPlugin('stylesheet.css'),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin()
     ],

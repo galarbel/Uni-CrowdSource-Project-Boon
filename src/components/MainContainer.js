@@ -6,6 +6,7 @@ import {Link} from 'react-router';
 import Divider from 'material-ui/Divider';
 import FontAwesome from "react-fontawesome";
 import {StickyContainer, Sticky} from 'react-sticky';
+import theme from "./common/MuiTheme";
 
 const appHeadlines = ["TimeOff Request", "My Requests","Absence Summary","Absence Info","Approve Requests"];
 
@@ -62,7 +63,7 @@ class MobileContainer extends React.Component {
                         className={"drawer"}
                         containerStyle={{backgroundColor:'#efefef',color:'black'}}
                         onRequestChange={this.handleMenuOpen()}>
-                    <div style={{textAlign:'center',color:'#e65785',margin:'20px 0'}}>
+                    <div style={{textAlign:'center',color:theme.palette.primary1Color,margin:'20px 0'}}>
                         <FontAwesome name={"gift"} size="2x"/>
                         <h1 style={{display:'inline-block',marginLeft:'3px'}}>boon!</h1>
                     </div>
