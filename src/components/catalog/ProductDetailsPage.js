@@ -1,16 +1,26 @@
 import React, {PropTypes} from 'react';
 import LoadingProgress from '../common/LoadingProgress';
-import ImageGallery from 'react-image-gallery';
-import Lightbox from 'react-images';
-import SamplePic from '../../../resources/img/sample.jpg';
+import Mew from '../../../resources/img/mew.png';
+import Divider from 'material-ui/Divider';
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+import FontAwesome from "react-fontawesome";
 
 const initState = {
-    loading: false,
-    approvalCycle: [],
-    remarks: ""
+    name: 'Mew (Pokémon)',
+    category : 'Psychic-type',
+    area : " Cinnabar Mansion",
+    createdDate:"27-02-1996",
+    description:'Mew (ミュウ? Myū) is one of the fictional species of creatures from Nintendos and Game Freaks Pokémon media franchise created by Satoshi Tajiri. Mew is a small, pink, Psychic-type Mythical Pokémon. It was added to Pokémon Red and Green by its creator, Game Freak programmer Shigeki Morimoto, as a secret character. As such, its presence has been surrounded by rumors and myths, which contributed to make the Pokémon franchise a success. For years, Mew could not be legitimately obtained in the games except from Pokémon distribution events.',
+    phone: '2745382486',
+    tags:['Red','Gold','Ruby','Diamond','Black','X']
 };
 
-
+const styles ={
+    dividerRules:{
+        marginTop:5,
+        marginBottom:5
+    }
+};
 
 class RequestDetails extends React.Component {
     constructor(props, context) {
@@ -18,7 +28,6 @@ class RequestDetails extends React.Component {
 
         this.state = Object.assign({},initState);
 
-        this._isMounted = true;
     }
 
     componentWillMount() {
@@ -26,63 +35,56 @@ class RequestDetails extends React.Component {
     }
 
 
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
     loadAjaxDetails() {
     }
 
     render() {
-        const {category, number,dateFrom, dateTo,  total, reason, status, insertDate, approvalCycle} = this.state;
+        const {name,category,area,createdDate,description,phone} = this.state;
         if (this.state.loading) {
             return (<LoadingProgress fullPage={false} size={100} style={{ textAlign: "center", margin: "30px"}}/>);
         }
 
         return (
-            <div>
-                <div className="mobile-request-details">
-                    <div className="mobile-request-details-header">
-                        <div>
-                            <strong>{Name}</strong>
-                        </div>
-                        <div>
-                            {Category}
-                        </div>
-                    </div>
+            <div style={{margin:5,fontSize:14}}>
+                <div>
                     <div>
-                        <table>
-                            <tbody>
-                            <tr>
-                                <th>Area:</th>
-                                <td>{area}</td>
-                            </tr>
-                            <tr>
-                                <th>Date Created:</th>
-                                <td>{createdDate}</td>
-                            </tr>
-                            <tr>
-                                <th>Total Time Off:</th>
-                                <td>{total}</td>
-                            </tr>
-                            <tr>
-                                <th>Requested On:</th>
-                                <td>{insertDate}</td>
-                            </tr>
-                            <tr>
-                                <th>Request Number:</th>
-                                <td>{number}</td>
-                            </tr>
-                            <tr>
-                                <th>Reason:</th>
-                                <td>{reason}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <strong>{name}</strong>
+                    </div>
+                    <div style={{fontSize:'14px'}}>
+                        {category}
                     </div>
                 </div>
-            </div>
+                <Divider style={styles.dividerRules}/>
 
+                        <div><strong>Description:</strong></div>
+                        <div>{description}</div>
+                <Divider style={styles.dividerRules}/>
+                <div>
+                    <strong>Contact Information</strong>
+                    <div>Phone: {phone}</div>
+                    <div>Area: {area}</div>
+                </div>
+                <Divider style={styles.dividerRules}/>
+                <div>Date Created: {createdDate}</div>
+                <img src={Mew}/>
+                        <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                            <BottomNavigationItem
+                                label="Call"
+                                icon={<FontAwesome name={"phone"} size="2x"/>}
+                                onTouchTap={() => this.select(0)}
+                            />
+                            <BottomNavigationItem
+                                label="Favorite"
+                                icon={<FontAwesome name={"star"} size="2x"/>}
+                                onTouchTap={() => this.select(1)}
+                            />
+                            <BottomNavigationItem
+                                label="Report"
+                                icon={<FontAwesome name={"flag"} size="2x"/>}
+                                onTouchTap={() => this.select(2)}
+                            />
+                        </BottomNavigation>
+            </div>
         );
     }
 }
