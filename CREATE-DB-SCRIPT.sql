@@ -1,6 +1,4 @@
 
-## TODO: tags tables
-
 CREATE DATABASE yuvalreches
     DEFAULT CHARACTER SET 'utf8';
 ALTER DATABASE yuvalreches CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -66,6 +64,31 @@ CREATE TABLE `tags` (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE `item_tags` (
+    `id`          INT NOT NULL AUTO_INCREMENT,
+    `item_id`     INT NOT NULL,
+    `tag_id`      INT NOT NULL,
+    `user_id`     INT NOT NULL,
+    `numOfAccept` INT          DEFAULT 0,
+    `numOfDeny`   INT          DEFAULT 0,
+    PRIMARY KEY (id),
+    KEY `item_tags_tag_idx` (`tag_id`) USING BTREE,
+    KEY `item_tags_item_idx` (`item_id`) USING BTREE,
+    KEY `item_tags_user_idx` (`user_id`) USING BTREE,
+    CONSTRAINT `fk_item_tags_tag_id` FOREIGN KEY (tag_id) REFERENCES tags (id),
+    CONSTRAINT `fk_item_tags_item_id` FOREIGN KEY (item_id) REFERENCES items (id),
+    CONSTRAINT `fk_item_tags_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE `tags_replied_history` (
+    `id`      INT NOT NULL AUTO_INCREMENT,
+    `item_tag_id`  INT NOT NULL,
+    `user_id` INT NOT NULL,
+    PRIMARY KEY (id),
+    KEY `tag_history_user_idx` (`user_id`) USING BTREE,
+    CONSTRAINT `fk_tag_history_user_id` FOREIGN KEY (user_id) REFERENCES users (id),
+    CONSTRAINT `fk_tag_history_tag_id` FOREIGN KEY (item_tag_id) REFERENCES item_tags (id)
+);
 
 CREATE TABLE `item_request` (
     `id`            INT       NOT NULL AUTO_INCREMENT,
