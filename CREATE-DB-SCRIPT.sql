@@ -3,6 +3,7 @@
 
 CREATE DATABASE yuvalreches
     DEFAULT CHARACTER SET 'utf8';
+ALTER DATABASE yuvalreches CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 USE yuvalreches;
 
@@ -13,7 +14,7 @@ CREATE TABLE `users` (
     `password` VARCHAR(150) NOT NULL,
     `phone`    VARCHAR(150) NOT NULL,
     `email`    VARCHAR(150) NOT NULL,
-    `score`    INT                   DEFAULT NULL,
+    `score`    INT                   DEFAULT 0,
     PRIMARY KEY (id)
 );
 
@@ -39,7 +40,7 @@ CREATE TABLE `items` (
     `description` VARCHAR(250),
     `city_id`     INT          NOT NULL,
     `category_id` INT          NOT NULL,
-    `delivered`   TINYINT(1)            DEFAULT NULL,
+    `delivered`   TINYINT(1)            DEFAULT 0,
     PRIMARY KEY (id),
     KEY `user_idx` (`user_id`) USING BTREE,
     KEY `city_idx` (`city_id`) USING BTREE,
@@ -71,8 +72,8 @@ CREATE TABLE `item_request` (
     `item_id`       INT       NOT NULL,
     `requester_id`  INT       NOT NULL,
     `request_date`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    `is_approved`   TINYINT(1)         DEFAULT NULL,
-    `is_denied`     TINYINT(1)         DEFAULT NULL,
+    `is_approved`   TINYINT(1)         DEFAULT 0,
+    `is_denied`     TINYINT(1)         DEFAULT 0,
     `response_date` TIMESTAMP          DEFAULT 0,
     PRIMARY KEY (id),
     KEY `item_request_item_idx` (`item_id`) USING BTREE,
@@ -86,7 +87,7 @@ CREATE TABLE `wish_list` (
     `user_id`       INT       NOT NULL,
     `tag_id`      INT       NOT NULL,
     `request_date`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    `is_notified`   TINYINT(1)         DEFAULT NULL,
+    `is_notified`   TINYINT(1)         DEFAULT 0,
     PRIMARY KEY (id),
     KEY `wish_list_tag_idx` (tag_id) USING BTREE,
     KEY `wish_list_requester_idx` (`user_id`) USING BTREE,
@@ -99,7 +100,7 @@ CREATE TABLE `item_report` (
     `user_id` INT       NOT NULL,
     `item_id` INT       NOT NULL,
     `date`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    `handled` TINYINT(1)         DEFAULT NULL,
+    `handled` TINYINT(1)         DEFAULT 0,
     PRIMARY KEY (id),
     KEY `item_report_item_idx` (`item_id`) USING BTREE,
     KEY `item_report_requester_idx` (`user_id`) USING BTREE,
