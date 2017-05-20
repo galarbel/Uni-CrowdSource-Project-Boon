@@ -31,7 +31,7 @@ export function doAjaxCall(fetchUrl,data) {
     const cancelablePromise = makeCancelable(new Promise((resolve, reject) => {
         setTimeout(() => {
             activeEnv === 'dummy' ?
-                resolve(fetchUrl()) :
+                resolve(fetchUrl().data) :
                 fetchDataFromServer(resolve, reject, fetchUrl,data);
         }, delay);
     }));

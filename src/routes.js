@@ -11,7 +11,7 @@ export const routes = (
     <Route path="/" component={App}>
         <IndexRedirect to="/login" />
         <Route path="/login" component={LoginPage}/>
-        <Route path="/register" component={Register}/>
+        <Route path="/register" component={Register} loginNotRequired/>
         <Route path="/main" component={MainContainer} >
             <Route path="/catalog" component={CatalogPage}/>
             <Route path="/details" component={ProductDetailsPage}/>

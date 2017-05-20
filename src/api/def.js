@@ -20,6 +20,15 @@ export function getSomeData() {
 
 export function login() {
     let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.dummyLoginOK : env[activeEnv] + basePath;
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.LoginOK : env[activeEnv] + basePath;
 }
 
+export function checkUserNamePassword() {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.checkUserNamePassword : env[activeEnv] + basePath;
+}
+
+export function register() {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.LoginOK : env[activeEnv] + basePath;
+}

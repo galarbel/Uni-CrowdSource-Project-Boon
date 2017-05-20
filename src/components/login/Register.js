@@ -1,21 +1,90 @@
 import React, {PropTypes} from "react";
-import TextInput from '../common/TextInput';
-import Button from '../common/Button';
-import {Link} from 'react-router';
+import RegisterStep1 from './RegisterStep1';
+import RegisterStep2 from './RegisterStep2';
 import boonLogo from '../../../resources/img/boon-logo-word.png';
 import giftPic from '../../../resources/img/gift-register.png';
+import api from "../../api/Api";
 
 class LoginPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+
+        this.state = { registerError: null, step1 : true };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.checkUserNamePassword = this.checkUserNamePassword.bind(this);
+        this.doRegister = this.doRegister.bind(this);
     }
 
-    handleInputChange() {
+    handleInputChange(event) {
+        this.setState({ [event.target.name] : event.target.value } );
+    }
 
+    checkUserNamePassword() {
+        if (!(this.state.username && this.state.password && this.state.repeat)) {
+            this.setState({registerError: "Please Fill in all required information"});
+            return;
+        }
+        if (this.state.password !== this.state.repeat) {
+            this.setState({registerError: "Passwords don't match"});
+            return;
+        }
+
+        this.setState({registerError: null});
+
+        const requestParams = {
+            username: this.state.username,
+            password: this.state.password
+        };
+
+        api.checkUserNamePassword(requestParams).then(
+            response => {
+                if (!response) {
+                    throw new Error("Server Not Available");
+                }
+                if (!response.isAvailable) {
+                    throw new Error("Username taken");
+                }
+                this.setState({step1: false});
+            }
+        ).catch(e => {
+            this.setState({registerError: e.message});
+        });
     }
 
     doRegister() {
+        if (!(this.state.name && this.state.email && this.state.phone)) {
+            this.setState({registerError: "Please Fill in all required information"});
+            return;
+        }
+
+        this.setState({registerError: null});
+
+        const requestParams = {
+            username: this.state.username,
+            password: this.state.password,
+            name: this.state.name,
+            phone: this.state.phone,
+            email: this.state.email
+        };
+
+        api.doRegister(requestParams).then(
+            response => {
+                if (!response) {
+                    throw new Error("Server Not Available");
+                }
+                if (!response.login) {
+                    throw new Error("Error in registration");
+                }
+
+                localStorage.setItem("userDetails", JSON.stringify({username: requestParams.username, password: requestParams.password}));
+                let currentUrl = window.location.href;
+                window.location = currentUrl.replace("register","catalog");
+            }
+        ).catch(e => {
+            this.setState({registerError: e.message});
+        });
 
     }
 
@@ -27,17 +96,19 @@ class LoginPage extends React.Component {
                     <br/><br/>
                     <img src={giftPic} style={{width: "49%"}} />
                 </div>
-                <div>
-                    <TextInput label="" name="username" onChange={this.handleInputChange} placeholder="Email" />
-                    <TextInput label="" name="password" onChange={this.handleInputChange} placeholder="Password" type="password" />
-                    <TextInput label="" name="repeat" onChange={this.handleInputChange} placeholder="Repeat Password" type="password" />
-                </div>
-                <div>
-                    <Button onClick={this.doRegister} label="Register" style={{width: "100%", padding: "6px 12px"}} />
-                </div>
-                <div style={{textAlign: "center", paddingTop: "30px"}}>
-                    <Link name="1" to="/login">Already Have An Account? Login Here</Link>
-                </div>
+                {
+                    this.state.step1 &&
+                        <RegisterStep1 handleInputChange={this.handleInputChange}
+                                       checkUserNamePassword={this.checkUserNamePassword}
+                                       {...this.state}/>
+                }
+
+                {
+                    !this.state.step1 &&
+                    <RegisterStep2 handleInputChange={this.handleInputChange}
+                                   doRegister={this.doRegister}
+                                   {...this.state}/>
+                }
             </div>
         );
     }

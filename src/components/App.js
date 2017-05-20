@@ -2,6 +2,9 @@ import React, {PropTypes} from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import MuiTheme from "./common/MuiTheme";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {connect} from "react-redux";
+
+import LoginPage from "./login/LoginPage";
 /** DO NOT REMOVE THIS - start**/
 import injectTapEventPlugin from 'react-tap-event-plugin';
 /** DO NOT REMOVE THIS - end**/
@@ -21,10 +24,12 @@ class App extends React.Component {
     }
 
     render() {
+        const childLoginRequired = !this.props.children.props.route.loginNotRequired;
+        const pageToShow = (!this.props.loggedIn && childLoginRequired) ? (<LoginPage />) : this.props.children;
         return (
             <div>
-                 <MuiThemeProvider muiTheme={getMuiTheme(MuiTheme)}>
-                    {this.props.children}
+                <MuiThemeProvider muiTheme={getMuiTheme(MuiTheme)}>
+                    {pageToShow}
                 </MuiThemeProvider>
             </div>
         );
@@ -34,7 +39,16 @@ class App extends React.Component {
 
 App.propTypes = {
     location: PropTypes.object,
-    children: PropTypes.element
+    children: PropTypes.element,
+    loggedIn: PropTypes.bool.isRequired,
+    route: PropTypes.object.isRequired
 };
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        loggedIn: state.loggedIn
+    };
+}
+
+
+export default connect(mapStateToProps)(App);
