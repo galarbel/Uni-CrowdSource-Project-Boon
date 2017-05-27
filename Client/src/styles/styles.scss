@@ -55,6 +55,21 @@ a {
     text-decoration: none;
 }
 
+.loadingProgress {
+    display: inline-block;
+}
+
+.full_page_loader_position {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-items a {
+    display: block;
+}
+
 .login-page {
     width: 80%;
     margin: auto;
@@ -74,3 +89,5 @@ a {
         margin-bottom: 10px;
     }
 }
+
+

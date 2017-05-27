@@ -12,7 +12,7 @@ const appHeadlines = ["TimeOff Request", "My Requests","Absence Summary","Absenc
 
 class MobileContainer extends React.Component {
 
-     constructor(props, context) {
+    constructor(props, context) {
         super(props, context);
         //this.state = {open: false, title:'TimeOff Request'};
         this.titleHandler(this.props.location.pathname);
@@ -22,16 +22,16 @@ class MobileContainer extends React.Component {
         this.titleHandler = this.titleHandler.bind(this);
     }
 
-     componentWillMount() {
-         /*this.props.actions.getAbsenceTypes();
+    componentWillMount() {
+        /*this.props.actions.getAbsenceTypes();
          this.props.actions.getAbsenceRelatedInfo();
          this.props.actions.getAbsencesSummary();*/
-     }
+    }
 
     handleToggle(event){
         let Title= this.state.title;
         if (typeof event.target.name != 'undefined' && event.target.name != '' ){
-           //Title = appHeadlines[event.target.name];
+            //Title = appHeadlines[event.target.name];
         }
         this.setState({open: !this.state.open,title: Title});
     }
@@ -50,37 +50,37 @@ class MobileContainer extends React.Component {
             <div>
                 <StickyContainer>
                     <Sticky>
-                <AppBar
-                    title={this.state.title}
-                    iconClassNameRight="muidocs-icon-navigation-expand-more"
-                    onLeftIconButtonTouchTap ={this.handleToggle}
-                    onTitleTouchTap = {this.handleToggle}
-                />
+                        <AppBar
+                            title={this.state.title}
+                            iconClassNameRight="muidocs-icon-navigation-expand-more"
+                            onLeftIconButtonTouchTap ={this.handleToggle}
+                            onTitleTouchTap = {this.handleToggle}
+                        />
                     </Sticky>
-                <Drawer docked={false}
-                        width={250}
-                        open={this.state.open}
-                        className={"drawer"}
-                        containerStyle={{backgroundColor:'#efefef',color:'black'}}
-                        onRequestChange={this.handleMenuOpen()}>
-                    <div style={{textAlign:'center',color:theme.palette.primary1Color,margin:'20px 0'}}>
-                        <FontAwesome name={"gift"} size="2x"/>
-                        <h1 style={{display:'inline-block',marginLeft:'3px'}}>boon!</h1>
-                    </div>
-                    <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name="0" to="/main">Home</Link></div></MenuItem>
-                    <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name= "1" to="/catalog">Boons catalog</Link></div></MenuItem>
-                    <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name= "2" to="/submit">Submit an item</Link></div></MenuItem>
-                    <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name="3" to="/account">My account</Link></div></MenuItem>
-                    <Divider/>
-                    <MenuItem ><div onClick={this.handleToggle}><Link name="" to="/account">Logout</Link></div></MenuItem>
-                    <Divider/>
-                </Drawer>
+                    <Drawer docked={false}
+                            width={250}
+                            open={this.state.open}
+                            className={"drawer"}
+                            containerStyle={{backgroundColor:'#efefef',color:'black'}}
+                            onRequestChange={this.handleMenuOpen()}>
+                        <div style={{textAlign:'center',color:theme.palette.primary1Color,margin:'20px 0'}}>
+                            <FontAwesome name={"gift"} size="2x"/>
+                            <h1 style={{display:'inline-block',marginLeft:'3px'}}>boon!</h1>
+                        </div>
+                        <Divider/>
+                        <div className="menu-items">
+                            <MenuItem ><div onClick={this.handleToggle}><Link name= "1" to="/catalog">Boons catalog</Link></div></MenuItem>
+                            <Divider/>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name= "2" to="/account">My account</Link></div></MenuItem>
+                            <Divider/>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name="3" to="/submit">Submit an Item</Link></div></MenuItem>
+                            <Divider/>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name="" to="/tags">Game Of Tags!</Link></div></MenuItem>
+                            <Divider/>
+                        </div>
+                    </Drawer>
 
-                {this.props.children}
+                    {this.props.children}
                 </StickyContainer>
             </div>
         );

@@ -6,6 +6,7 @@ import Register from "./components/login/Register";
 import MainContainer from "./components/MainContainer";
 import CatalogPage from "./components/catalog/Catalog";
 import ProductDetailsPage from "./components/catalog/ProductDetailsPage";
+import GameOfTagsPage from "./components/got/GameOfTagsPage";
 
 export const routes = (
     <Route path="/" component={App}>
@@ -15,6 +16,7 @@ export const routes = (
         <Route path="/main" component={MainContainer} >
             <Route path="/catalog" component={CatalogPage}/>
             <Route path="/details" component={ProductDetailsPage}/>
+            <Route path="/tags" component={GameOfTagsPage}/>
         </Route>
     </Route>
 );

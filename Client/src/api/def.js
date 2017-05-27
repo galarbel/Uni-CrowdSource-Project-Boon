@@ -32,3 +32,23 @@ export function register() {
     let basePath = ""; //TODO
     return activeEnv === "dummy" ? dummyDataCollection.dummyData.LoginOK : env[activeEnv] + basePath;
 }
+
+export function getGameOfTagsQuestions() {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.GameOfTags : env[activeEnv] + basePath;
+}
+
+export function getTagsSuggestions() {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.suggestionTags : env[activeEnv] + basePath;
+}
+
+export function answerGameOfTagsType1(params) {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.GameOfTags2 : env[activeEnv] + basePath;
+}
+
+export function answerGameOfTagsType2(params) {
+    let basePath = ""; //TODO
+    return activeEnv === "dummy" ? dummyDataCollection.dummyData.GameOfTags3 : env[activeEnv] + basePath;
+}

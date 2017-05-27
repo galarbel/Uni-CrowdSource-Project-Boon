@@ -18,6 +18,22 @@ class Api {
     static doRegister(params) {
         return doAjaxCall(def.register, params);
     }
+
+    static getGameOfTagsQuestion() {
+        return doAjaxCall(def.getGameOfTagsQuestions);
+    }
+
+    static getTagsSuggestions() {
+        return doAjaxCall(def.getTagsSuggestions);
+    }
+
+    static answerGameOfTagsType1(params) {
+        return doAjaxCall(def.answerGameOfTagsType1, params);
+    }
+
+    static answerGameOfTagsType2(params) {
+        return doAjaxCall(def.answerGameOfTagsType2, params);
+    }
 }
 
 export default Api;

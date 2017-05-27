@@ -7,6 +7,7 @@ import giftPic from '../../../resources/img/gift.png';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as loginActions from "../../actions/LoginActions";
+import LoadingProgress from '../common/LoadingProgress';
 
 
 class LoginPage extends React.Component {
@@ -37,7 +38,7 @@ class LoginPage extends React.Component {
 
     render() {
         if (this.props.loading || this.props.loggedIn) {
-            return (<div>Loading</div>);
+            return (<LoadingProgress />);
         }
 
         return (
