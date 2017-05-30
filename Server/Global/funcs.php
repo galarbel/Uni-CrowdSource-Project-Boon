@@ -21,8 +21,11 @@ function curlCall($url) {
  * @exits with http status of 400-bad request and prints the given error message
  */
 function badRequest($errorMessage) {
-    http_response_code(400);
-    echo $errorMessage;
+    $response["code"] = 400;
+    //http_response_code(400);
+    //echo $errorMessage;
+    $response["data"] = $errorMessage;
+    echo json_encode($response);
     die;
 }
 

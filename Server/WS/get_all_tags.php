@@ -3,7 +3,7 @@
 include_once '../Global/config.php';
 
 
-$sqlQuery = "call get_cities()";
+$sqlQuery = "call get_tags()";
 
 $results["code"] = 200;
 $results["data"] = $db->rawQuery($sqlQuery);
