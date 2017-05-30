@@ -119,17 +119,17 @@ class GameOfTagsPage extends React.Component {
                 <div style={{padding: "60px 30px"}}>
                     <div style={{display: "flex"}}>
                         <div style={{maxWidth: "40vw"}}>
-                        <img src={question.img} style={{display: "block", width: "100%", height: "auto"}}/>
+                        <img src={"data:image/png;base64," + question.image} style={{display: "block", width: "100%", height: "auto"}}/>
                         </div>
                         <div style={{paddingLeft: 20}}>
                             <div><strong>Description:</strong></div>
-                            <div>{question.desc}</div>
+                            <div>{question.description}</div>
                         </div>
                     </div>
                 </div>
 
                 <div style={{textAlign: "center"}}>
-                    { question.type === 1 && <Type1 tag={question.tag} onSelectAnswer={this.onSelectAnswer}/>}
+                    { question.type === 1 && <Type1 tag={question.tag_name} onSelectAnswer={this.onSelectAnswer}/>}
                 </div>
 
                 <div style={{textAlign: "center"}}>

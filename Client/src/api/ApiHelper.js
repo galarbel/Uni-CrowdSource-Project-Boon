@@ -49,6 +49,11 @@ function fetchDataFromServer(resolve, reject, fetchUrl, data) {
         credentials: 'include'
     };
 
+    if (localStorage.getItem("userDetails")) {
+        const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+        data = Object.assign({},data,userDetails);
+    }
+
     if (data) {
         fetchParams.body = getStringForFetch(data);
     }

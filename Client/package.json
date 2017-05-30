@@ -16,7 +16,7 @@
     "prebuild": "npm-run-all clean-dist test lint build:html",
     "build": "babel-node tools/build.js"
   },
-  "author": "Checkpoint MIS",
+  "author": "boon team",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "6.20.0",
