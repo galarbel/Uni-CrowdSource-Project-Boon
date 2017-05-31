@@ -4,7 +4,7 @@ import React from "react";
 import {render} from "react-dom";
 import {Provider} from "react-redux";
 import {Router, useRouterHistory } from "react-router";
-import { createHistory } from "history";
+import { createHashHistory } from "history";
 import configureStore from "./store/configureStore";
 import {routes} from "./routes";
 import "./styles/styles.scss";
@@ -18,8 +18,8 @@ window.md = md;
 // Configure store;
 const store = configureStore();
 
-const browserHistory = useRouterHistory(createHistory)({
-    basename: '/boon'
+const browserHistory = useRouterHistory(createHashHistory)({
+    basename: ''
 });
 
 render(

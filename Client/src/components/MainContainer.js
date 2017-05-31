@@ -14,44 +14,32 @@ class MobileContainer extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        //this.state = {open: false, title:'TimeOff Request'};
-        this.titleHandler(this.props.location.pathname);
-
 
         this.handleToggle = this.handleToggle.bind(this);
-        this.titleHandler = this.titleHandler.bind(this);
     }
 
     componentWillMount() {
-        /*this.props.actions.getAbsenceTypes();
-         this.props.actions.getAbsenceRelatedInfo();
-         this.props.actions.getAbsencesSummary();*/
+
     }
 
     handleToggle(event){
-        let Title= this.state.title;
-        if (typeof event.target.name != 'undefined' && event.target.name != '' ){
-            //Title = appHeadlines[event.target.name];
-        }
-        this.setState({open: !this.state.open,title: Title});
+        this.setState({open: !this.state.open});
     }
 
-    titleHandler(path){
-        let newTitle = "main page";
-        this.state = {open: false, title:newTitle};
-    }
 
     handleMenuOpen() {
         return (open) =>  this.setState({open});
     }
 
     render() {
+        const title = this.props.children.props.route.displayName || "boon";
+
         return (
             <div>
                 <StickyContainer>
                     <Sticky>
                         <AppBar
-                            title={this.state.title}
+                            title={title}
                             iconClassNameRight="muidocs-icon-navigation-expand-more"
                             onLeftIconButtonTouchTap ={this.handleToggle}
                             onTitleTouchTap = {this.handleToggle}
@@ -79,14 +67,12 @@ class MobileContainer extends React.Component {
                             <Divider/>
                         </div>
                     </Drawer>
-
                     {this.props.children}
                 </StickyContainer>
             </div>
         );
     }
 }
-
 
 MobileContainer.propTypes = {
     actions: PropTypes.object,
