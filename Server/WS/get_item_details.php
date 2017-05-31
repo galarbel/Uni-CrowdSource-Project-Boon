@@ -20,7 +20,7 @@ $item_id = getNumericParamOrDefault($_POST, "item_id", true, null);
 $sqlQuery = "call get_item_details (?)";
 
 $results["code"] = 200;
-$results["data"] = $db->rawQuery($sqlQuery,[$item_id]);
+$results["data"] = $db->rawQuery($sqlQuery,[$item_id])[0];
 
 header('Content-type: application/json');
 echo json_encode($results);

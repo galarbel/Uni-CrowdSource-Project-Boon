@@ -9,16 +9,13 @@ if (!isset($_POST["username"]) ) {
 
 $username = $_POST["username"];
 
-$sqlQuery = "call check_username_availability_on_reg (?)";
+$sqlQuery = "call check_username_availability (?)";
 
-$answer = $db->rawQuery($sqlQuery,[$username]);
-if (count($answer)){
-    $results["code"] = 400;
-    $results["data"] = "Username is already taken";
-}else {
-    $results["code"] = 200;
-    $results["data"] = "username is available";
-}
+$answer = $db->rawQuery($sqlQuery,[$username])[0];
+
+$results["code"] = 200;
+$results["data"]["isAvailable"] = !count($answer);
+
 echo json_encode($results);
 
 ?>

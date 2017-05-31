@@ -15,7 +15,7 @@ $password = $_POST["password"];
 
 $sqlQuery = "call verify_user (?,?)";
 
-$answer = $db->rawQuery($sqlQuery,[$username,$password]);
+$answer = $db->rawQuery($sqlQuery,[$username,$password])[0];
 if (count($answer)){
     $results["code"] = 200;
     $results["data"] = $answer;

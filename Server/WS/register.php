@@ -22,15 +22,15 @@ $email = $_POST["email"];
 $phone = $_POST["phone"];
 
 $sqlQuery = "call check_username_availability (?)";
-$answer = $db->rawQuery($sqlQuery,[$username]);
+$answer = $db->rawQuery($sqlQuery,[$username])[0];
+$isUsernameTaken = count($answer);
 
-if (count($answer)){
-    $results["code"] = 400;
-    $results["data"] = "username is already taken";
+$results["code"] = 200;
+if ($isUsernameTaken){
+    $results["data"]["isAvailable"] = false;
 }else{
-    $results["code"] = 200;
     $sqlQuery = "call insert_user (?,?,?,?)";
-    $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$email,$phone]);
+    $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$email,$phone])[0];
 }
 
 echo json_encode($results);
