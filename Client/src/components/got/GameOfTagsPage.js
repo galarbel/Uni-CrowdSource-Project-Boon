@@ -52,9 +52,9 @@ class GameOfTagsPage extends React.Component {
         const question = this.state.question;
 
         const params = {
-            itemId : question.itemId,
             tag: question.tag,
-            answer: answerType
+            itemTagId: question.itemTagId,
+            isCorrect: answerType
         };
 
         this.setState({loading: this.state.loading + 1});
@@ -74,7 +74,7 @@ class GameOfTagsPage extends React.Component {
 
         const params = {
             itemId : question.itemId,
-            newTags: this.state.tagsArray.join("~|~")
+            newTags: this.state.tagsArray.join("!@@whereIsYuval@@!")
         };
 
         this.setState({loading: this.state.loading + 1});

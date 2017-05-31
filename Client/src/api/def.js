@@ -4,45 +4,40 @@
  */
 import * as dummyDataCollection from "./dummyData/dummyData";
 
-export const activeEnv = "dummy";
-
-const env = {
-    "dummy": "",
-    "local": "http://localhost:8080/boon-api",
-    "prd": "http://cs.tau.ac.il/~galarbel/boonWS/",
-};
+const WS = "http://www.cs.tau.ac.il/~goldberger/Boon/Server/WS/";
+const forceDummy = false;
 
 export function login() {
-    let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.LoginOK : env[activeEnv] + basePath;
+    let basePath = "login";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.LoginOK : WS + basePath + ".php";
 }
 
 export function checkUserNamePassword() {
-    let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.checkUserNamePassword : env[activeEnv] + basePath;
+    let basePath = "check_username_availability";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.checkUserNamePassword : WS + basePath + ".php";
 }
 
 export function register() {
-    let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.LoginOK : env[activeEnv] + basePath;
+    let basePath = "register";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.LoginOK : WS + basePath + ".php";
 }
 
 export function getGameOfTagsQuestions() {
-    let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.GameOfTags : env[activeEnv] + basePath;
+    let basePath = "GOT_play";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags : WS + basePath + ".php";
 }
 
 export function getTagsSuggestions() {
-    let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.suggestionTags : env[activeEnv] + basePath;
+    let basePath = "get_all_tags"; //todo
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
 }
 
 export function answerGameOfTagsType1() {
-    let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.GameOfTags2 : env[activeEnv] + basePath;
+    let basePath = "GOT_verify";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags2 : WS + basePath + ".php";
 }
 
 export function answerGameOfTagsType2() {
     let basePath = ""; //TODO
-    return activeEnv === "dummy" ? dummyDataCollection.dummyData.GameOfTags3 : env[activeEnv] + basePath;
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }

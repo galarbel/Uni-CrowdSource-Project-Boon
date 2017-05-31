@@ -74,7 +74,8 @@ class LoginPage extends React.Component {
                 if (!response) {
                     throw new Error("Server Not Available");
                 }
-                if (!response.login) {
+                //todo handle username taken by the time of check to register
+                if (!response.username || !response.password) {
                     throw new Error("Error in registration");
                 }
 
