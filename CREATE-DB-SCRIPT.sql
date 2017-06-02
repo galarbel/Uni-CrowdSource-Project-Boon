@@ -108,14 +108,23 @@ CREATE TABLE `item_request` (
 CREATE TABLE `wish_list` (
     `id`            INT       NOT NULL AUTO_INCREMENT,
     `user_id`       INT       NOT NULL,
-    `tag_id`      INT       NOT NULL,
     `request_date`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     `is_notified`   TINYINT(1)         DEFAULT 0,
     PRIMARY KEY (id),
-    KEY `wish_list_tag_idx` (tag_id) USING BTREE,
     KEY `wish_list_requester_idx` (`user_id`) USING BTREE,
-    CONSTRAINT `fk_wish_list_tag_id` FOREIGN KEY (tag_id) REFERENCES tags (id),
     CONSTRAINT `fk_wish_list_user_id` FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+
+CREATE TABLE `wish_list_tags` (
+    `id`      INT NOT NULL AUTO_INCREMENT,
+    `wish_id` INT NOT NULL,
+    `tag_id`  INT NOT NULL,
+    PRIMARY KEY (id),
+    KEY `wish_list_tag_idx` (tag_id) USING BTREE,
+    KEY `wish_list_wish_idx` (wish_id) USING BTREE,
+    CONSTRAINT `fk_wish_list_tag_id` FOREIGN KEY (tag_id) REFERENCES tags (id),
+    CONSTRAINT `fk_wish_list_wish_id` FOREIGN KEY (wish_id) REFERENCES wish_list (id)
 );
 
 CREATE TABLE `item_report` (
