@@ -32,7 +32,7 @@ if ($isUsernameTaken){
     $sqlQuery = "call insert_user (?,?,?,?)";
     $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$email,$phone])[0];
 }
-
+header('Content-type: application/json');
 echo json_encode($results);
 
 ?>

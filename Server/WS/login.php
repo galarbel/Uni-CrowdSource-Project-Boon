@@ -24,6 +24,7 @@ if (count($answer)){
     $results["data"] = "Wrong username or password";
 }
 
+header('Content-type: application/json');
 echo json_encode($results);
 
 ?>

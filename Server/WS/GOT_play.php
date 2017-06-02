@@ -23,12 +23,12 @@ $GOTVerify = rand(0,1) == 1;
 
 $results["code"] = 200;
 if ($GOTVerify){ //verify tag
-    $getGotVerifyQuery = "call get_GOT_tag_verify (?)";
-    $results["data"] = $db->rawQuery($getGotVerifyQuery,[$user_id])[0];
+    $SQLQuery = "call get_GOT_tag_verify (?)";
+    $results["data"] = $db->rawQuery($SQLQuery,[$user_id])[0];
     $results["data"]["type"] = 1; //frontend flag for verify mode
 }else{ //add tags
-    $getGotVerifyQuery = "call get_GOT_tag_add (?)";
-    $results["data"] = $db->rawQuery($getGotVerifyQuery,[$user_id])[0];
+    $SQLQuery = "call get_GOT_tag_add (?)";
+    $results["data"] = $db->rawQuery($SQLQuery,[$user_id])[0];
     $results["data"]["type"] = 2; //frontend flag for add mode
 }
 
