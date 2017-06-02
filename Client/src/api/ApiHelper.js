@@ -1,7 +1,6 @@
 /**
  * Created by gala on 3/9/2017.
  */
-import {activeEnv} from "./def";
 import {getStringForFetch,makeCancelable} from "../utils/Utils";
 import delay from "./delay";
 
@@ -30,9 +29,9 @@ export function parseJson(response) {
 export function doAjaxCall(fetchUrl,data) {
     const cancelablePromise = makeCancelable(new Promise((resolve, reject) => {
         setTimeout(() => {
-            activeEnv === 'dummy' ?
-                resolve(fetchUrl().data) :
-                fetchDataFromServer(resolve, reject, fetchUrl,data);
+            fetchUrl().endsWith && fetchUrl().endsWith(".php") ?
+                fetchDataFromServer(resolve, reject, fetchUrl,data) :
+                resolve(fetchUrl().data);
         }, delay);
     }));
 

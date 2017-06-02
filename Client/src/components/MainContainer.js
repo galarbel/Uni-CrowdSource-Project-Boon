@@ -14,6 +14,7 @@ class MobileContainer extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+        this.state = {open: false};
 
         this.handleToggle = this.handleToggle.bind(this);
     }
@@ -33,7 +34,6 @@ class MobileContainer extends React.Component {
 
     render() {
         const title = this.props.children.props.route.displayName || "boon";
-
         return (
             <div>
                 <StickyContainer>

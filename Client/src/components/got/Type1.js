@@ -25,12 +25,12 @@ const Type1 = ({tag, onSelectAnswer}) => {
                 <BottomNavigationItem
                     label="Not Sure"
                     icon={<FontAwesome name={"question-circle-o"} size="2x"/>}
-                    onTouchTap={onTouchTap(3)}
+                    onTouchTap={onTouchTap(0)}
                 />
                 <BottomNavigationItem
                     label="No"
                     icon={<FontAwesome name={"thumbs-o-down"} size="2x"/>}
-                    onTouchTap={onTouchTap(2)}
+                    onTouchTap={onTouchTap(-1)}
                 />
             </BottomNavigation>
             </div>
