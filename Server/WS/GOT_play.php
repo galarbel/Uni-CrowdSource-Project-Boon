@@ -1,6 +1,7 @@
 <?php
 
 include_once '../Global/config.php';
+//TODO add handle points to users per tag answer.
 
 // check params
 if (!isset($_POST["username"]) ) {
