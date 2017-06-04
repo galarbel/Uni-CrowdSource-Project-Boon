@@ -32,8 +32,8 @@ class GameOfTagsPage extends React.Component {
 
     loadTagsSuggestions() {
         this.setState({ loading: this.state.loading + 1});
-        api.getTagsSuggestions().then(
-            response => this.setState({tagSuggestionsArray: response.suggestionTags, loading: this.state.loading - 1})
+        api.getAllTags().then(
+            response => this.setState({tagSuggestionsArray: response.map((item,index) => item.name), loading: this.state.loading - 1})
         ).catch(e => {
             //TODO
         });

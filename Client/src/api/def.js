@@ -27,8 +27,18 @@ export function getGameOfTagsQuestions() {
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags : WS + basePath + ".php";
 }
 
-export function getTagsSuggestions() {
-    let basePath = "get_all_tags"; //todo
+export function getAllTags() {
+    let basePath = "get_all_tags";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
+}
+
+export function getAllCategories() {
+    let basePath = "get_all_categories";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
+}
+
+export function getAllCities() {
+    let basePath = "get_all_cities";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
 }
 
@@ -39,5 +49,15 @@ export function answerGameOfTagsType1() {
 
 export function answerGameOfTagsType2() {
     let basePath = ""; //TODO
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function submitNewItem() {
+    let basePath = "submit_item"; //TODO - fix to actual submit and not test
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getCatalogItems() {
+    let basePath = "get_catalog_items"; //TODO - fix to actual submit and not test
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }

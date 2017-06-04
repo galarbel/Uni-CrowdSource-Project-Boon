@@ -1,5 +1,9 @@
 /* Styles SASS file*/
 
+.sticky {
+    z-index: 100;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
@@ -51,8 +55,20 @@ body {
 }
 
 a {
-    color: #393255;
+    color: #095115;
     text-decoration: none;
+}
+
+.menu-items a {
+    color: #49a258;
+}
+
+.login-page a {
+    text-decoration: underline;
+}
+
+.alert {
+    color: red;
 }
 
 .loadingProgress {

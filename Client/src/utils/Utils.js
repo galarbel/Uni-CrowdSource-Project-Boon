@@ -28,12 +28,13 @@ export function getNumberWithCommas2(x) {
 }
 
 export function getStringForFetch(data) {
-    let result = "";
+    const formData = new FormData();
+
     for (let [key, value] of entries(data)) {
-        result += key + "=" + value + "&";
+        formData.append(key, value);
     }
 
-    return result.substring(0, result.length - 1);
+    return formData;
 }
 
 function* entries(obj) {

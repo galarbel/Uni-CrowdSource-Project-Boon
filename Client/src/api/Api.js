@@ -19,8 +19,16 @@ class Api {
         return doAjaxCall(def.getGameOfTagsQuestions);
     }
 
-    static getTagsSuggestions() {
-        return doAjaxCall(def.getTagsSuggestions);
+    static getAllTags() {
+        return doAjaxCall(def.getAllTags);
+    }
+
+    static getAllCategories() {
+        return doAjaxCall(def.getAllCategories);
+    }
+
+    static getAllCities() {
+        return doAjaxCall(def.getAllCities);
     }
 
     static answerGameOfTagsType1(params) {
@@ -29,6 +37,14 @@ class Api {
 
     static answerGameOfTagsType2(params) {
         return doAjaxCall(def.answerGameOfTagsType2, params);
+    }
+
+    static submitNewItem(params) {
+        return doAjaxCall(def.submitNewItem, params);
+    }
+
+    static getCatalogItems() {
+        return doAjaxCall(def.getCatalogItems);
     }
 }
 
