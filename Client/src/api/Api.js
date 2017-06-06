@@ -46,6 +46,10 @@ class Api {
     static getCatalogItems() {
         return doAjaxCall(def.getCatalogItems);
     }
+
+    static getItemDetails(params) {
+        return doAjaxCall(def.getItemDetails, params);
+    }
 }
 
 export default Api;

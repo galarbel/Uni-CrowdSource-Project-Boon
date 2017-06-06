@@ -28,7 +28,7 @@ class CatalogItem extends React.Component {
         const item = this.props.data;
         return (
             <div style={{position: "relative"}}>
-                <Link name="0" to="/catalog/details/123">
+                <Link name="0" to={"/catalog/details/" + item.item_id}>
                     <Card>
                         <CardHeader
                             title={item.title}

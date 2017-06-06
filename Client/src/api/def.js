@@ -53,11 +53,16 @@ export function answerGameOfTagsType2() {
 }
 
 export function submitNewItem() {
-    let basePath = "submit_item"; //TODO - fix to actual submit and not test
+    let basePath = "submit_item";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
 
 export function getCatalogItems() {
-    let basePath = "get_catalog_items"; //TODO - fix to actual submit and not test
+    let basePath = "get_catalog_items";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getItemDetails() {
+    let basePath = "get_item_details";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }

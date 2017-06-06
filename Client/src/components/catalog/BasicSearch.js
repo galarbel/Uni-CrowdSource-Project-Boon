@@ -1,5 +1,7 @@
 import React, {PropTypes} from "react";
 import ChipInput from 'material-ui-chip-input';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class BasicSearch extends React.Component {
 
@@ -11,10 +13,11 @@ class BasicSearch extends React.Component {
     render() {
         return (
             <div>
-                <ChipInput
-                           hintText="Search By Tags"
-                           fullWidth
-                           fullWidthInput
+                <Select
+                    multi
+                    onChange={this.props.onSelectChange}
+                    value={this.props.filterTags}
+                    options={this.props.tagSuggestions}
                 />
             </div>
         );
@@ -23,7 +26,10 @@ class BasicSearch extends React.Component {
 
 
 BasicSearch.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    tagSuggestions: PropTypes.array.isRequired,
+    onSelectChange: PropTypes.func.isRequired,
+    filterTags: PropTypes.array.isRequired
 };
 
 
