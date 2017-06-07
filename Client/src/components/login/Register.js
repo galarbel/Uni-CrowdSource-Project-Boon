@@ -1,9 +1,9 @@
 import React, {PropTypes} from "react";
 import RegisterStep1 from './RegisterStep1';
 import RegisterStep2 from './RegisterStep2';
-import boonLogo from '../../../resources/img/boon-logo-word.png';
-import giftPic from '../../../resources/img/gift-register.png';
 import api from "../../api/Api";
+import {boonLogoBase64, registerGiftPic} from "./Base64Images";
+
 
 class LoginPage extends React.Component {
 
@@ -93,9 +93,9 @@ class LoginPage extends React.Component {
         return (
             <div className="login-page" style={{width: "80%", margin: "auto"}}>
                 <div style={{textAlign: "center", paddingTop: "40px"}}>
-                    <img src={boonLogo}/>
+                    <img src={boonLogoBase64}/>
                     <br/><br/>
-                    <img src={giftPic} style={{width: "49%"}} />
+                    <img src={registerGiftPic} style={{width: "49%"}} />
                 </div>
                 {
                     this.state.step1 &&

@@ -30,27 +30,26 @@ class CatalogItem extends React.Component {
             <div style={{position: "relative"}}>
                 <Link name="0" to={"/catalog/details/" + item.item_id}>
                     <Card>
-                        <CardHeader
-                            title={item.title}
-                            subtitle={item.city}
-                        />
-                        <CardText style={{padding: "0 16px"}}>
+                        <CardText style={{padding: "16px"}}>
                             <div style={{display: "flex"}}>
-                                <div onClick={this.toggleLightbox}>
-                                    <img src={"data:image/jpg;base64," + item.image} style={{width: 100, height: 100}} />
+                                <div onClick={this.toggleLightbox} style={{padding: "0 20px 0 0", width: "120px"}}>
+                                    <img src={"data:image/jpg;base64," + item.image} style={{maxWidth: 100, maxHeight: 100}} />
                                 </div>
                                 <div>
+                                    <div style={{fontSize: 17}}><strong>{item.title}</strong></div>
+                                    <div><strong>City:</strong></div>
+                                    <div>{item.city}</div>
                                     <div><strong>Item Description:</strong></div>
                                     <div>{item.desc}</div>
                                     <div><strong>Tags</strong></div>
-                                    <div>{item.tags && item.tags.replace(";",", ")}</div>
+                                    <div>{item.tags && item.tags.split(";").join(", ")}</div>
                                 </div>
                             </div>
                         </CardText>
                     </Card>
                     <Divider/>
                     <div style={{position: "absolute", top: 0, bottom: 0, margin: "auto", right: 15, height: 20}}>
-                        >
+                        <i className="fa fa-chevron-right" aria-hidden="true" />
                     </div>
                 </Link>
 

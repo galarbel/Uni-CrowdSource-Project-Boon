@@ -56,6 +56,7 @@
     "react-table": "^5.4.1",
     "react-tabs": "0.8.2",
     "react-tap-event-plugin": "2.0.1",
+    "react-telephone-input": "^4.0.1",
     "reactable": "0.14.1",
     "redux": "3.6.0",
     "redux-thunk": "2.1.0",

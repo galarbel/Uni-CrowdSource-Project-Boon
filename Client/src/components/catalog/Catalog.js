@@ -1,10 +1,11 @@
 import React, {PropTypes} from "react";
-import CatalogItem from './ItemDetails';
+import CatalogItem from './CatalogItem';
 import TextInput from "../common/TextInput";
 import Button from "../common/Button";
 import BasicSearch from './BasicSearch';
 import api from "../../api/Api";
 import LoadingProgress from '../common/LoadingProgress';
+import Divider from 'material-ui/Divider';
 
 
 class CatalogPage extends React.Component {
@@ -79,13 +80,14 @@ class CatalogPage extends React.Component {
         }
 
         return (
-            <div style={{paddingTop: 98}}>
+            <div style={{paddingTop: 60}}>
                 <div style={{ position: "fixed", top: 64, zIndex: 100,  width: "100%", background: "#fff" }}>
                     <div style={{border:"5px solid #ccc"}}>
                         <BasicSearch tagSuggestions={this.state.tagSuggestions} onSelectChange={this.handleFilterTagsSelectChange} filterTags={this.state.filterTags}/>
                     </div>
-                    <div style={{textAlign: "right", padding: 5}}><a onClick={this.toggleAdvancesSearch}>Advanced Search</a></div>
+                    { false && <div style={{textAlign: "right", padding: 5}}><a onClick={this.toggleAdvancesSearch}>Advanced Search</a></div> }
                 </div>
+                <Divider/>
 
                 { this.state.items.length === 0 && <div>Currently there are no boons available</div>}
 

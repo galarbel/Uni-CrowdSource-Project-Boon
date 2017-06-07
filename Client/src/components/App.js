@@ -3,8 +3,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import MuiTheme from "./common/MuiTheme";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {connect} from "react-redux";
-
 import LoginPage from "./login/LoginPage";
+
 /** DO NOT REMOVE THIS - start**/
 import injectTapEventPlugin from 'react-tap-event-plugin';
 /** DO NOT REMOVE THIS - end**/
