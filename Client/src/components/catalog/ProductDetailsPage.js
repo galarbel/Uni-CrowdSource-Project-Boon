@@ -11,15 +11,20 @@ class ProductDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = Object.assign({loading: 0, isReported: false});
+        this.state = Object.assign({loading: 0});
 
         this.toggleLightbox = this.toggleLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
-
     }
 
     componentWillMount() {
         this.loadAjaxDetails();
+    }
+
+    componentDidUpdate(newProps, newState) {
+        if (newState.data && newState.data.reported_by_user) {
+            window.scrollTo(0,document.body.scrollHeight);
+        }
     }
 
 
@@ -43,17 +48,19 @@ class ProductDetailsPage extends React.Component {
     }
 
     shareNumber(type, number) {
-        number = "+972523427072";
         return () => {window.location.href = type + ":" + number;};
     }
 
     reportFalseItem() {
-        //todo - send to the WS
         return () => {
-            this.setState({isReported: true});
-            window.scrollTo(0,document.body.scrollHeight);
+            api.reportFalseItem({item_id: this.props.params.id}).then(
+                response => this.setState(Object.assign(this.state.data, {reported_by_user: true}))
+            ).catch(
+                e => {
+                    //TODO
+                }
+            );
         };
-
     }
 
     render() {
@@ -101,7 +108,7 @@ class ProductDetailsPage extends React.Component {
 
                     <div>
                         {
-                            this.state.isReported &&
+                            this.state.data.reported_by_user &&
                             <div className="alert">* This item has been reported by you</div>
                         }
                     </div>

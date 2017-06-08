@@ -1,12 +1,8 @@
 import React, {PropTypes} from "react";
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import FontAwesome from "react-fontawesome";
-import ChipInput from 'material-ui-chip-input';
 import Button from '../common/Button';
+import Select, { Creatable } from 'react-select';
 
-const Type2 = ({sendAction, cancelAction, tagsArray, onAddNewTags, onRemoveNewTags, tagsSuggestions}) => {
-
-    const onTouchTap = "moo";
+const Type2 = ({sendAction, cancelAction, tagsArray, tagsSuggestions, onChangeTags}) => {
 
     return (
         <div  style={{padding: "0 20px", textAlign: "initial"}}>
@@ -15,14 +11,15 @@ const Type2 = ({sendAction, cancelAction, tagsArray, onAddNewTags, onRemoveNewTa
             </div>
 
             <div>
-                <ChipInput value={tagsArray}
-                           onRequestAdd={onAddNewTags}
-                           onRequestDelete={onRemoveNewTags}
-                           fullWidth
-                           fullWidthInput
-                           hintText="Add Tags"
-                           dataSource={tagsSuggestions}
+                <br/>
+                <Creatable
+                    multi
+                    onChange={onChangeTags}
+                    value={tagsArray}
+                    options={tagsSuggestions}
+                    placeholder="Add tags from list or add your own"
                 />
+                <br/>
             </div>
 
 
@@ -38,8 +35,7 @@ const Type2 = ({sendAction, cancelAction, tagsArray, onAddNewTags, onRemoveNewTa
 Type2.propTypes = {
     sendAction: PropTypes.func.isRequired,
     cancelAction: PropTypes.func.isRequired,
-    onAddNewTags: PropTypes.func.isRequired,
-    onRemoveNewTags: PropTypes.func.isRequired,
+    onChangeTags: PropTypes.func.isRequired,
     tagsArray: PropTypes.array.isRequired,
     tagsSuggestions: PropTypes.array.isRequired
 };

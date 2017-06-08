@@ -40,7 +40,7 @@ class CatalogItem extends React.Component {
                                     <div><strong>City:</strong></div>
                                     <div>{item.city}</div>
                                     <div><strong>Item Description:</strong></div>
-                                    <div>{item.desc}</div>
+                                    <div>{item.description}</div>
                                     <div><strong>Tags</strong></div>
                                     <div>{item.tags && item.tags.split(";").join(", ")}</div>
                                 </div>

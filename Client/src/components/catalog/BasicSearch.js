@@ -1,7 +1,6 @@
 import React, {PropTypes} from "react";
-import ChipInput from 'material-ui-chip-input';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+
 
 class BasicSearch extends React.Component {
 
@@ -18,6 +17,7 @@ class BasicSearch extends React.Component {
                     onChange={this.props.onSelectChange}
                     value={this.props.filterTags}
                     options={this.props.tagSuggestions}
+                    placeholder="Filter by tags"
                 />
             </div>
         );

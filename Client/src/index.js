@@ -10,6 +10,7 @@ import {routes} from "./routes";
 import "./styles/styles.scss";
 import "../node_modules/toastr/build/toastr.min.css";
 import '../node_modules/react-datepicker/dist/react-datepicker.css';
+import 'react-select/dist/react-select.css';
 
 import MobileDetect from 'mobile-detect';
 let md = new MobileDetect(window.navigator.userAgent);

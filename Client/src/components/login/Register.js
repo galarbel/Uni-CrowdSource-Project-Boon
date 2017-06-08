@@ -3,14 +3,14 @@ import RegisterStep1 from './RegisterStep1';
 import RegisterStep2 from './RegisterStep2';
 import api from "../../api/Api";
 import {boonLogoBase64, registerGiftPic} from "./Base64Images";
-
+import {asYouType, isValidNumber} from 'libphonenumber-js';
 
 class LoginPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
 
-        this.state = { registerError: null, step1 : true };
+        this.state = { registerError: null, step1 : true, phone: "+972 "};
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.checkUserNamePassword = this.checkUserNamePassword.bind(this);
@@ -18,8 +18,15 @@ class LoginPage extends React.Component {
     }
 
     handleInputChange(event) {
-        this.setState({ [event.target.name] : event.target.value } );
+        const name = event.target.name;
+        let val = event.target.value;
+
+        if (event.target.name === "phone") {
+            val = new asYouType().input(val);
+        }
+        this.setState({ [name] : val } );
     }
+
 
     checkUserNamePassword() {
         if (!(this.state.username && this.state.password && this.state.repeat)) {
@@ -59,6 +66,11 @@ class LoginPage extends React.Component {
             return;
         }
 
+        if (!isValidNumber(this.state.phone)) {
+            this.setState({registerError: "Invalid Phone Number"});
+            return;
+        }
+
         this.setState({registerError: null});
 
         const requestParams = {
@@ -78,6 +90,8 @@ class LoginPage extends React.Component {
                 if (!response.username || !response.password) {
                     throw new Error("Error in registration");
                 }
+
+
 
                 localStorage.setItem("userDetails", JSON.stringify({username: requestParams.username, password: requestParams.password}));
                 let currentUrl = window.location.href;

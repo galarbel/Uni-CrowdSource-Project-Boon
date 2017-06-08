@@ -42,7 +42,7 @@ export const dummyData = {
         data: {
             itemId: 124,
             type: 1,
-            tag: "Tembel",
+            tag_name: "Tembel",
             img: "http://cdn.timesofisrael.com/uploads/2015/11/Oren-Hazan1-e1448585265637.jpg",
             desc: "...."
         }

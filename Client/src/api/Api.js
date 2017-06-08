@@ -31,12 +31,8 @@ class Api {
         return doAjaxCall(def.getAllCities);
     }
 
-    static answerGameOfTagsType1(params) {
-        return doAjaxCall(def.answerGameOfTagsType1, params);
-    }
-
-    static answerGameOfTagsType2(params) {
-        return doAjaxCall(def.answerGameOfTagsType2, params);
+    static answerGameOfTags(params) {
+        return doAjaxCall(def.answerGameOfTags, params);
     }
 
     static submitNewItem(params) {
@@ -49,6 +45,10 @@ class Api {
 
     static getItemDetails(params) {
         return doAjaxCall(def.getItemDetails, params);
+    }
+
+    static reportFalseItem(params) {
+        return doAjaxCall(def.reportFalseItem, params);
     }
 }
 

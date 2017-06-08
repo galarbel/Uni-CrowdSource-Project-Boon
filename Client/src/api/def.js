@@ -42,14 +42,9 @@ export function getAllCities() {
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
 }
 
-export function answerGameOfTagsType1() {
-    let basePath = "GOT_verify";
+export function answerGameOfTags() {
+    let basePath = "GOT_answer";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags2 : WS + basePath + ".php";
-}
-
-export function answerGameOfTagsType2() {
-    let basePath = ""; //TODO
-    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
 
 export function submitNewItem() {
@@ -64,5 +59,10 @@ export function getCatalogItems() {
 
 export function getItemDetails() {
     let basePath = "get_item_details";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function reportFalseItem() {
+    let basePath = "report_item";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
