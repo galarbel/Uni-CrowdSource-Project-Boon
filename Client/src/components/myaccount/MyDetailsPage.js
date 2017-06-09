@@ -1,71 +1,40 @@
 import React, {PropTypes} from "react";
-import LoadingProgress from '../common/LoadingProgress';
 import Button from "../common/Button";
 import TextInput from "../common/TextInput";
-import TextAreaInput from "../common/TextAreaInput";
+import MyBasicDetails from "./MyBasicDetails";
+import FontAwesome from "react-fontawesome";
+import Divider from 'material-ui/Divider';
+
 
 class MyDetailsPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
 
-        this.state = {editMode: false};
+        this.state = {isEditMode : false};
 
         this.toggleEditMode = this.toggleEditMode.bind(this);
     }
 
     toggleEditMode() {
-        this.setState({editMode : !this.state.editMode});
-    }
-
-    editDetailsSubmit() {
-        //todo
+        this.setState({isEditMode : !this.state.isEditMode});
     }
 
     render() {
-        const isEdit = this.state.editMode;
-
         return (
-            <div>
-                <div style={{display:'flex', justifyContent: 'space-between'}}>
+            <div style={{margin: "10px 16px"}}>
+                <div style={{display:'flex', justifyContent: 'space-between', marginBottom: 10}}>
                     <h3>My Details</h3>
-                    <button onClick={this.toggleEditMode}>edit icon</button>
+                    <div className="btn" onClick={this.toggleEditMode} style={{padding: "3px 10px 5px"}}>
+                        { !this.state.isEditMode && <div><FontAwesome name="pencil-square-o" size="lg"/> Edit</div> }
+                        { this.state.isEditMode && <div><FontAwesome name="times-circle" size="lg"/> Cancel</div> }
+                    </div>
                 </div>
+                <Divider/>
 
                 <div>
-                    <table>
-                        <tbody>
-                        <tr>
-                            <th>
-                                Name:
-                            </th>
-                            <td>
-                                {!isEdit && "Kreng"}
-                                {isEdit && <TextInput label=""/>}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Email:
-                            </th>
-                            <td>
-                                {!isEdit && "kreng@techno.drom.com"}
-                                {isEdit && <TextInput label=""/>}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                phone
-                            </th>
-                            <td>
-                                {!isEdit && "1-800-מימד-x"}
-                                {isEdit && <TextInput label=""/>}
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    {isEdit && <Button onClick={this.editDetailsSubmit} label="Submit" />}
+                    <br/>
+                    <MyBasicDetails isEditMode={this.state.isEditMode} toggleEditMode={this.toggleEditMode}/>
                 </div>
             </div>
         );

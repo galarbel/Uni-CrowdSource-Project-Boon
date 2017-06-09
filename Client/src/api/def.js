@@ -66,3 +66,8 @@ export function reportFalseItem() {
     let basePath = "report_item";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
+
+export function getUserDetails() {
+    let basePath = "get_user_details";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}

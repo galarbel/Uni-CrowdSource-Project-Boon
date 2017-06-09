@@ -142,3 +142,18 @@ div input.react-phone-number-input__phone:focus {
 div.Select-control {
     border-radius: 0;
 }
+
+.details-table, .details-table input {
+    font-size: 14px;
+
+
+    th {
+        text-align: left;
+        padding: 6px 15px 10px 4px;
+    }
+
+    td:not(input) {
+        font-size: 14px;
+    }
+
+}

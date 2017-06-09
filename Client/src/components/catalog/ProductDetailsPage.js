@@ -129,6 +129,7 @@ class ProductDetailsPage extends React.Component {
                             label="Report"
                             icon={<FontAwesome name={"flag"} size="2x"/>}
                             onTouchTap={this.reportFalseItem()}
+                            disabled={this.state.data.reported_by_user}
                         />
                     </BottomNavigation>
                 </div>

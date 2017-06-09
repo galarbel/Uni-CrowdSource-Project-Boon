@@ -50,6 +50,10 @@ class Api {
     static reportFalseItem(params) {
         return doAjaxCall(def.reportFalseItem, params);
     }
+
+    static getUserDetails() {
+        return doAjaxCall(def.getUserDetails);
+    }
 }
 
 export default Api;

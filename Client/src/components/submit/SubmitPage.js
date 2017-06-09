@@ -110,7 +110,7 @@ class SubmitPage extends React.Component {
         api.submitNewItem(params).then(
             response => {
                 this.setState({itemSent: true, loading: this.state.loading - 1});
-            } //TODO
+            }
         ).catch(e => {
             //TODO
         });
@@ -161,7 +161,7 @@ class SubmitPage extends React.Component {
         }
 
         return (
-            <div style={{margin:5,fontSize:14}}>
+            <div style={{margin:16,fontSize:14}}>
                 <div style={{textAlign:"center"}}>
                     <h2>Add Item</h2>
                 </div>
