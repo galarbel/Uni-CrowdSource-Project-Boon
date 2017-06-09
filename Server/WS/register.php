@@ -30,7 +30,7 @@ if ($isUsernameTaken){
     $results["data"]["isAvailable"] = false;
 }else{
     $sqlQuery = "call insert_user (?,?,?,?)";
-    $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$email,$phone])[0];
+    $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$phone,$email])[0];
 }
 header('Content-type: application/json');
 echo json_encode($results);

@@ -86,7 +86,6 @@ if (isset($item_id)){
 
         $SQLQuery = "call insert_item_tag (?,?,?)";
         $results1 = $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag])[0];
-        //echo $tag;
 
     }
     $results["data"]["submitSuccess"] = true;
