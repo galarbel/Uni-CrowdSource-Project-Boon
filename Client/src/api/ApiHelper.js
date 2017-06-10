@@ -42,15 +42,14 @@ function fetchDataFromServer(resolve, reject, fetchUrl, data) {
     let fetchParams = {
         method: "POST",
         headers: {
-            'Accept': 'application/json,application/javascript, application/x-javascript',
-            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+            'Accept': 'application/json,application/javascript, application/x-javascript'
         },
         credentials: 'include'
     };
 
     if (localStorage.getItem("userDetails")) {
         const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        data = Object.assign({},data,userDetails);
+        data = Object.assign({},userDetails,data);
     }
 
     if (data) {

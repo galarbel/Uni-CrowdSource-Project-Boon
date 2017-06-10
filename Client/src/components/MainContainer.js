@@ -8,8 +8,6 @@ import FontAwesome from "react-fontawesome";
 import {StickyContainer, Sticky} from 'react-sticky';
 import theme from "./common/MuiTheme";
 
-const appHeadlines = ["TimeOff Request", "My Requests","Absence Summary","Absence Info","Approve Requests"];
-
 class MobileContainer extends React.Component {
 
     constructor(props, context) {
@@ -19,16 +17,11 @@ class MobileContainer extends React.Component {
         this.handleToggle = this.handleToggle.bind(this);
     }
 
-    componentWillMount() {
-
-    }
-
-    handleToggle(event){
+    handleToggle(){
         this.setState({open: !this.state.open});
     }
 
-
-    handleMenuOpen() {
+    handleMenuOpen(event) {
         return (open) =>  this.setState({open});
     }
 

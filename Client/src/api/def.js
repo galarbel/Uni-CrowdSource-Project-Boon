@@ -27,17 +27,47 @@ export function getGameOfTagsQuestions() {
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags : WS + basePath + ".php";
 }
 
-export function getTagsSuggestions() {
-    let basePath = "get_all_tags"; //todo
+export function getAllTags() {
+    let basePath = "get_all_tags";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
 }
 
-export function answerGameOfTagsType1() {
-    let basePath = "GOT_verify";
+export function getAllCategories() {
+    let basePath = "get_all_categories";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
+}
+
+export function getAllCities() {
+    let basePath = "get_all_cities";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.suggestionTags : WS + basePath + ".php";
+}
+
+export function answerGameOfTags() {
+    let basePath = "GOT_answer";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags2 : WS + basePath + ".php";
 }
 
-export function answerGameOfTagsType2() {
-    let basePath = ""; //TODO
+export function submitNewItem() {
+    let basePath = "submit_item";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getCatalogItems() {
+    let basePath = "get_catalog_items";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getItemDetails() {
+    let basePath = "get_item_details";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function reportFalseItem() {
+    let basePath = "report_item";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getUserDetails() {
+    let basePath = "get_user_details";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }

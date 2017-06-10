@@ -3,13 +3,15 @@ import LoadingProgress from '../common/LoadingProgress';
 import Type1 from "./Type1";
 import Type2 from "./Type2";
 import api from "../../api/Api";
+import Lightbox from 'react-image-lightbox';
 
 
 const initState = {
     loading: 0,
     question: null,
     tagsArray:[],
-    tagSuggestionsArray: []
+    tagSuggestionsArray: [],
+    isLightboxOpen: false
 };
 
 class GameOfTagsPage extends React.Component {
@@ -21,8 +23,10 @@ class GameOfTagsPage extends React.Component {
         this.loadTagsSuggestions = this.loadTagsSuggestions.bind(this);
         this.onSelectAnswer = this.onSelectAnswer.bind(this);
         this.onSendNewTags = this.onSendNewTags.bind(this);
-        this.onAddNewTags = this.onAddNewTags.bind(this);
-        this.onRemoveNewTag = this.onRemoveNewTag.bind(this);
+        this.answerGameOfTags = this.answerGameOfTags.bind(this);
+        this.toggleLightbox = this.toggleLightbox.bind(this);
+        this.closeLightbox = this.closeLightbox.bind(this);
+        this.onChangeTags = this.onChangeTags.bind(this);
     }
 
     componentWillMount() {
@@ -32,8 +36,12 @@ class GameOfTagsPage extends React.Component {
 
     loadTagsSuggestions() {
         this.setState({ loading: this.state.loading + 1});
-        api.getTagsSuggestions().then(
-            response => this.setState({tagSuggestionsArray: response.suggestionTags, loading: this.state.loading - 1})
+        api.getAllTags().then(
+            tags => {
+                const tagsForSelect = [];
+                tags.map(tag => tagsForSelect.push({value: tag.id, label: tag.name}));
+                this.setState({tagSuggestionsArray: tagsForSelect, loading: this.state.loading - 1});
+            }
         ).catch(e => {
             //TODO
         });
@@ -48,60 +56,55 @@ class GameOfTagsPage extends React.Component {
         });
     }
 
+    answerGameOfTags(params) {
+        this.setState({loading: this.state.loading + 1});
+        api.answerGameOfTags(params).then(
+            response => {
+                //TODO - add success toastr / snackbox
+                this.setState({loading: this.state.loading - 1, tagsArray: [], question: null});
+                this.loadQuestion();
+            }
+        ).catch(e => {
+            //TODO
+        });
+    }
+
     onSelectAnswer(answerType) {
         const question = this.state.question;
 
         const params = {
+            type: 1,
             tag: question.tag,
             itemTagId: question.itemTagId,
             isCorrect: answerType
         };
 
-        this.setState({loading: this.state.loading + 1});
-
-        api.answerGameOfTagsType1(params).then(
-            response => {
-                //TODO - add success toastr / snackbox
-                this.setState({question: response, loading: this.state.loading - 1, tagsArray: []});
-            }
-        ).catch(e => {
-            //TODO
-        });
+        this.answerGameOfTags(params);
     }
 
     onSendNewTags(tagsArray) {
         const question = this.state.question;
 
         const params = {
+            type: 2,
             itemId : question.itemId,
-            newTags: this.state.tagsArray.join("!@@whereIsYuval@@!")
+            tags: this.state.tagsArray.join("!@@whereIsYuval@@!")
         };
-
-        this.setState({loading: this.state.loading + 1});
-        api.answerGameOfTagsType2(params).then(
-            response => {
-                //TODO - add success toastr / snackbox
-                this.setState({question: response, loading: this.state.loading - 1});
-            }
-        ).catch(e => {
-            //TODO
-        });
+        this.answerGameOfTags(params);
     }
 
-    onAddNewTags(newTag) {
-        let tagsArray = this.state.tagsArray;
-        if (!tagsArray.find(x => x === newTag)) {
-            tagsArray.push(newTag);
-            this.setState({tagsArray});
-        }
+    onChangeTags(tags) {
+        this.setState({tagsArray: tags});
     }
 
-    onRemoveNewTag(newTag,index) {
-        const tagsArray = this.state.tagsArray;
-        tagsArray.splice(index,1);
-        this.setState({tagsArray});
+    toggleLightbox(e) {
+        e.preventDefault();
+        this.setState({isLightboxOpen: !this.state.isLightboxOpen});
     }
 
+    closeLightbox() { //this is here cause lightbox doesn't use e.preventDefault
+        this.setState({isLightboxOpen: !this.state.isLightboxOpen});
+    }
 
 
     render() {
@@ -116,10 +119,10 @@ class GameOfTagsPage extends React.Component {
                     <h2>Game Of Tags!</h2>
                 </div>
 
-                <div style={{padding: "60px 30px"}}>
+                <div style={{padding: "30px 20px"}}>
                     <div style={{display: "flex"}}>
-                        <div style={{maxWidth: "40vw"}}>
-                        <img src={"data:image/png;base64," + question.image} style={{display: "block", width: "100%", height: "auto"}}/>
+                        <div onClick={this.toggleLightbox}>
+                            <img src={"data:image/png;base64," + question.image} style={{display: "block", maxWidth: "35vw", maxHeight: "40vh"}}/>
                         </div>
                         <div style={{paddingLeft: 20}}>
                             <div><strong>Description:</strong></div>
@@ -138,18 +141,27 @@ class GameOfTagsPage extends React.Component {
                         <Type2 sendAction={this.onSendNewTags}
                                cancelAction={this.loadQuestion}
                                tagsArray={this.state.tagsArray}
-                               onAddNewTags={this.onAddNewTags}
-                               onRemoveNewTags={this.onRemoveNewTag}
                                tagsSuggestions={this.state.tagSuggestionsArray}
-                    />
+                               onChangeTags={this.onChangeTags}
+                        />
                     }
                 </div>
+
+                {
+                    this.state.isLightboxOpen &&
+                    <Lightbox
+                        mainSrc={"data:image/jpg;base64," + question.image}
+                        onCloseRequest={this.closeLightbox}
+                    />
+                }
+
             </div>
         );
     }
 }
 
 GameOfTagsPage.propTypes = {
+
 };
 
 export default GameOfTagsPage;

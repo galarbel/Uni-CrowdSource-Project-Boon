@@ -1,21 +1,32 @@
 /* Styles SASS file*/
 
+.sticky {
+    z-index: 100;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
 }
 
+.full-width {
+    width: 100%;
+    padding: 5px 6px;
+}
 .inlineBlock{
     display:inline-block;
 }
 
 body {
-    font-family: Verdana, Arial;
-    color: #333;
     overflow-y: scroll;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+}
+
+body, input, select {
+    font-family: Verdana, Arial;
+    color: #333;
 }
 
 .btn {
@@ -51,8 +62,20 @@ body {
 }
 
 a {
-    color: #393255;
+    color: #095115;
     text-decoration: none;
+}
+
+.menu-items a {
+    color: #49a258;
+}
+
+.login-page a {
+    text-decoration: underline;
+}
+
+.alert {
+    color: red;
 }
 
 .loadingProgress {
@@ -90,4 +113,47 @@ a {
     }
 }
 
+.react-phone-number-input__country {
+    position: absolute;
+    top: 2px;
+    left: 7px;
+    z-index: 5;
+    border:0;
 
+    .rrui__select__selected {
+        border-bottom: 0;
+    }
+}
+
+div input.react-phone-number-input__phone {
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    padding-left: 50px;
+}
+
+div input.react-phone-number-input__phone:focus {
+    border-bottom-color: initial;
+    outline-offset: -2px;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+div.Select-control {
+    border-radius: 0;
+}
+
+.details-table, .details-table input {
+    font-size: 14px;
+
+
+    th {
+        text-align: left;
+        padding: 6px 15px 10px 4px;
+    }
+
+    td:not(input) {
+        font-size: 14px;
+    }
+
+}

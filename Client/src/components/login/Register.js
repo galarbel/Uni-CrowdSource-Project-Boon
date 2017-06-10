@@ -1,16 +1,16 @@
 import React, {PropTypes} from "react";
 import RegisterStep1 from './RegisterStep1';
 import RegisterStep2 from './RegisterStep2';
-import boonLogo from '../../../resources/img/boon-logo-word.png';
-import giftPic from '../../../resources/img/gift-register.png';
 import api from "../../api/Api";
+import {boonLogoBase64, registerGiftPic} from "./Base64Images";
+import {asYouType, isValidNumber} from 'libphonenumber-js';
 
 class LoginPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
 
-        this.state = { registerError: null, step1 : true };
+        this.state = { registerError: null, step1 : true, phone: "+972 "};
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.checkUserNamePassword = this.checkUserNamePassword.bind(this);
@@ -18,8 +18,15 @@ class LoginPage extends React.Component {
     }
 
     handleInputChange(event) {
-        this.setState({ [event.target.name] : event.target.value } );
+        const name = event.target.name;
+        let val = event.target.value;
+
+        if (event.target.name === "phone") {
+            val = new asYouType().input(val);
+        }
+        this.setState({ [name] : val } );
     }
+
 
     checkUserNamePassword() {
         if (!(this.state.username && this.state.password && this.state.repeat)) {
@@ -59,6 +66,11 @@ class LoginPage extends React.Component {
             return;
         }
 
+        if (!isValidNumber(this.state.phone)) {
+            this.setState({registerError: "Invalid Phone Number"});
+            return;
+        }
+
         this.setState({registerError: null});
 
         const requestParams = {
@@ -79,6 +91,8 @@ class LoginPage extends React.Component {
                     throw new Error("Error in registration");
                 }
 
+
+
                 localStorage.setItem("userDetails", JSON.stringify({username: requestParams.username, password: requestParams.password}));
                 let currentUrl = window.location.href;
                 window.location = currentUrl.replace("register","catalog");
@@ -93,9 +107,9 @@ class LoginPage extends React.Component {
         return (
             <div className="login-page" style={{width: "80%", margin: "auto"}}>
                 <div style={{textAlign: "center", paddingTop: "40px"}}>
-                    <img src={boonLogo}/>
+                    <img src={boonLogoBase64}/>
                     <br/><br/>
-                    <img src={giftPic} style={{width: "49%"}} />
+                    <img src={registerGiftPic} style={{width: "49%"}} />
                 </div>
                 {
                     this.state.step1 &&

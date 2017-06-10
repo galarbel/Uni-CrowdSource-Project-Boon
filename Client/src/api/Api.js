@@ -19,16 +19,40 @@ class Api {
         return doAjaxCall(def.getGameOfTagsQuestions);
     }
 
-    static getTagsSuggestions() {
-        return doAjaxCall(def.getTagsSuggestions);
+    static getAllTags() {
+        return doAjaxCall(def.getAllTags);
     }
 
-    static answerGameOfTagsType1(params) {
-        return doAjaxCall(def.answerGameOfTagsType1, params);
+    static getAllCategories() {
+        return doAjaxCall(def.getAllCategories);
     }
 
-    static answerGameOfTagsType2(params) {
-        return doAjaxCall(def.answerGameOfTagsType2, params);
+    static getAllCities() {
+        return doAjaxCall(def.getAllCities);
+    }
+
+    static answerGameOfTags(params) {
+        return doAjaxCall(def.answerGameOfTags, params);
+    }
+
+    static submitNewItem(params) {
+        return doAjaxCall(def.submitNewItem, params);
+    }
+
+    static getCatalogItems() {
+        return doAjaxCall(def.getCatalogItems);
+    }
+
+    static getItemDetails(params) {
+        return doAjaxCall(def.getItemDetails, params);
+    }
+
+    static reportFalseItem(params) {
+        return doAjaxCall(def.reportFalseItem, params);
+    }
+
+    static getUserDetails() {
+        return doAjaxCall(def.getUserDetails);
     }
 }
 
