@@ -54,6 +54,10 @@ class Api {
     static getUserDetails() {
         return doAjaxCall(def.getUserDetails);
     }
+
+    static getUserItems() {
+        return doAjaxCall(def.getUserItems);
+    }
 }
 
 export default Api;
