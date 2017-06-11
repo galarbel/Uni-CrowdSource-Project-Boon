@@ -7,6 +7,7 @@ import MainContainer from "./components/MainContainer";
 import CatalogPage from "./components/catalog/Catalog";
 import SubmitPage from "./components/submit/SubmitPage";
 import ProductDetailsPage from "./components/catalog/ProductDetailsPage";
+import MyItemDetailsPage from "./components/myaccount/ItemDetailsPage";
 import GameOfTagsPage from "./components/got/GameOfTagsPage";
 import MyAccountPage from "./components/myaccount/MyAccountMainPage";
 
@@ -18,6 +19,7 @@ export const routes = (
         <Route path="/main" component={MainContainer} >
             <Route path="/catalog" component={CatalogPage} displayName="Catalog"/>
             <Route path="/catalog/details/:id" component={ProductDetailsPage} displayName="Details"/>
+            <Route path="/myItems/details/:id" component={MyItemDetailsPage} displayName="Item Details"/>
             <Route path="/submit" component={SubmitPage} displayName="Submit"/>
             <Route path="/tags" component={GameOfTagsPage} displayName="Game Of Tags"/>
             <Route path="/account" component={MyAccountPage} displayName="My Account"/>

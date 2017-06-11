@@ -2,6 +2,7 @@ import React, {PropTypes} from "react";
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Divider from 'material-ui/Divider';
 import MyDetailsPage from './MyDetailsPage';
+import MyBoonsPage from './MyBoonsPage';
 
 class MyAccountMainPage extends React.Component {
 
@@ -16,7 +17,7 @@ class MyAccountMainPage extends React.Component {
                     <MyDetailsPage/>
                 </Tab>
                 <Tab label="My Boons">
-                    <div>Boons</div>
+                    <MyBoonsPage/>
                 </Tab>
                 <Tab label="History">
                     <div>History</div>
