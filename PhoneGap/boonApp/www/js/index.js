@@ -33,8 +33,8 @@ var app = {
             },
             "windows": {}
         });
+
         console.log('after init');
-        document.getElementById('app').innerHTML = "";
         var reactScript = document.createElement("script");
         reactScript.src = "js/bundle.js";
         document.head.appendChild(reactScript);
