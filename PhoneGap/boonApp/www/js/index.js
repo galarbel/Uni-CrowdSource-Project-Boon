@@ -56,12 +56,16 @@ var app = {
 
         push.on('notification', function(data) {
             console.log('notification event');
-            navigator.notification.alert(
+            sessionStorage.setItem("notification", JSON.stringify(data));
+            if (mobileContainerComponent && mobileContainerComponent.checkForNotification) {
+                mobileContainerComponent.checkForNotification();
+            }
+            /*navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
                 data.title,           // title
                 'Ok'                  // buttonName
-            );
+            );*/
        });
     }
 };

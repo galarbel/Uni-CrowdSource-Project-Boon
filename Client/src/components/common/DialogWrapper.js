@@ -25,7 +25,7 @@ const style = {
 
 };
 
-const DialogWraapper = (props) => {
+const DialogWrapper = (props) => {
 
 
     return (
@@ -41,9 +41,9 @@ const DialogWraapper = (props) => {
 };
 
 
-DialogWraapper.propTypes = {
+DialogWrapper.propTypes = {
     width: PropTypes.string,
-    children: PropTypes.array
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
 };
 
-export default DialogWraapper;
+export default DialogWrapper;
