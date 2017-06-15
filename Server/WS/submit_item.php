@@ -78,22 +78,25 @@ $SQLQuery = "call insert_item (?,?,?,?,?,?)";
 
 
 $item_id_raw = $db->rawQuery($SQLQuery,[$user_id,$title,$desc,$area,$category,$image])[0];
-$item_id = getNumericParamOrDefault($item_id_raw, "@itemID := LAST_INSERT_ID()", true, null);
+$item_id = getNumericParamOrDefault($item_id_raw, "@itemID", true, null);
 $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
 
 if (isset($item_id)){
     foreach ($tags as $tag){
 
         $SQLQuery = "call insert_item_tag (?,?,?)";
-        $results1 = $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag])[0];
+        $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag]);
 
     }
+    exec("nohup php -f notify_users.php ". (string)$item_id . " 0 > /dev/null 2>&1 &");
+    //exec("nohup php -f notify_users.php ". (string)$item_id . " 60 > /dev/null 2>&1 &");
     $results["data"]["submitSuccess"] = true;
 }else{
     $results["data"]["submitSuccess"] = false;
     //TODO handle error
 }
 $results["code"] = 200;
+
 
 header('Content-type: application/json');
 echo json_encode($results);
