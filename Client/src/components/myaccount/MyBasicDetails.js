@@ -12,7 +12,7 @@ class MyBasicDetails extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: 0};
+        this.state = {loading: 0, editDetailsError: null};
 
         this.loadMyDetails = this.loadMyDetails.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -44,7 +44,24 @@ class MyBasicDetails extends React.Component {
     }
 
     editDetailsSubmit() {
+        if (!(this.state.email && this.state.phone)) {
+            this.setState({editDetailsError: "Please Fill in all required information"});
+            return;
+        }
 
+        if (!isValidNumber(this.state.phone)) {
+            this.setState({editDetailsError: "Invalid Phone Number"});
+            return;
+        }
+
+        this.setState({editDetailsError: null});
+
+        const requestParams = {
+            phone: this.state.phone,
+            email: this.state.email
+        };
+        this.setState({loading: this.state.loading + 1});
+        api;
     }
 
     printTable(data) {
@@ -88,6 +105,7 @@ class MyBasicDetails extends React.Component {
                 </table>
 
                 {isEdit && <Button onClick={this.editDetailsSubmit} label="Submit" />}
+                {isEdit && this.state.editDetailsError && <div className="alert">{this.state.editDetailsError}</div>}
             </div>
 
         );

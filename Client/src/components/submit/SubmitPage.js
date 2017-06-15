@@ -82,19 +82,27 @@ class SubmitPage extends React.Component {
     }
 
     submitItem() {
-        if (!this.state.name || this.state.name === "") {
-            this.setState({submitError: "Please enter title"}); return;
+        this.setState({loading: this.state.loading + 1});
+        let errorsFound = false;
+
+        if (!this.state.image || this.state.image === "") {
+            this.setState({submitError: "Please select image"}); errorsFound = true;
+        }
+        if (!this.state.area || this.state.area === "") {
+            this.setState({submitError: "Please select area"}); errorsFound = true;
         }
 
         if (!this.state.category || this.state.category === "") {
-            this.setState({submitError: "Please select category"}); return;
+            this.setState({submitError: "Please select category"}); errorsFound = true;
         }
 
-        if (!this.state.area || this.state.area === "") {
-            this.setState({submitError: "Please select area"}); return;
+        if (!this.state.name || this.state.name === "") {
+            this.setState({submitError: "Please enter title"}); errorsFound = true;
         }
-        if (!this.state.image || this.state.image === "") {
-            this.setState({submitError: "Please select image"}); return;
+
+        if (errorsFound) {
+            this.setState({loading: this.state.loading - 1});
+            return;
         }
 
         const params = {
@@ -105,8 +113,7 @@ class SubmitPage extends React.Component {
             desc:       this.state.desc || "",
             tags:       this.state.tagsArray.join(";")
         };
-
-        this.setState({loading: this.state.loading + 1});
+        
         api.submitNewItem(params).then(
             response => {
                 this.setState({itemSent: true, loading: this.state.loading - 1});
@@ -127,13 +134,11 @@ class SubmitPage extends React.Component {
     }
 
     reloadPage() {
-        //  ¯\_(ツ)_/¯
-        window.location.reload();
+       this.setState({image: null, name: null, category:null, area: null, desc: null, tagsArray: [], itemSent: false});
     }
 
     loadCatalog() {
-        //  ¯\_(ツ)_/¯
-        window.location.href = window.location.href.replace("submit", "catalog");
+        this.context.router.push("/catalog");
     }
 
     render() {
@@ -217,6 +222,10 @@ class SubmitPage extends React.Component {
 
 SubmitPage.propTypes = {
 
+};
+
+SubmitPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
 };
 
 export default SubmitPage;
