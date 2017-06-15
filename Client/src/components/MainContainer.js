@@ -7,14 +7,46 @@ import Divider from 'material-ui/Divider';
 import FontAwesome from "react-fontawesome";
 import {StickyContainer, Sticky} from 'react-sticky';
 import theme from "./common/MuiTheme";
+import DialogWrapper from "./common/DialogWrapper";
+import Button from "./common/Button";
 
 class MobileContainer extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = {open: false};
+        this.state = {open: false, openDialog: false};
 
         this.handleToggle = this.handleToggle.bind(this);
+        this.checkForNotification = this.checkForNotification.bind(this);
+        this.closeDialog = this.closeDialog.bind(this);
+        this.viewItem = this.viewItem.bind(this);
+    }
+
+    componentWillMount() {
+        window.mobileContainerComponent = this;
+        this.checkForNotification();
+    }
+
+    checkForNotification() {
+        if (!sessionStorage.getItem("notification")) {
+            return;
+        }
+
+        const notification = Object.assign({},JSON.parse(sessionStorage.getItem("notification")));
+        sessionStorage.removeItem("notification");
+        if (notification && notification.additionalData && notification.additionalData.itemId) {
+            this.setState({notification, openDialog: true});
+        }
+    }
+
+    viewItem() {
+        const notification = this.state.notification;
+        this.context.router.push("/catalog/details/" + notification.additionalData.itemId);
+        this.closeDialog();
+    }
+
+    closeDialog() {
+        this.setState({openDialog: false});
     }
 
     handleToggle(){
@@ -62,6 +94,17 @@ class MobileContainer extends React.Component {
                     </Drawer>
                     {this.props.children}
                 </StickyContainer>
+                <DialogWrapper
+                    title="BOON FOUND!"
+                    open={this.state.openDialog}
+                    width="90%"
+                    actions={[
+                        <Button class="btn" key="1" onClick={this.viewItem} label="View Item" />,
+                        <Button class="btn-secondary" key="2" onClick={this.closeDialog} label="Cancel" />
+                    ]}
+                >
+                    <div><br/>Item matching your watchlist found!</div>
+                </DialogWrapper>
             </div>
         );
     }
@@ -73,5 +116,8 @@ MobileContainer.propTypes = {
     children: PropTypes.element
 };
 
+MobileContainer.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default MobileContainer;

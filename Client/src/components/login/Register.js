@@ -78,7 +78,8 @@ class LoginPage extends React.Component {
             password: this.state.password,
             name: this.state.name,
             phone: this.state.phone,
-            email: this.state.email
+            email: this.state.email,
+            deviceId: localStorage.getItem('registrationId')
         };
 
         api.doRegister(requestParams).then(
@@ -90,8 +91,6 @@ class LoginPage extends React.Component {
                 if (!response.username || !response.password) {
                     throw new Error("Error in registration");
                 }
-
-
 
                 localStorage.setItem("userDetails", JSON.stringify({username: requestParams.username, password: requestParams.password}));
                 let currentUrl = window.location.href;

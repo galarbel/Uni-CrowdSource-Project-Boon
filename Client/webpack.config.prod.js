@@ -24,7 +24,6 @@ export default {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.DefinePlugin(GLOBALS),
         new ExtractTextPlugin('styles.css'),
-        new ExtractTextPlugin('stylesheet.css'),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin()
     ],
@@ -32,12 +31,13 @@ export default {
         loaders: [
             {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
             {test: /(\.css)$/, loader: ExtractTextPlugin.extract("css?sourceMap")},
-            // TODO: add a loader for SASS, see dev config for ".scss"
+            {test: /\.(scss)$/, loader: ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
             {test: /\.(woff|woff2)$/, loader: "url?prefix=font/&limit=5000"},
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
             // {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"},
             {test: /\.(jpe?g|png|gif)(\?.*)?$/i, loader: 'url?limit=25000&name=[path][name].[ext]'},
+            {test: /\.(ico)(\?.*)?$/i, loader: 'url?name=[path][name].[ext]'},
             {test: /\.svg$/, loader: 'babel!svg-react'}
         ]
     }
