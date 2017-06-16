@@ -7,7 +7,8 @@ import api from "../../api/Api";
 import Lightbox from 'react-image-lightbox';
 import DialogWrapper from "../common/DialogWrapper";
 import Button from "../common/Button";
-
+import Chip from 'material-ui/Chip';
+import moment from "moment";
 
 class ProductDetailsPage extends React.Component {
     constructor(props, context) {
@@ -78,35 +79,41 @@ class ProductDetailsPage extends React.Component {
         const {title,category,city,date,description,phone, image, tags} = this.state.data;
         return (
             <div>
-                <div style={{margin:"16px 16px 90px",fontSize:14}}>
-                    <div>
-                        <div>
-                            <strong>{title}</strong>
-                        </div>
-                        <div style={{fontSize:'14px'}}>
+                <div style={{fontSize:14}}>
+                    <div style={{display:'flex',justifyContent:'space-between',verticalAlign:'bottom',margin:'5px'}}>
+                        <h1>
+                            {title}
+                        </h1>
+                        <h1 style={{fontWeight:'initial',color:'#999'}}>
                             {category}
-                        </div>
+                        </h1>
                     </div>
-                    <Divider/>
-
-                    <div><strong>Description:</strong></div>
-                    <div>{description}</div>
                     <Divider />
+                    <div style={{textAlign:'right'}}>
+                    <h4 style={{color:'#999'}}>
+                        {moment(date).format("D/mm/YYYY h:mm")}
+                    </h4></div>
+                    <br />
+                    <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
+                    <h2 style={{verticalAlign:'middle'}}>Description</h2>
+                    </div>
+                    <div>{description}</div>
+                    <br />
+                    <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
+                        <h2 style={{verticalAlign:'middle'}}>Tags</h2>
+                    </div>
+                        <div style={{padding:'5px'}}>{tags && tags.split(";").map(tag => <Chip  backgroundColor={"#095115"} labelColor="white" style={{display:'inline-block',margin:1}}
+                        >
+                            {tag}
+                        </Chip>)}
+                    </div>
+                    <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
+                        <h2 style={{verticalAlign:'middle'}}>Contact Information</h2>
+                    </div>
                     <div>
-                        <strong>Contact Information</strong>
                         <div>Phone: {phone}</div>
-                        <div>Area: {city}</div>
+                        <div>City: {city}</div>
                     </div>
-                    <Divider/>
-                    <div>
-                        <strong>Tags</strong>
-                        <div>{tags && tags.split(";").join(", ")}</div>
-                        <div>Area: {city}</div>
-                    </div>
-                    <Divider/>
-                    <div>Date Created: {date}</div>
-                    <Divider/>
-
                     <div onClick={this.toggleLightbox}>
                         <br/>
                         <img src={"data:image/jpg;base64," + image} style={{maxWidth: "80vw", maxHeight: "40vh", margin: "auto", display: "block"}}/>

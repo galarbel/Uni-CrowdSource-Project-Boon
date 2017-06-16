@@ -114,9 +114,8 @@ class SubmitPage extends React.Component {
             category:   this.state.category,
             area:       this.state.area,
             desc:       this.state.desc || "",
-            tags:       this.state.tagsArray.join(";")
+            tags:       this.state.tagsArray.map(tag => tag.label).join(";")
         };
-
         api.submitNewItem(params).then(
             response => {
                 this.setState({itemSent: true, loading: false});
@@ -214,7 +213,7 @@ class SubmitPage extends React.Component {
                 </label>
                 <div style={{color:'red',fontSize:'10px'}}>Image is required</div>
                 <br/>
-                <TextAreaInput label="" name="desc" placeholder="Add Description"/>
+                <TextAreaInput label="" name="desc" placeholder="Add Description" onChange={this.handleInputChange}/>
                 <br/>
                 {
                     this.state.submitError &&
