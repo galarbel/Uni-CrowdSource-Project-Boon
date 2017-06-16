@@ -7,6 +7,14 @@ const Button = ({onClick, icon, label, name, secondary = false, disabled = false
     if (secondary) {
         buttonClassName += " btn-secondary";
     }
+    if (label === "Submit") {
+        icon = "check-square-o";
+    }
+
+    if (label === "Cancel") {
+        icon = "times-circle";
+    }
+
     return (
         <button className={buttonClassName} name={name} onClick={onClick} disabled={disabled} style={style}>
             {icon && <FontAwesome name={icon} />}

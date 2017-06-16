@@ -154,7 +154,7 @@ class ProductDetailsPage extends React.Component {
                     open={this.state.reportDialogOpen}
                     width="90%"
                     actions={[
-                        <Button class="btn" key="1" onClick={this.reportFalseItem} label="Report" />,
+                        <Button class="btn" key="1" onClick={this.reportFalseItem} label="Report" icon = "check-square-o" />,
                         <Button class="btn-secondary" key="2" onClick={this.confirmReportFalseItem} label="Cancel" />
                     ]}
                 >
