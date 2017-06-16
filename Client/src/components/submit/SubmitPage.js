@@ -6,13 +6,14 @@ import TextAreaInput from "../common/TextAreaInput";
 import api from "../../api/Api";
 import Select, {Creatable} from 'react-select';
 import FontAwesome from "react-fontawesome";
+import Divider from 'material-ui/Divider';
 
 //TODO force tags? force image?
 class SubmitPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: 0, tagSuggestionsArray: [], tagsArray: [], categories: [], areas: []};
+        this.state = {loading: false, tagSuggestionsArray: [], tagsArray: [], categories: [], areas: []};
 
         this.onChangeTags = this.onChangeTags.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -22,6 +23,8 @@ class SubmitPage extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.loadCategories = this.loadCategories.bind(this);
         this.loadAreas = this.loadAreas.bind(this);
+        this.reloadPage = this.reloadPage.bind(this);
+        this.loadCatalog = this.loadCatalog.bind(this);
     }
 
     componentWillMount() {
@@ -31,12 +34,12 @@ class SubmitPage extends React.Component {
     }
 
     loadTagsSuggestions() {
-        this.setState({ loading: this.state.loading + 1});
+        this.setState({ loading: true});
         api.getAllTags().then(
             tags => {
                 const tagsForSelect = [];
                 tags.map(tag => tagsForSelect.push({value: tag.id, label: tag.name}));
-                this.setState({tagSuggestionsArray: tagsForSelect, loading: this.state.loading - 1});
+                this.setState({tagSuggestionsArray: tagsForSelect, loading: false});
             }
         ).catch(e => {
             //TODO
@@ -44,12 +47,12 @@ class SubmitPage extends React.Component {
     }
 
     loadCategories() {
-        this.setState({ loading: this.state.loading + 1});
+        this.setState({ loading: true});
         api.getAllCategories().then(
             categories => {
                 const categoriesForSelect = [];
                 categories.map(item => categoriesForSelect.push({value: item.id, label: item.name}));
-                this.setState({categories: categoriesForSelect, loading: this.state.loading - 1});
+                this.setState({categories: categoriesForSelect, loading:false});
             }
         ).catch(e => {
             //TODO
@@ -57,12 +60,12 @@ class SubmitPage extends React.Component {
     }
 
     loadAreas() {
-        this.setState({ loading: this.state.loading + 1});
+        this.setState({ loading: true});
         api.getAllCities().then(
             areas => {
                 const areasForSelect = [];
                 areas.map(item => areasForSelect.push({value: item.id, label: item.name}));
-                this.setState({areas: areasForSelect, loading: this.state.loading - 1});
+                this.setState({areas: areasForSelect, loading: false});
             }
         ).catch(e => {
             //TODO
@@ -82,14 +85,14 @@ class SubmitPage extends React.Component {
     }
 
     submitItem() {
-        this.setState({loading: this.state.loading + 1});
+        this.setState({loading: true});
         let errorsFound = false;
 
         if (!this.state.image || this.state.image === "") {
             this.setState({submitError: "Please select image"}); errorsFound = true;
         }
         if (!this.state.area || this.state.area === "") {
-            this.setState({submitError: "Please select area"}); errorsFound = true;
+            this.setState({submitError: "Please select city"}); errorsFound = true;
         }
 
         if (!this.state.category || this.state.category === "") {
@@ -101,7 +104,7 @@ class SubmitPage extends React.Component {
         }
 
         if (errorsFound) {
-            this.setState({loading: this.state.loading - 1});
+            this.setState({loading: false});
             return;
         }
 
@@ -116,7 +119,7 @@ class SubmitPage extends React.Component {
 
         api.submitNewItem(params).then(
             response => {
-                this.setState({itemSent: true, loading: this.state.loading - 1});
+                this.setState({itemSent: true, loading: false});
             }
         ).catch(e => {
             //TODO
@@ -136,7 +139,7 @@ class SubmitPage extends React.Component {
     }
 
     reloadPage() {
-        this.setState({image: null, name: null, category:null, area: null, desc: null, tagsArray: [], itemSent: false});
+        this.setState({image: null, name: null, category:null, area: null, desc: null, filename: null, tagsArray: [], itemSent: false});
     }
 
     loadCatalog() {
@@ -152,15 +155,17 @@ class SubmitPage extends React.Component {
             return (
                 <div style={{margin:5,fontSize:14}}>
                     <div style={{textAlign:"center"}}>
-                        <h2>Add Item</h2>
-                        <br/><br/><br/>
+                        <br />
+                        <FontAwesome name="thumbs-up" size="5x" />
+                        <h2>Thank You!</h2>
+                        <br/>
+                        <Divider />
+                        <br/>
                         <div>
-                            Item Added Successfully!
-                        </div>
-                        <br/><br/>
-                        <div>
-                            <Button onClick={this.reloadPage} label="Add Another Item" icon="plus-square" />
-                            <Button onClick={this.loadCatalog} label="Browse Catalog" icon="database" />
+                            <h4 style={{textAlign:'initial'}}>Your boon is being processed by <br/> boon experts and will be up for grabs in couple of minutes.</h4>
+                            <br />
+                            <Button onClick={this.reloadPage} label="Add Boon" icon="plus-square" />
+                            <Button onClick={this.loadCatalog} label="Browse Shelf" icon="shopping-bag" />
                         </div>
                     </div>
 
@@ -169,11 +174,9 @@ class SubmitPage extends React.Component {
 
         return (
             <div style={{margin:16,fontSize:14}}>
-                <div style={{textAlign:"center"}}>
-                    <h2>Add Item</h2>
-                </div>
                 <br/>
                 <TextInput label="" onChange={this.handleInputChange} name="name" placeholder="Add Title" />
+                <div style={{color:'red',fontSize:'10px',borderTop:'1px solid red'}}>This field is required</div>
                 <br/>
                 <Select
                     onChange={this.onChangeCategory}
@@ -182,15 +185,17 @@ class SubmitPage extends React.Component {
                     placeholder="Select Category"
                     clearable={false}
                 />
+                <div style={{color:'red',fontSize:'10px',borderTop:'1px solid red'}}>This field is required</div>
                 <br/>
 
                 <Select
                     onChange={this.onChangeArea}
                     value={this.state.area}
                     options={this.state.areas}
-                    placeholder="Select Area"
+                    placeholder="Select City"
                     clearable={false}
                 />
+                <div style={{color:'red',fontSize:'10px',borderTop:'1px solid red'}}>This field is required</div>
                 <br/>
 
                 <Creatable
@@ -203,11 +208,12 @@ class SubmitPage extends React.Component {
                 <br/>
                 <input type="file" accept="image/*" onChange={this.saveFileToState} id="file-upload" style={{display: "none"}}/>
                 <label htmlFor="file-upload">
-                    <div className="btn" style={{whiteSpace: "nowrap", overflow: "auto", textOverflow: "ellipsis", maxWidth: "45vw", display: "inline-block"}}>
+                    <div className="btn" style={{whiteSpace: "nowrap", overflow: "auto", textOverflow: "ellipsis", maxWidth: "50vw", display: "inline-block"}}>
                         <FontAwesome name="picture-o" /> {this.state.filename || "Choose Image"}
                     </div>
                 </label>
-                <br/><br/>
+                <div style={{color:'red',fontSize:'10px'}}>Image is required</div>
+                <br/>
                 <TextAreaInput label="" name="desc" placeholder="Add Description"/>
                 <br/>
                 {
