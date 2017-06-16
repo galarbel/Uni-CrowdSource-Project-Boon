@@ -3,9 +3,9 @@ import LoadingProgress from '../common/LoadingProgress';
 import Button from "../common/Button";
 import TextInput from "../common/TextInput";
 import TextAreaInput from "../common/TextAreaInput";
-import ChipInput from 'material-ui-chip-input';
 import api from "../../api/Api";
 import Select, {Creatable} from 'react-select';
+import FontAwesome from "react-fontawesome";
 
 //TODO force tags? force image?
 class SubmitPage extends React.Component {
@@ -113,7 +113,7 @@ class SubmitPage extends React.Component {
             desc:       this.state.desc || "",
             tags:       this.state.tagsArray.join(";")
         };
-        
+
         api.submitNewItem(params).then(
             response => {
                 this.setState({itemSent: true, loading: this.state.loading - 1});
@@ -124,8 +124,10 @@ class SubmitPage extends React.Component {
     }
 
     saveFileToState(event) {
-        const file = event.target.files[0];
-        this.setState({image: file, filename: file.name});
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            this.setState({image: file, filename: file.name});
+        }
     }
 
     handleInputChange(event) {
@@ -134,7 +136,7 @@ class SubmitPage extends React.Component {
     }
 
     reloadPage() {
-       this.setState({image: null, name: null, category:null, area: null, desc: null, tagsArray: [], itemSent: false});
+        this.setState({image: null, name: null, category:null, area: null, desc: null, tagsArray: [], itemSent: false});
     }
 
     loadCatalog() {
@@ -157,8 +159,8 @@ class SubmitPage extends React.Component {
                         </div>
                         <br/><br/>
                         <div>
-                            <button className="btn" onClick={this.reloadPage}>Add Another Item</button>
-                            <button className="btn" onClick={this.loadCatalog}>Browse Catalog</button>
+                            <Button onClick={this.reloadPage} label="Add Another Item" icon="plus-square" />
+                            <Button onClick={this.loadCatalog} label="Browse Catalog" icon="database" />
                         </div>
                     </div>
 
@@ -202,7 +204,7 @@ class SubmitPage extends React.Component {
                 <input type="file" accept="image/*" onChange={this.saveFileToState} id="file-upload" style={{display: "none"}}/>
                 <label htmlFor="file-upload">
                     <div className="btn" style={{whiteSpace: "nowrap", overflow: "auto", textOverflow: "ellipsis", maxWidth: "45vw", display: "inline-block"}}>
-                        {this.state.filename || "Choose Image"}
+                        <FontAwesome name="picture-o" /> {this.state.filename || "Choose Image"}
                     </div>
                 </label>
                 <br/><br/>
@@ -213,7 +215,7 @@ class SubmitPage extends React.Component {
                     <div className="alert">{this.state.submitError}<br/><br/></div>
 
                 }
-                <Button style={{width: "100%", height: "30px"}} label="Submit"  onClick={this.submitItem}/>
+                <Button style={{width: "100%", height: "30px"}} label="Submit"  onClick={this.submitItem} icon="check-square-o"/>
                 <br/>
             </div>
         );

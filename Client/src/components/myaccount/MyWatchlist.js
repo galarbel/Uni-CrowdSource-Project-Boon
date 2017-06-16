@@ -87,6 +87,14 @@ class MyBasicDetails extends React.Component {
     }
 
     render() {
+        if (!isEdit || isEdit) {
+            return (
+                <div>
+                    need WS for get :)
+                </div>
+            );
+        }
+
         if (this.state.loading > 0 ) {
             return (
                 <div style={{textAlign:"center", margin: "50px 20px 0 0"}}>

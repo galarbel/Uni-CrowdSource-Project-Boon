@@ -1,8 +1,8 @@
 import React, {PropTypes} from "react";
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Divider from 'material-ui/Divider';
 import MyDetailsPage from './MyDetailsPage';
 import MyBoonsPage from './MyBoonsPage';
+import MyHistoryPage from './MyHistoryPage';
 
 class MyAccountMainPage extends React.Component {
 
@@ -12,7 +12,7 @@ class MyAccountMainPage extends React.Component {
 
     render() {
         return (
-            <Tabs>
+            <Tabs style={{padding: "48px 0 0 0"}} tabItemContainerStyle={{ position: "fixed", top: 64, zIndex: 100,  width: "100%", background: "rgb(9, 81, 21)" }}>
                 <Tab label="Details">
                     <MyDetailsPage/>
                 </Tab>
@@ -20,7 +20,7 @@ class MyAccountMainPage extends React.Component {
                     <MyBoonsPage/>
                 </Tab>
                 <Tab label="History">
-                    <div>History</div>
+                    <MyHistoryPage/>
                 </Tab>
             </Tabs>
         );

@@ -58,6 +58,10 @@ class Api {
     static getUserItems() {
         return doAjaxCall(def.getUserItems);
     }
+
+    static updateUserDetails(params) {
+        return doAjaxCall(def.updateUserDetails, params);
+    }
 }
 
 export default Api;

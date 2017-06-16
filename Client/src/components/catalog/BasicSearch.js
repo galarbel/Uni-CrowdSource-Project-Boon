@@ -18,6 +18,8 @@ class BasicSearch extends React.Component {
                     value={this.props.filterTags}
                     options={this.props.tagSuggestions}
                     placeholder="Filter by tags"
+                    menuStyle={{height: 150}}
+                    autoBlur
                 />
             </div>
         );
