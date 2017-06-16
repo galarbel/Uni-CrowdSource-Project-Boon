@@ -49,7 +49,8 @@ function fetchDataFromServer(resolve, reject, fetchUrl, data) {
 
     if (localStorage.getItem("userDetails")) {
         const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-        data = Object.assign({},userDetails,data);
+        const deviceId = localStorage.getItem('registrationId') || "";
+        data = Object.assign({},userDetails,{deviceId}, data);
     }
 
     if (data) {

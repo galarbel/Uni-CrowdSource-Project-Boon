@@ -76,3 +76,8 @@ export function getUserItems() {
     let basePath = "get_user_items";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
+
+export function updateUserDetails() {
+    let basePath = "update_user_details";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}

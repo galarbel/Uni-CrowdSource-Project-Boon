@@ -5,16 +5,20 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 import FontAwesome from "react-fontawesome";
 import api from "../../api/Api";
 import Lightbox from 'react-image-lightbox';
+import DialogWrapper from "../common/DialogWrapper";
+import Button from "../common/Button";
 
 
 class ProductDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = Object.assign({loading: 0});
+        this.state = Object.assign({loading: 0, reportDialogOpen: false});
 
         this.toggleLightbox = this.toggleLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
+        this.reportFalseItem = this.reportFalseItem.bind(this);
+        this.confirmReportFalseItem = this.confirmReportFalseItem.bind(this);
     }
 
     componentWillMount() {
@@ -51,16 +55,19 @@ class ProductDetailsPage extends React.Component {
         return () => {window.location.href = type + ":" + number;};
     }
 
+    confirmReportFalseItem() {
+        this.setState({reportDialogOpen: !this.state.reportDialogOpen});
+    }
+
     reportFalseItem() {
-        return () => {
-            api.reportFalseItem({item_id: this.props.params.id}).then(
-                response => this.setState(Object.assign(this.state.data, {reported_by_user: true}))
-            ).catch(
-                e => {
-                    //TODO
-                }
-            );
-        };
+        api.reportFalseItem({item_id: this.props.params.id}).then(
+            response => this.setState({data : Object.assign(this.state.data, {reported_by_user: true}), reportDialogOpen: false})
+        ).catch(
+            e => {
+                //TODO
+            }
+        );
+
     }
 
     render() {
@@ -128,7 +135,7 @@ class ProductDetailsPage extends React.Component {
                         <BottomNavigationItem
                             label="Report"
                             icon={<FontAwesome name={"flag"} size="2x"/>}
-                            onTouchTap={this.reportFalseItem()}
+                            onTouchTap={this.confirmReportFalseItem}
                             disabled={this.state.data.reported_by_user}
                         />
                     </BottomNavigation>
@@ -141,6 +148,21 @@ class ProductDetailsPage extends React.Component {
                         onCloseRequest={this.closeLightbox}
                     />
                 }
+
+                <DialogWrapper
+                    title="REPORT ITEM"
+                    open={this.state.reportDialogOpen}
+                    width="90%"
+                    actions={[
+                        <Button class="btn" key="1" onClick={this.reportFalseItem} label="Report" icon = "check-square-o" />,
+                        <Button class="btn-secondary" key="2" onClick={this.confirmReportFalseItem} label="Cancel" />
+                    ]}
+                >
+                    <div>
+                        <br/>Confirm reporting of this item?
+                    </div>
+                </DialogWrapper>
+
             </div>
         );
     }
