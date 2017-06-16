@@ -19,11 +19,10 @@ $userIdRaw = $db->rawQuery($getUserIdQuery,[$username])[0];
 $user_id = getNumericParamOrDefault($userIdRaw, "id", true, null);
 
 $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
-$sqlQuery = "call get_user_pending_items (?)";
+$sqlQuery = "call get_user_wish_lists (?)";
 $results["data"] = $db->rawQuery($sqlQuery,[$user_id]);
-
-
 $results["code"] = 200;
+
 header('Content-type: application/json');
 echo json_encode($results);
 

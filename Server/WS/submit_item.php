@@ -97,7 +97,6 @@ if (isset($item_id)){
 }
 $results["code"] = 200;
 
-
 header('Content-type: application/json');
 echo json_encode($results);
 

@@ -31,9 +31,9 @@ $user_id = getNumericParamOrDefault($userIdRaw, "id", true, null);
 
 $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
 $sqlQuery = "call update_user_details (?,?,?)";
-$results["data"] = $db->rawQuery($sqlQuery,[$user_id,$email,$phone])[0];
+$db->rawQuery($sqlQuery,[$user_id,$email,$phone]);
 
-
+$results["data"]["submitSuccess"] = true;
 $results["code"] = 200;
 header('Content-type: application/json');
 echo json_encode($results);
