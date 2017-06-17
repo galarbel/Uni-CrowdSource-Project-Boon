@@ -170,19 +170,19 @@ class MyWatchlist extends React.Component {
                 {
                     this.state.watchlist.length >= 1 &&
                     <table style={{width: "100%"}}>
-                    <tbody>
-                    {
-                        this.state.watchlist && this.state.watchlist.map((watchlist,index) => (<tr key={index}>
-                            <td>#{index+1}</td>
-                            <td style={{width: "98%"}}>{watchlist.tags || "none... error?"}</td>
-                            <td style={{whiteSpace: "nowrap"}}>
-                                <span onClick={this.bindWatchlistEditActions(index)}><FontAwesome name="pencil" size="lg" className="watchlist-icons"/></span>
-                                &nbsp;&nbsp;
-                                <span onClick={this.bindWatchlistDeleteActions(index)}><FontAwesome name="trash" size="lg" className="watchlist-icons"/></span>
-                            </td>
-                        </tr>))
-                    }
-                    </tbody>
+                        <tbody>
+                        {
+                            this.state.watchlist && this.state.watchlist.map((watchlist,index) => (<tr key={index}>
+                                <td>#{index+1}</td>
+                                <td style={{width: "98%"}}>{watchlist.tags || "none... error?"}</td>
+                                <td style={{whiteSpace: "nowrap"}}>
+                                    <span onClick={this.bindWatchlistEditActions(index)}><FontAwesome name="pencil" size="lg" className="watchlist-icons"/></span>
+                                    &nbsp;&nbsp;
+                                    <span onClick={this.bindWatchlistDeleteActions(index)}><FontAwesome name="trash" size="lg" className="watchlist-icons"/></span>
+                                </td>
+                            </tr>))
+                        }
+                        </tbody>
                     </table>
                 }
 
@@ -204,7 +204,7 @@ class MyWatchlist extends React.Component {
                                              display: this.state.dialogLoading ?  "inline-block" : "none"
                                          }}/>
                     ]}
-                    isKeyboardOpen={this.state.selectFocus}
+                    isKeyboardOpen
                 >
                     <br/>
                     <div>Add new watchlist</div>
@@ -215,7 +215,7 @@ class MyWatchlist extends React.Component {
                         options={this.state.tagsSuggestions}
                         onFocus={this.dialogSelectFocusBlur}
                         onBlur={this.dialogSelectFocusBlur}
-                        autoBlur={false} //might want this... will have to see on mobile
+                        autoBlur
                         menuStyle={{height: 150}}
                         placeholder="Add tags from list or add your own"
                     />
@@ -224,31 +224,34 @@ class MyWatchlist extends React.Component {
                     {this.state.selectFocus && <div style={{height: "160px"}}/>}
                 </DialogWrapper>
 
-                <DialogWrapper
-                    open={this.state.deleteDialogOpen}
-                    title="DELETE WATCHLIST"
-                    actions={[
-                        <Button key="1" label="Submit" onClick={this.deleteWatchlist} disabled={this.state.dialogLoading}/>,
-                        <Button key="2" label="Cancel" onClick={this.toggleDeleteDialogOpen} disabled={this.state.dialogLoading}/>,
-                        <LoadingProgress key="3"
-                                         fullPage={false} thickness={2} size={21}
-                                         style={{
-                                             position: "relative", top: -3, left: 10,
-                                             display: this.state.dialogLoading ?  "inline-block" : "none"
-                                         }}/>
-                    ]}
-                >
-                    <br/>
-                    <div>Are you sure you want to delete the watchlist:</div>
-                    {
-                        this.state.watchlistIndex !== -1 &&
-                        <div>{this.state.watchlist[this.state.watchlistIndex].tags}</div>
-                    }
+                {
+                    this.state.deleteDialogOpen &&
+                    <DialogWrapper
+                        open={this.state.deleteDialogOpen}
+                        title="DELETE WATCHLIST"
+                        actions={[
+                            <Button key="1" label="Submit" onClick={this.deleteWatchlist} disabled={this.state.dialogLoading}/>,
+                            <Button key="2" label="Cancel" onClick={this.toggleDeleteDialogOpen} disabled={this.state.dialogLoading}/>,
+                            <LoadingProgress key="3"
+                                             fullPage={false} thickness={2} size={21}
+                                             style={{
+                                                 position: "relative", top: -3, left: 10,
+                                                 display: this.state.dialogLoading ?  "inline-block" : "none"
+                                             }}/>
+                        ]}
+                    >
+                        <br/>
+                        <div>Are you sure you want to delete the watchlist:</div>
+                        {
+                            this.state.watchlistIndex !== -1 &&
+                            <div>{this.state.watchlist[this.state.watchlistIndex].tags}</div>
+                        }
 
-                    <div className="alert" style={{marginTop: 6}}>{this.state.dialogError}</div>
+                        <div className="alert" style={{marginTop: 6}}>{this.state.dialogError}</div>
 
-                    {this.state.selectFocus && <div style={{height: "160px"}}/>}
-                </DialogWrapper>
+                        {this.state.selectFocus && <div style={{height: "160px"}}/>}
+                    </DialogWrapper>
+                }
 
             </div>
         );
