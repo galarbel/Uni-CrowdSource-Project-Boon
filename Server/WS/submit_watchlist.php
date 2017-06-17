@@ -39,7 +39,7 @@ if (isset($wishlist_id)){
         $db->rawQuery($SQLQuery,[$wishlist_id,$tag]);
 
     }
-    $results["data"]["wishlist_id"] = $wishlist_id;
+    $results["data"]["wish_id"] = $wishlist_id;
     $results["data"]["submitSuccess"] = true;
 }else{
     $results["data"]["submitSuccess"] = false;
