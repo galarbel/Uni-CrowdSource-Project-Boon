@@ -1,6 +1,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
+        window.screen.orientation.lock('portrait')
         this.bindEvents();
     },
     // Bind Event Listeners
