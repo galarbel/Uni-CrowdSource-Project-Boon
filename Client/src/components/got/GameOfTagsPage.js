@@ -84,10 +84,9 @@ class GameOfTagsPage extends React.Component {
 
     onSendNewTags(tagsArray) {
         const question = this.state.question;
-
         const params = {
             type: 2,
-            itemId : question.itemId,
+            itemId : question.id,
             tags: this.state.tagsArray.map(tag => tag.label).join(";")
         };
         this.answerGameOfTags(params);
