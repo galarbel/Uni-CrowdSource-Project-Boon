@@ -84,36 +84,37 @@ class ProductDetailsPage extends React.Component {
                         <h1>
                             {title}
                         </h1>
-                        <h1 style={{fontWeight:'initial',color:'#999'}}>
+                        <h3 style={{fontWeight:'initial'}}>
                             {category}
-                        </h1>
+
+
+                        </h3>
                     </div>
                     <Divider />
                     <div style={{textAlign:'right'}}>
-                    <h4 style={{color:'#999'}}>
+                    <div style={{fontWeight:'bold'}}>
                         {moment(date).format("D/mm/YYYY h:mm")}
-                    </h4></div>
+                    </div></div>
                     <br />
-                    <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
-                    <h2 style={{verticalAlign:'middle'}}>Description</h2>
-                    </div>
+                    <div style={{verticalAlign:'middle'}}>Description:</div>
                     <div>{description}</div>
+                    <Divider/>
                     <br />
-                    <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
-                        <h2 style={{verticalAlign:'middle'}}>Tags</h2>
-                    </div>
+                        <div style={{verticalAlign:'middle'}}>Tags:</div>
                         <div style={{padding:'5px'}}>{tags && tags.split(";").map((tag,index) => <Chip key={index} backgroundColor={"#095115"} labelColor="white" style={{display:'inline-block',margin:1}}
                         >
                             {tag}
                         </Chip>)}
                     </div>
-                    <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
-                        <h2 style={{verticalAlign:'middle'}}>Contact Information</h2>
-                    </div>
+                    <Divider/>
+                    <br />
+                        <div style={{verticalAlign:'middle'}}>Contact Information:</div>
                     <div>
                         <div>Phone: {phone}</div>
                         <div>City: {city}</div>
                     </div>
+                    <Divider/>
+                    <br />
                     <div onClick={this.toggleLightbox}>
                         <br/>
                         <img src={"data:image/jpg;base64," + image} style={{maxWidth: "80vw", maxHeight: "40vh", margin: "auto", display: "block"}}/>

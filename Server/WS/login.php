@@ -9,13 +9,16 @@ if (!isset($_POST["username"]) ) {
 if (!isset($_POST["password"]) ) {
     badRequest("missing 'password' parameter");
 }
-
+if (!isset($_POST["deviceId"]) ) {
+    badRequest("missing 'deviceId' parameter");
+}
 $username = $_POST["username"];
 $password = $_POST["password"];
+$device_id = $_POST["deviceId"];
 
-$sqlQuery = "call verify_user (?,?)";
+$sqlQuery = "call verify_user (?,?,?)";
 
-$answer = $db->rawQuery($sqlQuery,[$username,$password])[0];
+$answer = $db->rawQuery($sqlQuery,[$username,$password,$device_id])[0];
 if (count($answer)){
     $results["code"] = 200;
     $results["data"] = $answer;
