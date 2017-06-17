@@ -102,7 +102,7 @@ class ProductDetailsPage extends React.Component {
                     <div style={{background:'#efefef',height:'30px',textAlign:'center',verticalAlign:'center'}}>
                         <h2 style={{verticalAlign:'middle'}}>Tags</h2>
                     </div>
-                        <div style={{padding:'5px'}}>{tags && tags.split(";").map(tag => <Chip  backgroundColor={"#095115"} labelColor="white" style={{display:'inline-block',margin:1}}
+                        <div style={{padding:'5px'}}>{tags && tags.split(";").map((tag,index) => <Chip key={index} backgroundColor={"#095115"} labelColor="white" style={{display:'inline-block',margin:1}}
                         >
                             {tag}
                         </Chip>)}
