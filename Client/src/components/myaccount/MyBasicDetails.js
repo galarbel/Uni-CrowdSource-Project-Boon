@@ -27,7 +27,7 @@ class MyBasicDetails extends React.Component {
         this.setState({loading: this.state.loading + 1});
         api.getUserDetails().then(
             userDetails => {
-                this.setState({userDetails, loading: this.state.loading - 1});
+                this.setState({userDetails, loading: this.state.loading - 1, phone:userDetails.phone, email: userDetails.email});
             }
         ).catch(e => {
             //TODO
@@ -39,6 +39,7 @@ class MyBasicDetails extends React.Component {
         let val = event.target.value;
 
         if (event.target.name === "phone") {
+            val = val === "" ? "+" : val;
             val = new asYouType().input(val);
         }
         this.setState({ [name] : val } );

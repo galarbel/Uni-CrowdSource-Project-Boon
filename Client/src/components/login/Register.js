@@ -22,6 +22,7 @@ class LoginPage extends React.Component {
         let val = event.target.value;
 
         if (event.target.name === "phone") {
+            val = val === "" ? "+" : val;
             val = new asYouType().input(val);
         }
         this.setState({ [name] : val } );
