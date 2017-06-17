@@ -9,13 +9,13 @@ class MyDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: 0};
+        this.state = {loading: 0, items: []};
 
         this.loadMyItems = this.loadMyItems.bind(this);
     }
 
     componentWillMount() {
-        this.loadMyItems();
+        //this.loadMyItems();
     }
 
     loadMyItems() {
@@ -44,13 +44,12 @@ class MyDetailsPage extends React.Component {
                     <h3>My Boons</h3>
                 </div>
                 <Divider/>
-                {
-                    !this.state.loading &&
-                    <div>
-                        {this.state.items.length === 0 && <div>Currently there are no boons available</div>}
-                        {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
-                    </div>
-                }
+
+                <div>
+                    {this.state.items.length === 0 && <div>Currently there are no boons available</div>}
+                    {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
+                </div>
+
             </div>
         );
     }

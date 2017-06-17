@@ -14,7 +14,7 @@ class MyHistoryPage extends React.Component {
     }
 
     componentWillMount() {
-        this.loadMyItems();
+        //this.loadMyItems();
     }
 
     loadMyItems() {
@@ -37,7 +37,7 @@ class MyHistoryPage extends React.Component {
 
         return (
             <div style={{margin: "10px 16px"}}>
-                <div style={{display:'flex', justifyContent: 'space-between', marginBottom: 10}}>
+                <div style={{marginBottom: 10}}>
                     <h3>My History</h3>
                 </div>
                 <Divider/>
