@@ -35,7 +35,6 @@ $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
 
 if (isset($wishlist_id)){
     foreach ($tags as $tag){
-
         $SQLQuery = "call insert_user_wish_list_tag (?,?)";
         $db->rawQuery($SQLQuery,[$wishlist_id,$tag]);
 
