@@ -17,10 +17,10 @@ export const routes = (
         <Route path="/login" component={LoginPage}/>
         <Route path="/register" component={Register} loginNotRequired/>
         <Route path="/main" component={MainContainer} >
-            <Route path="/catalog" component={CatalogPage} displayName="Catalog"/>
+            <Route path="/catalog" component={CatalogPage} displayName="Boons Shelf"/>
             <Route path="/catalog/details/:id" component={ProductDetailsPage} displayName="Details"/>
             <Route path="/myItems/details/:id" component={MyItemDetailsPage} displayName="Item Details"/>
-            <Route path="/submit" component={SubmitPage} displayName="Submit"/>
+            <Route path="/submit" component={SubmitPage} displayName="Add Boon"/>
             <Route path="/tags" component={GameOfTagsPage} displayName="Game Of Tags"/>
             <Route path="/account" component={MyAccountPage} displayName="My Account"/>
         </Route>

@@ -82,13 +82,13 @@ class MobileContainer extends React.Component {
                         </div>
                         <Divider/>
                         <div className="menu-items">
-                            <MenuItem ><div onClick={this.handleToggle}><Link name= "1" to="/catalog">Boons catalog</Link></div></MenuItem>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name="3" to="/submit"><FontAwesome name={"lightbulb-o"} /> Publish a boon</Link></div></MenuItem>
                             <Divider/>
-                            <MenuItem ><div onClick={this.handleToggle}><Link name= "2" to="/account">My account</Link></div></MenuItem>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name= "1" to="/catalog"><FontAwesome name={"shopping-bag"} /> Boons Shelf</Link></div></MenuItem>
                             <Divider/>
-                            <MenuItem ><div onClick={this.handleToggle}><Link name="3" to="/submit">Submit an Item</Link></div></MenuItem>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name="" to="/tags"><FontAwesome name={"trophy"} /> Game Of Tags!</Link></div></MenuItem>
                             <Divider/>
-                            <MenuItem ><div onClick={this.handleToggle}><Link name="" to="/tags">Game Of Tags!</Link></div></MenuItem>
+                            <MenuItem ><div onClick={this.handleToggle}><Link name= "2" to="/account"><FontAwesome name={"gear"} /> My Account</Link></div></MenuItem>
                             <Divider/>
                         </div>
                     </Drawer>

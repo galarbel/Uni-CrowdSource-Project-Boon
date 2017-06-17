@@ -32,8 +32,8 @@ class CatalogItem extends React.Component {
                     <Card>
                         <CardText style={{padding: "16px"}}>
                             <div style={{display: "flex"}}>
-                                <div onClick={this.toggleLightbox} style={{padding: "0 20px 0 0", width: "120px"}}>
-                                    <img src={"data:image/jpg;base64," + item.image} style={{maxWidth: 100, maxHeight: 100}} />
+                                <div onClick={this.toggleLightbox} style={{width: "80px"}}>
+                                    <img src={"data:image/jpg;base64," + item.image} style={{maxWidth: 60, maxHeight: 100}} />
                                 </div>
                                 <div>
                                     <div style={{fontSize: 17}}><strong>{item.title}</strong></div>

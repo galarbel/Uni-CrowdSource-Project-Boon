@@ -3,6 +3,7 @@ import {Card, CardHeader, CardText} from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import {Link} from 'react-router';
 import Lightbox from 'react-image-lightbox';
+import Chip from 'material-ui/Chip';
 
 class CatalogItem extends React.Component {
 
@@ -30,19 +31,22 @@ class CatalogItem extends React.Component {
             <div style={{position: "relative"}}>
                 <Link name="0" to={"/catalog/details/" + item.item_id}>
                     <Card>
-                        <CardText style={{padding: "16px"}}>
+                        <CardText style={{padding: "10px"}}>
                             <div style={{display: "flex"}}>
-                                <div onClick={this.toggleLightbox} style={{padding: "0 20px 0 0", width: "120px"}}>
-                                    <img src={"data:image/jpg;base64," + item.image} style={{maxWidth: 100, maxHeight: 100}} />
+                                <div onClick={this.toggleLightbox} style={{width: "80px",marginRight:'5px'}}>
+                                    <img src={"data:image/jpg;base64," + item.image} style={{maxWidth: 80, maxHeight: 100}} />
                                 </div>
-                                <div>
-                                    <div style={{fontSize: 17}}><strong>{item.title}</strong></div>
-                                    <div><strong>City:</strong></div>
-                                    <div>{item.city}</div>
-                                    <div><strong>Item Description:</strong></div>
+                                <div style={{width:'100%'}}>
+                                    <div style={{fontSize: 17,color:'#095115',display:'flex',justifyContent:'space-between'}}>
+                                        <div><strong>{item.title}</strong></div>
+                                        <div>{item.category}</div>
+                                    </div>
+                                    <Divider/>
+                                    <div style={{display:'flex'}}>
+                                    <div><strong>City: </strong></div>
+                                        <div> {item.city}</div></div>
+                                    <div><strong>Item Description: </strong></div>
                                     <div>{item.description}</div>
-                                    <div><strong>Tags</strong></div>
-                                    <div>{item.tags && item.tags.split(";").join(", ")}</div>
                                 </div>
                             </div>
                         </CardText>
