@@ -1,7 +1,11 @@
 var app = {
     // Application Constructor
     initialize: function() {
-        window.screen.orientation.lock('portrait')
+        try {
+            window.screen.orientation.lock('portrait');
+        } catch(e) {
+            //o well. those devices that doesn't support will suffer ;)
+        }
         this.bindEvents();
     },
     // Bind Event Listeners

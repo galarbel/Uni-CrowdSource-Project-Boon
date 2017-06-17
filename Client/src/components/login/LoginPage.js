@@ -31,7 +31,7 @@ class LoginPage extends React.Component {
     }
 
     onLoginClick(event) {
-        this.props.actions.doLogin({username: this.state.username, password: this.state.password});
+        this.props.actions.doLogin({username: this.state.username, password: this.state.password, deviceId: localStorage.getItem("deviceId") || ""});
     }
 
     render() {
