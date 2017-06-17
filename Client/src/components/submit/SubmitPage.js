@@ -161,7 +161,7 @@ class SubmitPage extends React.Component {
                         <Divider />
                         <br/>
                         <div>
-                            <h4 style={{textAlign:'initial'}}>Your boon is being processed by <br/> boon experts and will be up for grabs in couple of minutes.</h4>
+                            <h4 style={{textAlign:'initial'}}>Your boon is being processed by boon experts and will be up for grabs in couple of minutes.</h4>
                             <br />
                             <Button onClick={this.reloadPage} label="Add Boon" icon="plus-square" />
                             <Button onClick={this.loadCatalog} label="Browse Shelf" icon="shopping-bag" />
@@ -175,7 +175,7 @@ class SubmitPage extends React.Component {
             <div style={{margin:16,fontSize:14}}>
                 <br/>
                 <TextInput label="" onChange={this.handleInputChange} name="name" placeholder="Add Title" />
-                <div style={{color:'red',fontSize:'10px',borderTop:'1px solid red'}}>This field is required</div>
+                <div style={{color:'#095115',fontSize:'10px',borderTop:'1px solid #095115'}}>This field is required</div>
                 <br/>
                 <Select
                     onChange={this.onChangeCategory}
@@ -184,7 +184,7 @@ class SubmitPage extends React.Component {
                     placeholder="Select Category"
                     clearable={false}
                 />
-                <div style={{color:'red',fontSize:'10px',borderTop:'1px solid red'}}>This field is required</div>
+                <div style={{color:'#095115',fontSize:'10px',borderTop:'1px solid #095115'}}>This field is required</div>
                 <br/>
 
                 <Select
@@ -194,7 +194,7 @@ class SubmitPage extends React.Component {
                     placeholder="Select City"
                     clearable={false}
                 />
-                <div style={{color:'red',fontSize:'10px',borderTop:'1px solid red'}}>This field is required</div>
+                <div style={{color:'#095115',fontSize:'10px',borderTop:'1px solid #095115'}}>This field is required</div>
                 <br/>
 
                 <Creatable
@@ -211,7 +211,7 @@ class SubmitPage extends React.Component {
                         <FontAwesome name="picture-o" /> {this.state.filename || "Choose Image"}
                     </div>
                 </label>
-                <div style={{color:'red',fontSize:'10px'}}>Image is required</div>
+                <div style={{color:'#095115',fontSize:'10px'}}>Image is required</div>
                 <br/>
                 <TextAreaInput label="" name="desc" placeholder="Add Description" onChange={this.handleInputChange}/>
                 <br/>

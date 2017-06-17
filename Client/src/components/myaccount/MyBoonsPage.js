@@ -15,7 +15,7 @@ class MyDetailsPage extends React.Component {
     }
 
     componentWillMount() {
-        //this.loadMyItems();
+        this.loadMyItems();
     }
 
     loadMyItems() {
