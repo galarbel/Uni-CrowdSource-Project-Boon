@@ -103,3 +103,18 @@ export function deleteWatchlist() {
     let basePath = "delete_watchlist";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
+
+export function transferItem() {
+    let basePath = "insert_transfer_request";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function deleteItem() {
+    let basePath = "delete_item";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getPendingTransferApproval() {
+    let basePath = "get_items_pending_approval";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}

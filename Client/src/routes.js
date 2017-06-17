@@ -10,6 +10,7 @@ import ProductDetailsPage from "./components/catalog/ProductDetailsPage";
 import MyItemDetailsPage from "./components/myaccount/ItemDetailsPage";
 import GameOfTagsPage from "./components/got/GameOfTagsPage";
 import MyAccountPage from "./components/myaccount/MyAccountMainPage";
+import TransferCenterPage from "./components/transfer/TransferCenterPage";
 
 export const routes = (
     <Route path="/" component={App}>
@@ -23,6 +24,7 @@ export const routes = (
             <Route path="/submit" component={SubmitPage} displayName="Add Boon"/>
             <Route path="/tags" component={GameOfTagsPage} displayName="Game Of Tags"/>
             <Route path="/account" component={MyAccountPage} displayName="My Account"/>
+            <Route path="/transfer" component={TransferCenterPage} displayName="Transfer Center"/>
         </Route>
     </Route>
 );

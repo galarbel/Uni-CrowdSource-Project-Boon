@@ -80,6 +80,7 @@ class LoginPage extends React.Component {
             name: this.state.name,
             phone: this.state.phone,
             email: this.state.email,
+            deviceId: localStorage.getItem("registrationId") || ""
         };
 
         api.doRegister(requestParams).then(

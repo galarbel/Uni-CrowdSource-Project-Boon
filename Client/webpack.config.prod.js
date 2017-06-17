@@ -38,7 +38,8 @@ export default {
             // {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"},
             {test: /\.(jpe?g|png|gif)(\?.*)?$/i, loader: 'url?limit=25000&name=[path][name].[ext]'},
             {test: /\.(ico)(\?.*)?$/i, loader: 'url?name=[path][name].[ext]'},
-            {test: /\.svg$/, loader: 'babel!svg-react'}
+            {test: /\.svg$/, loader: 'babel!svg-react'},
+            {test: /\.json$/, loader: 'json-loader'}
         ]
     }
 };

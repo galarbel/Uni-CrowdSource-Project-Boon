@@ -133,12 +133,12 @@ class ProductDetailsPage extends React.Component {
                         <BottomNavigationItem
                             label="Call"
                             icon={<FontAwesome name={"phone"} size="2x"/>}
-                            onTouchTap={this.shareNumber("tel", {phone})}
+                            onTouchTap={this.shareNumber("tel", phone)}
                         />
                         <BottomNavigationItem
                             label="Message"
                             icon={<FontAwesome name={"envelope"} size="2x"/>}
-                            onTouchTap={this.shareNumber("sms", {phone})}
+                            onTouchTap={this.shareNumber("sms", phone)}
                         />
                         <BottomNavigationItem
                             label="Report"

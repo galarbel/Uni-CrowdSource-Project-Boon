@@ -78,6 +78,18 @@ class Api {
     static deleteWatchlist(params) {
         return doAjaxCall(def.deleteWatchlist, params);
     }
+
+    static transferItem(params) {
+        return doAjaxCall(def.transferItem, params);
+    }
+
+    static deleteItem(params) {
+        return doAjaxCall(def.deleteItem, params);
+    }
+
+    static getPendingTransferApproval(params) {
+        return doAjaxCall(def.getPendingTransferApproval, params);
+    }
 }
 
 export default Api;

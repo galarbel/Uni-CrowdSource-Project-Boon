@@ -70,6 +70,12 @@ a {
     font-weight: bold;
 }
 
+.menu-items .icon-wrap {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+
 .login-page a {
     text-decoration: underline;
 }
@@ -159,4 +165,9 @@ div.Select-control {
 
 .watchlist-icons {
     color: #095115;
+}
+
+.pending-actions .fa {
+    vertical-align: sub;
+    padding-right: 5px;
 }
