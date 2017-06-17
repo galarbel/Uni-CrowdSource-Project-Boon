@@ -88,7 +88,7 @@ class GameOfTagsPage extends React.Component {
         const params = {
             type: 2,
             itemId : question.itemId,
-            tags: this.state.tagsArray.join("!@@whereIsYuval@@!")
+            tags: this.state.tagsArray.map(tag => tag.label).join(";")
         };
         this.answerGameOfTags(params);
     }

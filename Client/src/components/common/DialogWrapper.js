@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 
 const style = {
     content: {
-        width: "520px"
+        width: "90%"
     },
 
     title: {
@@ -26,11 +26,9 @@ const style = {
 };
 
 const DialogWrapper = (props) => {
-
-
     return (
         <Dialog
-            contentStyle={Object.assign(style.content, {width: props.width})}
+            contentStyle={Object.assign(style.content, {top: (props.isKeyboardOpen ? -140 : 0)})}
             titleStyle={style.title}
             bodyStyle={style.body}
             actionsContainerStyle={style.actionsContainer}
@@ -43,7 +41,8 @@ const DialogWrapper = (props) => {
 
 DialogWrapper.propTypes = {
     width: PropTypes.string,
-    children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
+    isKeyboardOpen: PropTypes.bool
 };
 
 export default DialogWrapper;

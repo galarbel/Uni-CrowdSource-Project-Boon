@@ -12,19 +12,15 @@ class MyDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {isEditModeDetails : false, isEditModeWatchlist: false};
+        this.state = {isEditModeDetails : false};
 
         this.toggleEditModeDetails = this.toggleEditModeDetails.bind(this);
-        this.toggleEditModeWatchlist = this.toggleEditModeWatchlist.bind(this);
     }
 
     toggleEditModeDetails() {
         this.setState({isEditModeDetails : !this.state.isEditModeDetails});
     }
 
-    toggleEditModeWatchlist() {
-        this.setState({isEditModeWatchlist : !this.state.isEditModeWatchlist});
-    }
 
     render() {
         return (
@@ -47,16 +43,12 @@ class MyDetailsPage extends React.Component {
 
                 <div style={{display:'flex', justifyContent: 'space-between', marginBottom: 10}}>
                     <h3>My Watchlist</h3>
-                    <div name="WatchList" className="btn"  onClick={this.toggleEditModeWatchlist} style={{padding: "3px 10px 5px"}}>
-                        { !this.state.isEditMode && <div><FontAwesome name="pencil-square-o" size="lg"/> Edit</div> }
-                        { this.state.isEditMode && <div><FontAwesome name="times-circle" size="lg"/> Cancel</div> }
-                    </div>
                 </div>
                 <Divider/>
 
                 <div>
                     <br/>
-                    <MyWatchlist isEditMode={this.state.isEditModeWatchlist} toggleEditMode={this.toggleEditModeWatchlist}/>
+                    <MyWatchlist />
                 </div>
             </div>
         );

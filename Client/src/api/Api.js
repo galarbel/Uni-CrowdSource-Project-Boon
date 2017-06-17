@@ -62,6 +62,22 @@ class Api {
     static updateUserDetails(params) {
         return doAjaxCall(def.updateUserDetails, params);
     }
+
+    static getWatchList() {
+        return doAjaxCall(def.getWatchList);
+    }
+
+    static submitWatchlist(params) {
+        return doAjaxCall(def.submitWatchlist, params);
+    }
+
+    static editWatchlist(params) {
+        return doAjaxCall(def.editWatchlist, params);
+    }
+
+    static deleteWatchlist(params) {
+        return doAjaxCall(def.deleteWatchlist, params);
+    }
 }
 
 export default Api;

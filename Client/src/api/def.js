@@ -7,6 +7,8 @@ import * as dummyDataCollection from "./dummyData/dummyData";
 const WS = "http://www.cs.tau.ac.il/~goldberger/Boon/Server/WS/";
 const forceDummy = false;
 
+//TODO - fix dummy data :\
+
 export function login() {
     let basePath = "login";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.LoginOK : WS + basePath + ".php";
@@ -79,5 +81,25 @@ export function getUserItems() {
 
 export function updateUserDetails() {
     let basePath = "update_user_details";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getWatchList() {
+    let basePath = "get_user_watchlists";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function submitWatchlist() {
+    let basePath = "submit_watchlist";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function editWatchlist() {
+    let basePath = "update_watchlist";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function deleteWatchlist() {
+    let basePath = "delete_watchlist";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }

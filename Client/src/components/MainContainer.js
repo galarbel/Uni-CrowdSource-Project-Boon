@@ -97,7 +97,6 @@ class MobileContainer extends React.Component {
                 <DialogWrapper
                     title="BOON FOUND!"
                     open={this.state.openDialog}
-                    width="90%"
                     actions={[
                         <Button class="btn" key="1" onClick={this.viewItem} label="View Item" />,
                         <Button class="btn-secondary" key="2" onClick={this.closeDialog} label="Cancel" />

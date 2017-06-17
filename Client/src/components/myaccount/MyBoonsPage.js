@@ -2,6 +2,7 @@ import React, {PropTypes} from "react";
 import Divider from 'material-ui/Divider';
 import api from "../../api/Api";
 import Item from './MyItemRow';
+import LoadingProgress from '../common/LoadingProgress';
 
 class MyDetailsPage extends React.Component {
 
@@ -29,6 +30,14 @@ class MyDetailsPage extends React.Component {
     }
 
     render() {
+        if (this.state.loading > 0) {
+            return (
+                <div style={{textAlign:"center", margin: "100px 0 0"}}>
+                    <LoadingProgress fullPage={false} />
+                </div>
+            );
+        }
+
         return (
             <div style={{margin: "10px 16px"}}>
                 <div style={{display:'flex', justifyContent: 'space-between', marginBottom: 10}}>
@@ -38,8 +47,8 @@ class MyDetailsPage extends React.Component {
                 {
                     !this.state.loading &&
                     <div>
-                    {this.state.items.length === 0 && <div>Currently there are no boons available</div>}
-                    {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
+                        {this.state.items.length === 0 && <div>Currently there are no boons available</div>}
+                        {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
                     </div>
                 }
             </div>
