@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
                     <img src={loginGiftPicBase64} style={{width: "65%"}} />
                 </div>
                 <div>
-                    <TextInput label="" name="username" onChange={this.handleInputChange} placeholder="Email" value={this.state.username} />
+                    <TextInput label="" name="username" onChange={this.handleInputChange} placeholder="Username" value={this.state.username} />
                     <TextInput label="" name="password" onChange={this.handleInputChange} placeholder="Password" type="password" value={this.state.password} />
                 </div>
                 <div>
