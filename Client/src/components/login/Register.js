@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
 
         if (event.target.name === "phone") {
             val = val === "" ? "+" : val;
-            val = new asYouType().input(val);
+            //val = new asYouType().input(val); //doesn't work well on mobile
         }
         this.setState({ [name] : val } );
     }
@@ -78,7 +78,7 @@ class LoginPage extends React.Component {
             username: this.state.username,
             password: this.state.password,
             name: this.state.name,
-            phone: this.state.phone,
+            phone: new asYouType().input(this.state.phone),
             email: this.state.email,
             deviceId: localStorage.getItem("registrationId") || ""
         };

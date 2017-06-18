@@ -90,6 +90,18 @@ class Api {
     static getPendingTransferApproval(params) {
         return doAjaxCall(def.getPendingTransferApproval, params);
     }
+
+    static getUsernameSuggestions() {
+        return doAjaxCall(def.getUsernameSuggestions);
+    }
+
+    static getUserHistoryItems() {
+        return doAjaxCall(def.getUserHistoryItems);
+    }
+
+    static approveOrRejectTransfer(params) {
+        return doAjaxCall(def.approveOrRejectTransfer, params);
+    }
 }
 
 export default Api;

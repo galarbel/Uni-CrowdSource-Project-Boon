@@ -53,9 +53,17 @@ class LoginPage extends React.Component {
                 <div>
                     <Button onClick={this.onLoginClick} label="Login" style={{width: "100%", padding: "6px 12px"}} />
                 </div>
+
+                {
+                    this.props.error &&
+                    <div className="alert">{this.props.error}</div>
+                }
+
                 <div style={{textAlign: "center", paddingTop: "30px"}}>
                     <Link name="0" to="/register">Don't Have An Account? Register Here</Link>
                 </div>
+
+
             </div>
         );
     }
@@ -66,12 +74,14 @@ LoginPage.propTypes = {
     loading: PropTypes.bool.isRequired,
     loggedIn: PropTypes.bool,
     actions: PropTypes.object.isRequired,
+    error: PropTypes.string
 };
 
 function mapStateToProps(state) {
     return {
         loading: state.ajaxCallsInProgress > 0,
-        loggedIn: state.loggedIn
+        loggedIn: state.loggedIn,
+        error: state.ajaxError
     };
 }
 

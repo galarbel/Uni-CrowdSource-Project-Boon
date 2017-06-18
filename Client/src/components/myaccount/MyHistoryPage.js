@@ -2,6 +2,8 @@ import React, {PropTypes} from "react";
 import Divider from 'material-ui/Divider';
 import api from "../../api/Api";
 import Item from './MyItemRow';
+import LoadingProgress from '../common/LoadingProgress';
+
 
 class MyHistoryPage extends React.Component {
 
@@ -10,16 +12,16 @@ class MyHistoryPage extends React.Component {
 
         this.state = {loading: 0};
 
-        this.loadMyItems = this.loadMyItems.bind(this);
+        this.loadMyHistory = this.loadMyHistory.bind(this);
     }
 
     componentWillMount() {
-        //this.loadMyItems();
+        this.loadMyHistory();
     }
 
-    loadMyItems() {
+    loadMyHistory() {
         this.setState({loading: this.state.loading + 1});
-        api.getUserItems().then(
+        api.getUserHistoryItems().then(
             items => {
                 this.setState({items, loading: this.state.loading - 1});
             }
@@ -29,9 +31,11 @@ class MyHistoryPage extends React.Component {
     }
 
     render() {
-        if (this.state.loading >= 0) {
+        if (this.state.loading > 0) {
             return (
-              <div>Need WS of history items</div>
+                <div style={{textAlign:"center", margin: "100px 0 0"}}>
+                    <LoadingProgress fullPage={false} />
+                </div>
             );
         }
 
@@ -41,13 +45,29 @@ class MyHistoryPage extends React.Component {
                     <h3>My History</h3>
                 </div>
                 <Divider/>
-                {
-                    !this.state.loading &&
+                <br/>
+
+                <div>
+                    <h4>Boons I Received</h4>
+                    <Divider/>
                     <div>
-                    {this.state.items.length === 0 && <div>Currently there are no boons available</div>}
-                    {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
+                        <br/>
+                        {this.state.items.received.length === 0 && <div>You did not receive any boons yet. what are you waiting for?</div>}
+                        {this.state.items.received.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
                     </div>
-                }
+                </div>
+
+                <br/>
+
+                <div>
+                    <h4>Boons I Delivered</h4>
+                    <Divider/>
+                    <div>
+                        <br/>
+                        {this.state.items.delivered.length === 0 && <div>You did not deliver any boons yet.</div>}
+                        {this.state.items.delivered.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
+                    </div>
+                </div>
             </div>
         );
     }

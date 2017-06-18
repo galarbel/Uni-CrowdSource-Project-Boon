@@ -118,3 +118,18 @@ export function getPendingTransferApproval() {
     let basePath = "get_items_pending_approval";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
 }
+
+export function getUsernameSuggestions() {
+    let basePath = "get_users_for_transfer";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function getUserHistoryItems() {
+    let basePath = "get_user_history";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}
+
+export function approveOrRejectTransfer() {
+    let basePath = "insert_transfer_answer";
+    return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";
+}

@@ -4,6 +4,7 @@ import api from "../../api/Api";
 import Item from './MyItemRow';
 import LoadingProgress from '../common/LoadingProgress';
 
+
 class TransferCenterPage extends React.Component {
 
     constructor(props, context) {
@@ -47,7 +48,6 @@ class TransferCenterPage extends React.Component {
                     {this.state.items.length === 0 && <div>Currently there are no boons pending approval</div>}
                     {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
                 </div>
-
             </div>
         );
     }

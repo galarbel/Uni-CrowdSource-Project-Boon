@@ -10,8 +10,8 @@ export function checkStatus(response) {
     }
 
     let errorMessage = "Bad Request";
-    if (response && response.data && response.data.errorMessage) {
-        errorMessage = response.data.errorMessage;
+    if (response && response.data) {
+        errorMessage = response.data;
     }
     const error = new Error(errorMessage);
     throw error;

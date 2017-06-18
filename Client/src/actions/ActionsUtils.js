@@ -6,7 +6,7 @@ export function makeThunkCall(apiFunction, successFunction, errorFunction) {
         return apiFunction().then(result => {
             dispatch(successFunction(result));
         }).catch(error => {
-            dispatch(ajaxCallError());
+            dispatch(ajaxCallError(error));
             if (errorFunction && typeof  errorFunction == "function") {
                 errorFunction();
             } else {

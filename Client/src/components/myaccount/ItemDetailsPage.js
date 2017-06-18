@@ -8,13 +8,14 @@ import Lightbox from 'react-image-lightbox';
 import DialogWrapper from "../common/DialogWrapper";
 import Button from "../common/Button";
 import TextInput from "../common/TextInput";
+import Select from 'react-select';
 
 
 class ProductDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: 0, transferDialogOpen: false, transferUsername: null, deleteDialogOpen: false};
+        this.state = {loading: 0, transferDialogOpen: false, transferUser: null, deleteDialogOpen: false, userSuggestions: [], selectFocus: false};
 
         this.toggleLightbox = this.toggleLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
@@ -23,20 +24,22 @@ class ProductDetailsPage extends React.Component {
         this.handleTransferUsernameChange = this.handleTransferUsernameChange.bind(this);
         this.transferItem = this.transferItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.loadUsersSuggestions = this.loadUsersSuggestions.bind(this);
+        this.dialogSelectFocusBlur = this.dialogSelectFocusBlur.bind(this);
     }
 
     componentWillMount() {
-        this.loadAjaxDetails();
+        this.loadDetails();
+        this.loadUsersSuggestions();
     }
 
     componentDidUpdate(newProps, newState) {
-        if (newState.data && newState.data.reported_by_user) {
+        if (newState.data && newState.data.transfered_to) {
             window.scrollTo(0,document.body.scrollHeight);
         }
     }
 
-
-    loadAjaxDetails() {
+    loadDetails() {
         this.setState({loading: this.state.loading + 1});
         api.getItemDetails({item_id : this.props.params.id}).then(
             response => this.setState({data: response, loading: this.state.loading - 1})
@@ -44,6 +47,22 @@ class ProductDetailsPage extends React.Component {
             e => {
             } //TODO
         );
+    }
+
+    loadUsersSuggestions() {
+        this.setState({loading: this.state.loading + 1});
+        api.getUsernameSuggestions().then(
+            response => this.setState({userSuggestions: this.prepareTagsForSelect(response), loading: this.state.loading - 1})
+        ).catch(
+            e => {
+            } //TODO
+        );
+    }
+
+    prepareTagsForSelect(users) {
+        const usersForSelect = [];
+        users.map(user => usersForSelect.push({value: user.id, label: user.username}));
+        return usersForSelect;
     }
 
     toggleLightbox(e) {
@@ -75,24 +94,28 @@ class ProductDetailsPage extends React.Component {
         this.setState({deleteDialogOpen: !this.state.deleteDialogOpen});
     }
 
-    handleTransferUsernameChange(e) {
-        this.setState({transferUsername: e.target.value});
+    dialogSelectFocusBlur() {
+        this.setState({selectFocus: !this.state.selectFocus});
+    }
+
+    handleTransferUsernameChange(userObj) {
+        this.setState({transferUser: userObj});
     }
 
     transferItem() {
-        const username = 7 //this.state.transferUsername; TODO-HARDCODED FOR TESTING!!
-        if (!username || username === "") {
+        const user = this.state.transferUser;
+        if (!user || user === "" || !user.value || user.value === "") {
             this.setState({DialogError: "Please Enter Username"}); return;
         }
 
         const requestParams = {
-            receiveUserId: username,
+            receiveUserId: user.value,
             itemId: this.state.data.item_id
         };
 
         this.setState({dialogLoading: true});
         api.transferItem(requestParams).then(
-            response => this.setState({data: Object.assign(this.state.data,{transfered_to: username}), dialogLoading: false, dialogError: "", transferDialogOpen: false})
+            response => this.setState({data: Object.assign(this.state.data,{transfered_to: user.label}), dialogLoading: false, dialogError: "", transferDialogOpen: false})
         ).catch(
             e => {
                 //TODO
@@ -115,7 +138,7 @@ class ProductDetailsPage extends React.Component {
 
 
     render() {
-        if (this.state.loading > 0) {
+        if (this.state.loading > 0 || !this.state.data) {
             return (<LoadingProgress/>);
         }
 
@@ -205,8 +228,18 @@ class ProductDetailsPage extends React.Component {
                 >
                     <br/>
                     <div>Enter Username to transfer item</div>
-                    <TextInput onChange={this.handleTransferUsernameChange} />
+                    <Select
+                        onChange={this.handleTransferUsernameChange}
+                        options={this.state.userSuggestions}
+                        value={this.state.transferUser}
+                        placeholder="Select User"
+                        menuStyle={{height: 150}}
+                        onFocus={this.dialogSelectFocusBlur}
+                        onBlur={this.dialogSelectFocusBlur}
+                    />
                     <div className="alert" style={{marginTop: 6}}>{this.state.dialogError}</div>
+
+                    {this.state.selectFocus && <div style={{height: "160px"}}/>}
                 </DialogWrapper>
 
                 {

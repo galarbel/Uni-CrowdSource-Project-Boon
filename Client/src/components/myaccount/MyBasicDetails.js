@@ -40,7 +40,7 @@ class MyBasicDetails extends React.Component {
 
         if (event.target.name === "phone") {
             val = val === "" ? "+" : val;
-            val = new asYouType().input(val);
+            //val = new asYouType().input(val);
         }
         this.setState({ [name] : val } );
     }
@@ -59,7 +59,7 @@ class MyBasicDetails extends React.Component {
         this.setState({editDetailsError: null});
 
         const requestParams = {
-            phone: this.state.phone,
+            phone: new asYouType().input(this.state.phone),
             email: this.state.email
         };
         this.setState({loading: this.state.loading + 1});

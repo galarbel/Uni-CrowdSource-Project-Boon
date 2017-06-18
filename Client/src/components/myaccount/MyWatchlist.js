@@ -145,7 +145,14 @@ class MyWatchlist extends React.Component {
     }
 
     bindWatchlistEditActions(index) {
-        return () => {this.setState({addEditDialogOpen: true, watchlistIndex: index, dialogAction : "EDIT"});};
+        return () => {
+            this.setState({
+                addEditDialogOpen: true,
+                watchlistIndex: index,
+                dialogAction : "EDIT",
+                dialogTagsArray: this.state.watchlist[index].tags.map(item => JSON.parse(item))
+            });
+        };
     }
 
 
@@ -174,7 +181,7 @@ class MyWatchlist extends React.Component {
                         {
                             this.state.watchlist && this.state.watchlist.map((watchlist,index) => (<tr key={index}>
                                 <td>#{index+1}</td>
-                                <td style={{width: "98%"}}>{watchlist.tags || "none... error?"}</td>
+                                <td style={{width: "98%"}}>{watchlist.tag_labels.replace(";", ", ") || "none... error?"}</td>
                                 <td style={{whiteSpace: "nowrap"}}>
                                     <span onClick={this.bindWatchlistEditActions(index)}><FontAwesome name="pencil" size="lg" className="watchlist-icons"/></span>
                                     &nbsp;&nbsp;
