@@ -83,7 +83,7 @@ $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
 
 if (isset($item_id)){
     foreach ($tags as $tag){
-        $SQLQuery = "call insert_item_tag (?,?,?)";
+        $SQLQuery = "call insert_item_tag_ariel (?,?,?)";
         $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag]);
 
     }

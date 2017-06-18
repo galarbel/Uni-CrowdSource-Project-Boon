@@ -24,8 +24,8 @@ if (count($users)){
         'data' => array(
             'body' => 'An item in your wishlist is now available! Would you like to check it out?',
             'title' => 'Incoming boon!',
-            'itemId' => $item_id,
-            'soundname' => 'icq'
+            'sound' => '0',
+            'itemId' => $item_id
         )
     );
 

@@ -79,41 +79,36 @@ class ProductDetailsPage extends React.Component {
         const {title,category,city,date,description,phone, image, tags} = this.state.data;
         return (
             <div>
-                <div style={{fontSize:14}}>
-                    <div style={{display:'flex',justifyContent:'space-between',verticalAlign:'bottom',margin:'5px'}}>
+                <div style={{fontSize:14,margin:'10px',lineHeight:'20px'}}>
+                    <div style={{display:'flex',justifyContent:'space-between',verticalAlign:'bottom'}}>
                         <h1>
                             {title}
                         </h1>
-                        <h3 style={{fontWeight:'initial'}}>
-                            {category}
-
+                        <h3 style={{fontWeight:'bold',fontSize:'12px'}}>
+                            <div style={{textAlign:'right'}}>{category}</div>
+                            <div>{moment(date).format("D/mm/YYYY h:mm")}</div>
 
                         </h3>
                     </div>
-                    <Divider />
-                    <div style={{textAlign:'right'}}>
-                    <div style={{fontWeight:'bold'}}>
-                        {moment(date).format("D/mm/YYYY h:mm")}
-                    </div></div>
-                    <br />
-                    <div style={{verticalAlign:'middle'}}>Description:</div>
-                    <div>{description}</div>
+                    <div style={{verticalAlign:'middle'}}><b>Description:</b></div>
                     <Divider/>
+                    <div>{description}</div>
+
                     <br />
-                        <div style={{verticalAlign:'middle'}}>Tags:</div>
+                        <div style={{verticalAlign:'middle'}}><b>Tags:</b></div>
+                    <Divider/>
                         <div style={{padding:'5px'}}>{tags && tags.split(";").map((tag,index) => <Chip key={index} backgroundColor={"#095115"} labelColor="white" style={{display:'inline-block',margin:1}}
                         >
                             {tag}
                         </Chip>)}
                     </div>
-                    <Divider/>
                     <br />
-                        <div style={{verticalAlign:'middle'}}>Contact Information:</div>
+                    <div style={{verticalAlign:'middle'}}><b>Contact Information:</b></div>
+                    <Divider/>
                     <div>
                         <div>Phone: {phone}</div>
                         <div>City: {city}</div>
                     </div>
-                    <Divider/>
                     <br />
                     <div onClick={this.toggleLightbox}>
                         <br/>

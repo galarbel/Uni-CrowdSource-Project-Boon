@@ -36,7 +36,7 @@ if ($gameType == "1"){ //verify
     $itemTagId = getNumericParamOrDefault($_POST, "itemTagId", true, null);
     $isCorrect = $_POST["isCorrect"];
     $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
-    $sqlQuery = "call update_tag_credit (?,?,?,?)";
+    $sqlQuery = "call update_tag_credit (?,?,?)";
     $db->rawQuery($sqlQuery,[$user_id,$itemTagId,$isCorrect])[0];
     $results["data"]["type"] = 1; //frontend flag for verify mode
 
