@@ -76,7 +76,7 @@ class ProductDetailsPage extends React.Component {
             return (<LoadingProgress/>);
         }
 
-        const {title,category,city,date,description,phone, image, tags} = this.state.data;
+        const {title,category,city,date,description,phone, image, tags,fullname} = this.state.data;
         return (
             <div>
                 <div style={{fontSize:14,margin:'10px',lineHeight:'20px'}}>
@@ -106,6 +106,7 @@ class ProductDetailsPage extends React.Component {
                     <div style={{verticalAlign:'middle'}}><b>Contact Information:</b></div>
                     <Divider/>
                     <div>
+                        <div>Name: {fullname}</div>
                         <div>Phone: {phone}</div>
                         <div>City: {city}</div>
                     </div>

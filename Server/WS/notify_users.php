@@ -5,8 +5,8 @@ sleep($argv[2]);
 define('GOOGLE_API_KEY', 'AAAAfv-vuus:APA91bHbE9b_68UbBDqoNPJ2w2OHpN8ICeCmQzYi7v96WCzLD5cUWiHK7EOePCuV4JA_-eZVF4jPHuQdQ2iouYUPRXNVcykd5Pf0wTNwxnfiWrv0e7W0mSZPu6G_IaqJCWCEJo9OcSJB');
 define('GOOGLE_FCM_URL', 'https://fcm.googleapis.com/fcm/send');
 
-//$item_id = getNumericParamOrDefault($_POST, "itemId", true, null);
-$item_id = $argv[1];
+$item_id = getNumericParamOrDefault($_POST, "itemId", true, null);
+//$item_id = $argv[1];
 $device_ids = [];
 
 $sqlQuery = "call get_users_to_notify (?)";
@@ -17,8 +17,7 @@ if (count($users)){
     foreach ($users as $key => $value ){
         $device_ids[$key] = utf8_encode($value["device_id"]);
     }
-
-
+    //echo json_encode($device_ids);
     $fields = array(
         'registration_ids' => $device_ids ,
         'data' => array(
