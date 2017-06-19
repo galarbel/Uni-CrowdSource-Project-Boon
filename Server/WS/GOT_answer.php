@@ -55,8 +55,10 @@ if ($gameType == "1"){ //verify
     foreach ($tags as $tag){
         $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
         $SQLQuery = "call insert_item_tag_ariel (?,?,?)";
-        $results1 = $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag])[0];
+        $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag]);
     }
+    exec("nohup php -f notify_users.php ". (string)$item_id . " 0 > /dev/null 2>&1 &");
+    exec("nohup php -f notify_users.php ". (string)$item_id . " 30 > /dev/null 2>&1 &");
     $results["data"]["type"] = 2; //frontend flag for add mode
 
 }else{

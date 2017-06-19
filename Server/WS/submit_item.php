@@ -88,7 +88,7 @@ if (isset($item_id)){
 
     }
     exec("nohup php -f notify_users.php ". (string)$item_id . " 0 > /dev/null 2>&1 &");
-    //exec("nohup php -f notify_users.php ". (string)$item_id . " 60 > /dev/null 2>&1 &");
+    exec("nohup php -f notify_users.php ". (string)$item_id . " 30 > /dev/null 2>&1 &");
     $results["data"]["submitSuccess"] = true;
 }else{
     $results["data"]["submitSuccess"] = false;
