@@ -54,10 +54,10 @@ if (isset($wishlist_id)){
 
     $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
     $sqlQuery = "call get_user_wish_list (?)";
-    $results["data"]["raw"] = $db->rawQuery($sqlQuery,[$wishlist_id])[0];
+    $results["data"] = $db->rawQuery($sqlQuery,[$wishlist_id])[0];
 
-    $tag_labels =  explode(";",$results["data"]["raw"]["tag_labels"]);
-    $tag_ids =  explode(";",$results["data"]["raw"]["tag_ids"]);
+    $tag_labels =  explode(";",$results["data"]["tag_labels"]);
+    $tag_ids =  explode(";",$results["data"]["tag_ids"]);
     $results["data"]["tags"] = [];
     for ($y = 0; $y < count($tag_labels); $y++) {
         $temp->value = $tag_ids[$y];
