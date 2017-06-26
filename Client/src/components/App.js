@@ -9,8 +9,6 @@ import LoginPage from "./login/LoginPage";
 import injectTapEventPlugin from 'react-tap-event-plugin';
 /** DO NOT REMOVE THIS - end**/
 
-const appHeadlines = ["TimeOff Request", "My Requests","Absence Summary","Absence Info","Approve Requests"];
-
 class App extends React.Component {
 
     constructor(props, context) {

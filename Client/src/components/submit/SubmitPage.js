@@ -203,6 +203,7 @@ class SubmitPage extends React.Component {
                     value={this.state.tagsArray}
                     options={this.state.tagSuggestionsArray}
                     placeholder="Add tags from list or add your own"
+                    autoBlur
                 />
                 <br/>
                 <input type="file" accept="image/*" onChange={this.saveFileToState} id="file-upload" style={{display: "none"}}/>
