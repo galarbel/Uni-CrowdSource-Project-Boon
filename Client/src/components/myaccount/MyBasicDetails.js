@@ -27,10 +27,10 @@ class MyBasicDetails extends React.Component {
         this.setState({loading: this.state.loading + 1});
         api.getUserDetails().then(
             userDetails => {
-                this.setState({userDetails, loading: this.state.loading - 1, phone:userDetails.phone, email: userDetails.email,fullname: userDetails.fullname});
+                this.setState({userDetails, loading: this.state.loading - 1, phone:userDetails.phone, email: userDetails.email,fullname: userDetails.fullname, editDetailsError: null});
             }
         ).catch(e => {
-            //TODO
+            this.setState({editDetailsError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -66,12 +66,11 @@ class MyBasicDetails extends React.Component {
         api.updateUserDetails(requestParams).then(
             response => {
                 this.loadMyDetails();
-                this.setState({loading: this.state.loading -1});
+                this.setState({loading: this.state.loading -1, editDetailsError: null});
                 this.props.toggleEditMode();
             }
         ).catch(e => {
-            //TODO
-            //this.setState({editDetailsError: e.message});
+            this.setState({editDetailsError: e.message, loading: this.state.loading -1});
         });
     }
 

@@ -11,7 +11,8 @@ const initState = {
     question: null,
     tagsArray:[],
     tagSuggestionsArray: [],
-    isLightboxOpen: false
+    isLightboxOpen: false,
+    ajaxError: null
 };
 
 class GameOfTagsPage extends React.Component {
@@ -43,7 +44,7 @@ class GameOfTagsPage extends React.Component {
                 this.setState({tagSuggestionsArray: tagsForSelect, loading: this.state.loading - 1});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -52,7 +53,7 @@ class GameOfTagsPage extends React.Component {
         api.getGameOfTagsQuestion().then(
             response => this.setState({question: response, loading: this.state.loading - 1, tagsArray: []})
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -60,12 +61,11 @@ class GameOfTagsPage extends React.Component {
         this.setState({loading: this.state.loading + 1});
         api.answerGameOfTags(params).then(
             response => {
-                //TODO - add success toastr / snackbox
                 this.setState({loading: this.state.loading - 1, tagsArray: [], question: null});
                 this.loadQuestion();
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -154,6 +154,10 @@ class GameOfTagsPage extends React.Component {
                     />
                 }
 
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+                }
             </div>
         );
     }

@@ -14,7 +14,7 @@ class ProductDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = Object.assign({loading: 0, reportDialogOpen: false});
+        this.state = Object.assign({loading: 0, reportDialogOpen: false, ajaxError: null});
 
         this.toggleLightbox = this.toggleLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
@@ -39,7 +39,8 @@ class ProductDetailsPage extends React.Component {
             response => this.setState({data: response, loading: this.state.loading - 1})
         ).catch(
             e => {
-            } //TODO
+                this.setState({ajaxError: e.message, loading: this.state.loading -1});
+            }
         );
     }
 
@@ -65,7 +66,7 @@ class ProductDetailsPage extends React.Component {
             response => this.setState({data : Object.assign(this.state.data, {reported_by_user: true}), reportDialogOpen: false})
         ).catch(
             e => {
-                //TODO
+                this.setState({ajaxError: e.message, reportDialogOpen: false});
             }
         );
 
@@ -124,8 +125,7 @@ class ProductDetailsPage extends React.Component {
                         }
                     </div>
                 </div>
-                <div style={{height:90}}>
-                </div>
+                <div style={{height:90}} />
                 <div style={{position: 'fixed', bottom: 0, width: "100%", height: 85, background: "#FFF"}}>
                     <BottomNavigation selectedIndex={this.state.selectedIndex}>
                         <BottomNavigationItem
@@ -168,6 +168,12 @@ class ProductDetailsPage extends React.Component {
                         <br/>Confirm reporting of this item?
                     </div>
                 </DialogWrapper>
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+                }
+
 
             </div>
         );

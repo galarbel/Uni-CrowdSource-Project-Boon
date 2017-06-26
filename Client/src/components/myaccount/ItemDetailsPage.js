@@ -15,7 +15,7 @@ class ProductDetailsPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: 0, transferDialogOpen: false, transferUser: null, deleteDialogOpen: false, userSuggestions: [], selectFocus: false};
+        this.state = {loading: 0, transferDialogOpen: false, transferUser: null, deleteDialogOpen: false, userSuggestions: [], selectFocus: false, ajaxError: null};
 
         this.toggleLightbox = this.toggleLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
@@ -45,7 +45,8 @@ class ProductDetailsPage extends React.Component {
             response => this.setState({data: response, loading: this.state.loading - 1})
         ).catch(
             e => {
-            } //TODO
+                this.setState({ajaxError: e.message, loading: this.state.loading -1});
+            }
         );
     }
 
@@ -55,7 +56,8 @@ class ProductDetailsPage extends React.Component {
             response => this.setState({userSuggestions: this.prepareTagsForSelect(response), loading: this.state.loading - 1})
         ).catch(
             e => {
-            } //TODO
+                this.setState({ajaxError: e.message, loading: this.state.loading -1});
+            }
         );
     }
 
@@ -72,18 +74,6 @@ class ProductDetailsPage extends React.Component {
 
     closeLightbox() { //this is here cause lightbox doesn't use e.preventDefault
         this.setState({isLightboxOpen: !this.state.isLightboxOpen});
-    }
-
-    editItem() {
-        return () => {
-            /*api.reportFalseItem({item_id: this.props.params.id}).then(
-             response => this.setState(Object.assign(this.state.data, {reported_by_user: true}))
-             ).catch(
-             e => {
-             //TODO
-             }
-             );*/
-        };
     }
 
     transferItemDialogToggle() {
@@ -118,7 +108,7 @@ class ProductDetailsPage extends React.Component {
             response => this.setState({data: Object.assign(this.state.data,{transfered_to: user.label}), dialogLoading: false, dialogError: "", transferDialogOpen: false})
         ).catch(
             e => {
-                //TODO
+                this.setState({dialogError: e.message, dialogLoading: false});
             }
         );
     }
@@ -131,7 +121,7 @@ class ProductDetailsPage extends React.Component {
             response => history.back()
         ).catch(
             e => {
-                //TODO
+                this.setState({dialogError: e.message, dialogLoading: false});
             }
         );
     }
@@ -261,6 +251,11 @@ class ProductDetailsPage extends React.Component {
                         <br/>
                         <div>Are you sure you want to remove this item?</div>
                     </DialogWrapper>
+                }
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
                 }
             </div>
         );

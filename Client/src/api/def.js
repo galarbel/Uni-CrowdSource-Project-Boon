@@ -7,7 +7,6 @@ import * as dummyDataCollection from "./dummyData/dummyData";
 const WS = "http://www.cs.tau.ac.il/~goldberger/Boon/Server/WS/";
 const forceDummy = false;
 
-//TODO - fix dummy data :\
 
 export function login() {
     let basePath = "login";
@@ -49,6 +48,7 @@ export function answerGameOfTags() {
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags2 : WS + basePath + ".php";
 }
 
+//from this point we actually had a server and DB up, so we stopped investing in "Dummy Data" :)
 export function submitNewItem() {
     let basePath = "submit_item";
     return basePath === "" || forceDummy ? dummyDataCollection.dummyData.GameOfTags3 : WS + basePath + ".php";

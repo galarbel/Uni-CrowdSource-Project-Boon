@@ -23,7 +23,8 @@ class MyWatchlist extends React.Component {
             dialogLoading: false,
             dialogError: "",
             watchlistIndex: -1,
-            dialogAction: ""
+            dialogAction: "",
+            ajaxError: null
         };
 
         this.getMyWatchlist = this.getMyWatchlist.bind(this);
@@ -51,7 +52,7 @@ class MyWatchlist extends React.Component {
                 this.setState({watchlist: response, loading: this.state.loading - 1});
             }
         ).catch(e => {
-            //todo
+            this.setState({ajaxError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -61,7 +62,8 @@ class MyWatchlist extends React.Component {
             response => {this.setState({loading: this.state.loading -1}); this.prepareTagsForSelect(response); }
         ).catch(
             e => {
-            } //TODO
+                this.setState({ajaxError: e.message, loading: this.state.loading -1});
+            }
         );
     }
 
@@ -118,7 +120,7 @@ class MyWatchlist extends React.Component {
             }
         ).catch(
             e => {
-                //todo
+                this.setState({dialogLoading: false, addEditDialogOpen: false, dialogTagsArray: [], ajaxError: e.message});
             }
         );
     }
@@ -135,7 +137,7 @@ class MyWatchlist extends React.Component {
             }
         ).catch(
             e => {
-                //todo
+                this.setState({dialogLoading: false, addEditDialogOpen: false, watchlistIndex: -1, ajaxError: e.message});
             }
         );
     }
@@ -260,6 +262,11 @@ class MyWatchlist extends React.Component {
                     </DialogWrapper>
                 }
 
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+                }
             </div>
         );
     }

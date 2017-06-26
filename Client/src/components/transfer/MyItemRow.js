@@ -14,7 +14,7 @@ class CatalogItem extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {isLightboxOpen: false, dialogOpen: false, dialogAction: "", dialogLoading : false};
+        this.state = {isLightboxOpen: false, dialogOpen: false, dialogAction: "", dialogLoading : false, ajaxError: null};
 
         this.toggleLightbox = this.toggleLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
@@ -58,7 +58,7 @@ class CatalogItem extends React.Component {
             response => { this.setState({done: true, dialogOpen: false}); }
         ).catch(
             e => {
-                //todo
+                this.setState({ajaxError: e.message, dialogOpen: false});
             }
         );
 

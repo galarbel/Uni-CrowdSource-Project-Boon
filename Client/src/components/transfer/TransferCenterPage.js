@@ -26,7 +26,7 @@ class TransferCenterPage extends React.Component {
                 this.setState({items, loading: this.state.loading - 1});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -48,6 +48,11 @@ class TransferCenterPage extends React.Component {
                     {this.state.items.length === 0 && <div>Currently there are no boons pending approval</div>}
                     {this.state.items.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
                 </div>
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+                }
             </div>
         );
     }

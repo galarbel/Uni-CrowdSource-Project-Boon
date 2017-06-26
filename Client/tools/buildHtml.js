@@ -14,8 +14,6 @@ fs.readFile('src/index.html', 'utf8', (err, markup) => {
     const $ = cheerio.load(markup);
 
     // since a separate spreadsheet is only utilized for the production build, need to dynamically add this here.
-    // TODO fix path & deal with the original being a .scss now
-    $('head').prepend('<link rel="stylesheet" href="/PRApproval/styles.css">');
 
     fs.writeFile('dist/index.html', $.html(), 'utf8', function (err) {
         if (err) {

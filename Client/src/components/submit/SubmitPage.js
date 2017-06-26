@@ -8,12 +8,11 @@ import Select, {Creatable} from 'react-select';
 import FontAwesome from "react-fontawesome";
 import Divider from 'material-ui/Divider';
 
-//TODO force tags? force image?
 class SubmitPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: false, tagSuggestionsArray: [], tagsArray: [], categories: [], areas: []};
+        this.state = {loading: false, tagSuggestionsArray: [], tagsArray: [], categories: [], areas: [], ajaxError: null};
 
         this.onChangeTags = this.onChangeTags.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
@@ -42,7 +41,7 @@ class SubmitPage extends React.Component {
                 this.setState({tagSuggestionsArray: tagsForSelect, loading: false});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: false});
         });
     }
 
@@ -55,7 +54,7 @@ class SubmitPage extends React.Component {
                 this.setState({categories: categoriesForSelect, loading:false});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: false});
         });
     }
 
@@ -68,7 +67,7 @@ class SubmitPage extends React.Component {
                 this.setState({areas: areasForSelect, loading: false});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: false});
         });
     }
 
@@ -121,7 +120,7 @@ class SubmitPage extends React.Component {
                 this.setState({itemSent: true, loading: false});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: false});
         });
     }
 
@@ -223,6 +222,11 @@ class SubmitPage extends React.Component {
                 }
                 <Button style={{width: "100%", height: "30px"}} label="Submit"  onClick={this.submitItem} icon="check-square-o"/>
                 <br/>
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+                }
             </div>
         );
     }

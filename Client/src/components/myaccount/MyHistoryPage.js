@@ -10,7 +10,7 @@ class MyHistoryPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {loading: 0};
+        this.state = {loading: 0, ajaxError: null};
 
         this.loadMyHistory = this.loadMyHistory.bind(this);
     }
@@ -26,7 +26,7 @@ class MyHistoryPage extends React.Component {
                 this.setState({items, loading: this.state.loading - 1});
             }
         ).catch(e => {
-            //TODO
+            this.setState({ajaxError: e.message, loading: this.state.loading -1});
         });
     }
 
@@ -68,6 +68,11 @@ class MyHistoryPage extends React.Component {
                         {this.state.items.delivered.map((itemData,index)=> <Item data={itemData}  key={index}/>)}
                     </div>
                 </div>
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+                }
             </div>
         );
     }

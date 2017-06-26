@@ -13,7 +13,7 @@ class CatalogPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {showAdvanced: false, items: [], loading: 0, tagSuggestions: [], filterTags: []};
+        this.state = {showAdvanced: false, items: [], loading: 0, tagSuggestions: [], filterTags: [], ajaxError: null};
 
         this.toggleAdvancesSearch = this.toggleAdvancesSearch.bind(this);
         this.prepareTagsForSelect = this.prepareTagsForSelect.bind(this);
@@ -27,14 +27,16 @@ class CatalogPage extends React.Component {
             response => this.setState({items: response, loading: this.state.loading - 1})
         ).catch(
             e => {
-            } //TODO
+                this.setState({ajaxError: e.message, loading: this.state.loading -1});
+            }
         );
 
         api.getAllTags().then(
             response => {this.setState({loading: this.state.loading -1}); this.prepareTagsForSelect(response); }
         ).catch(
             e => {
-            } //TODO
+                this.setState({ajaxError: e.message, loading: this.state.loading -1});
+            }
         );
     }
 
@@ -95,6 +97,11 @@ class CatalogPage extends React.Component {
                     this.state.items.filter(this.filterCatalogItems).map(
                         (itemData,index)=> <CatalogItem data={itemData}  key={index}/>
                     )
+                }
+
+                {
+                    this.state.ajaxError &&
+                    <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
                 }
             </div>
         );

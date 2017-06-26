@@ -2,7 +2,6 @@ import React, {PropTypes} from "react";
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import FontAwesome from "react-fontawesome";
 
-//TODO - check why needs double-click for actions?...
 const Type1 = ({tag, onSelectAnswer}) => {
 
     const onTouchTap = function(choice) {
