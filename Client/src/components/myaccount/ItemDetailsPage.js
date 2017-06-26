@@ -128,6 +128,12 @@ class ProductDetailsPage extends React.Component {
 
 
     render() {
+        if (this.state.loading <= 0 && this.state.ajaxError) {
+            return (
+                <div><br/><br/><strong>Error occurred:</strong> {this.state.ajaxError}</div>
+            );
+        }
+
         if (this.state.loading > 0 || !this.state.data) {
             return (<LoadingProgress/>);
         }
