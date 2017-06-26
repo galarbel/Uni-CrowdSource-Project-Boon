@@ -1,7 +1,6 @@
 <?php
 
 include_once '../Global/config.php';
-//TODO add handle points to users per tag answer.
 
 // check params
 if (!isset($_POST["username"]) ) {
@@ -16,8 +15,8 @@ $password = $_POST["password"];
 
 //get user_id from given username
 $getUserIdQuery = "call get_user_id (?)";
-$userIdRaw = $db->rawQuery($getUserIdQuery,[$username]);
-$user_id = $userIdRaw["id"];
+$userIdRaw = $db->rawQuery($getUserIdQuery,[$username])[0];
+$user_id = getNumericParamOrDefault($userIdRaw, "id", true, null);
 
 $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
 $GOTVerify = rand(0,1) == 1;

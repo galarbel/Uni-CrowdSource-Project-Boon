@@ -124,6 +124,8 @@ class ProductDetailsPage extends React.Component {
                         }
                     </div>
                 </div>
+                <div style={{height:90}}>
+                </div>
                 <div style={{position: 'fixed', bottom: 0, width: "100%", height: 85, background: "#FFF"}}>
                     <BottomNavigation selectedIndex={this.state.selectedIndex}>
                         <BottomNavigationItem

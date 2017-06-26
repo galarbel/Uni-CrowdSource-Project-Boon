@@ -9,10 +9,6 @@ if (!isset($_POST["username"]) ) {
 if (!isset($_POST["password"]) ) {
     badRequest("missing 'password' parameter");
 }
-if (!isset($_POST["wishlistId"]) ) {
-    badRequest("missing 'tags' parameter");
-}
-
 
 $username       = $_POST["username"];
 $password       = $_POST["password"];

@@ -181,7 +181,7 @@ class MyWatchlist extends React.Component {
                         {
                             this.state.watchlist && this.state.watchlist.map((watchlist,index) => (<tr key={index}>
                                 <td>#{index+1}</td>
-                                <td style={{width: "98%"}}>{watchlist.tag_labels.replace(";", ", ") || "none... error?"}</td>
+                                <td style={{width: "98%"}}>{watchlist.tag_labels.split(";").join(", ")  || ""}</td>
                                 <td style={{whiteSpace: "nowrap"}}>
                                     <span onClick={this.bindWatchlistEditActions(index)}><FontAwesome name="pencil" size="lg" className="watchlist-icons"/></span>
                                     &nbsp;&nbsp;
@@ -251,7 +251,7 @@ class MyWatchlist extends React.Component {
                         <div>Are you sure you want to delete the watchlist:</div>
                         {
                             this.state.watchlistIndex !== -1 &&
-                            <div>{this.state.watchlist[this.state.watchlistIndex].tags}</div>
+                            <div>{this.state.watchlist[this.state.watchlistIndex].tag_labels.split(";").join(", ")}</div>
                         }
 
                         <div className="alert" style={{marginTop: 6}}>{this.state.dialogError}</div>
