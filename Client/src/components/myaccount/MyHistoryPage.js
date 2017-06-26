@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import Divider from 'material-ui/Divider';
 import api from "../../api/Api";
-import Item from './MyItemRow';
+import Item from './MyHistoryItemRow';
 import LoadingProgress from '../common/LoadingProgress';
 
 
