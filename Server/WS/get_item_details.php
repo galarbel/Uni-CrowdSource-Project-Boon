@@ -2,9 +2,6 @@
 
 include_once '../Global/config.php';
 
-// get POST body
-$post_body = json_decode(file_get_contents('php://input'), true);
-
 // check params
 if (!isset($_POST["username"]) ) {
     badRequest("missing 'username' parameter");

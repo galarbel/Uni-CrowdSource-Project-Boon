@@ -49,7 +49,7 @@ class CatalogItem extends React.Component {
 
     approveOrRejectBoon() {
         const requestParams = {
-            isApproved: this.state.action === "approve" ? 1 : 0,
+            isApproved: this.state.dialogAction === "approve" ? 1 : 0,
             requestId: this.props.data.request_id
         };
 

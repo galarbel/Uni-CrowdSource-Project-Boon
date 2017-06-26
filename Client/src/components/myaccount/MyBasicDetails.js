@@ -27,7 +27,7 @@ class MyBasicDetails extends React.Component {
         this.setState({loading: this.state.loading + 1});
         api.getUserDetails().then(
             userDetails => {
-                this.setState({userDetails, loading: this.state.loading - 1, phone:userDetails.phone, email: userDetails.email});
+                this.setState({userDetails, loading: this.state.loading - 1, phone:userDetails.phone, email: userDetails.email,fullname: userDetails.fullname});
             }
         ).catch(e => {
             //TODO
@@ -97,12 +97,13 @@ class MyBasicDetails extends React.Component {
         }
 
         const isEdit = this.props.isEditMode;
-        let {username, score, phone, email} = Object.assign({}, this.state.userDetails, isEdit ? this.state : {});
+        let {username, score, phone, email,fullname} = Object.assign({}, this.state.userDetails, isEdit ? this.state : {});
         const tableValues = {
             Username: username,
             Score: score,
             Phone: isEdit ? <TextInput name="phone" value={phone} onChange={this.handleInputChange}/> : phone,
-            Email: isEdit ? <TextInput name="email" value={email} onChange={this.handleInputChange}/> : email
+            Email: isEdit ? <TextInput name="email" value={email} onChange={this.handleInputChange}/> : email,
+            Name: fullname
         };
 
         return (

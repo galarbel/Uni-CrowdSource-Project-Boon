@@ -13,7 +13,7 @@ if (!isset($_POST["tags"]) ) {
     badRequest("missing 'tags' parameter");
 }
 if (!isset($_POST["wishlistId"]) ) {
-    badRequest("missing 'tags' parameter");
+    badRequest("missing 'wishlistId' parameter");
 }
 
 $username       = $_POST["username"];
@@ -51,6 +51,19 @@ if (isset($wishlist_id)){
     }
     $results["data"]["wishlist_id"] = $wishlist_id;
     $results["data"]["submitSuccess"] = true;
+
+    $db = new MysqliDb ($DBServer, $DBUsername, $DBPassword, $DBName);
+    $sqlQuery = "call get_user_wish_list (?)";
+    $results["data"] = $db->rawQuery($sqlQuery,[$wishlist_id])[0];
+
+    $tag_labels =  explode(";",$results["data"]["tag_labels"]);
+    $tag_ids =  explode(";",$results["data"]["tag_ids"]);
+    $results["data"]["tags"] = [];
+    for ($y = 0; $y < count($tag_labels); $y++) {
+        $temp->value = $tag_ids[$y];
+        $temp->label = $tag_labels[$y];
+        array_push($results["data"]["tags"],json_encode($temp));
+    }
 }else{
     $results["data"]["submitSuccess"] = false;
     //TODO handle error

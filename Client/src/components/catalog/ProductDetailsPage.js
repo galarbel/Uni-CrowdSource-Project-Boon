@@ -76,7 +76,7 @@ class ProductDetailsPage extends React.Component {
             return (<LoadingProgress/>);
         }
 
-        const {title,category,city,date,description,phone, image, tags} = this.state.data;
+        const {title,category,city,date,description,phone, image, tags,fullname} = this.state.data;
         return (
             <div>
                 <div style={{fontSize:14,margin:'10px',lineHeight:'20px'}}>
@@ -106,6 +106,7 @@ class ProductDetailsPage extends React.Component {
                     <div style={{verticalAlign:'middle'}}><b>Contact Information:</b></div>
                     <Divider/>
                     <div>
+                        <div>Name: {fullname}</div>
                         <div>Phone: {phone}</div>
                         <div>City: {city}</div>
                     </div>
@@ -122,6 +123,8 @@ class ProductDetailsPage extends React.Component {
                             <div className="alert">* This item has been reported by you</div>
                         }
                     </div>
+                </div>
+                <div style={{height:90}}>
                 </div>
                 <div style={{position: 'fixed', bottom: 0, width: "100%", height: 85, background: "#FFF"}}>
                     <BottomNavigation selectedIndex={this.state.selectedIndex}>

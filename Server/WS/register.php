@@ -15,6 +15,9 @@ if (!isset($_POST["email"]) ) {
 if (!isset($_POST["phone"]) ) {
     badRequest("missing 'phone' parameter");
 }
+if (!isset($_POST["name"]) ) {
+    badRequest("missing 'name' parameter");
+}
 if (!isset($_POST["deviceId"]) ) {
     badRequest("missing 'deviceId' parameter");
 }
@@ -23,6 +26,7 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $email = $_POST["email"];
 $phone = $_POST["phone"];
+$name = $_POST["name"];
 $device_id = $_POST["deviceId"];
 
 $sqlQuery = "call check_username_availability (?)";
@@ -33,8 +37,8 @@ $results["code"] = 200;
 if ($isUsernameTaken){
     $results["data"]["isAvailable"] = false;
 }else{
-    $sqlQuery = "call insert_user (?,?,?,?,?)";
-    $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$phone,$email,$device_id])[0];
+    $sqlQuery = "call insert_user (?,?,?,?,?,?)";
+    $results["data"] = $db->rawQuery($sqlQuery,[$username,$password,$phone,$email,$name,$device_id])[0];
 }
 header('Content-type: application/json');
 echo json_encode($results);
