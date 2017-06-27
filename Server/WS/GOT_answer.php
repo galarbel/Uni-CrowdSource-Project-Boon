@@ -58,7 +58,7 @@ if ($gameType == "1"){ //verify
         $db->rawQuery($SQLQuery,[$user_id,$item_id,$tag]);
     }
     exec("nohup php -f notify_users.php ". (string)$item_id . " 0 > /dev/null 2>&1 &");
-    exec("nohup php -f notify_users.php ". (string)$item_id . " 30 > /dev/null 2>&1 &");
+    exec("nohup php -f notify_users.php ". (string)$item_id . " 1800 > /dev/null 2>&1 &");
     $results["data"]["type"] = 2; //frontend flag for add mode
 
 }else{
